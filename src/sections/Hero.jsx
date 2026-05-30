@@ -79,7 +79,7 @@ export default function Hero() {
               <h1 className="text-[clamp(3.2rem,9vw,6rem)] font-extrabold leading-[1.0] tracking-tight">
                 <span className="text-[var(--tx)]">Prince</span>
                 <br />
-                <span className="grad-text">Rivera</span>
+                <span className="grad-text">Parnada</span>
               </h1>
             </div>
 
@@ -157,7 +157,7 @@ export default function Hero() {
 <span className="text-[var(--ac2)]">const</span>{' '}
 <span className="text-[var(--tx)]">me</span>{': '}
 <span className="text-yellow-300/80">Developer</span>{' = {\n'}
-{'  name:  '}<span className="text-[var(--ac)]">"Prince Parnada"</span>{',\n'}
+{'  name:  '}<span className="text-[var(--ac)]">"Prince Christian Parnada"</span>{',\n'}
 {'  role:  '}<span className="text-[var(--ac)]">"Full-Stack Eng."</span>{',\n'}
 {'  stack: '}<span className="text-[var(--tx-2)]">['</span>
 <span className="text-[var(--ac)]">"React"</span>

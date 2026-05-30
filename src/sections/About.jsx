@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Mail } from 'lucide-react'
-import { GithubIcon, LinkedinIcon } from '../components/SocialIcons'
+import { GithubIcon, LinkedinIcon, FacebookIcon } from '../components/SocialIcons'
 
 const STATS = [
   { value: '20',   label: 'Years old',           color: 'var(--ac)' },
@@ -47,10 +47,11 @@ export default function About() {
               {/* Avatar */}
               <div className="relative w-48 h-48 rounded-full overflow-hidden
                               ring-2 ring-[var(--ac)]/30 ring-offset-4 ring-offset-[var(--bg)]">
-                <div className="w-full h-full flex items-center justify-center text-7xl select-none"
-                     style={{ background: 'linear-gradient(135deg, var(--bg-3), var(--bg-4))' }}>
-                  👨‍💻
-                </div>
+                <img
+                  src="/images/prince.jpg"
+                  alt="Prince Christian Parnada"
+                  className="w-full h-full object-cover object-top"
+                />
               </div>
               {/* Status badge */}
               <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 flex items-center gap-1.5
@@ -62,16 +63,17 @@ export default function About() {
 
             {/* Name + title */}
             <div data-r className="reveal text-center lg:text-left">
-              <h3 className="text-2xl font-extrabold text-[var(--tx)]">Prince Parnada</h3>
+              <h3 className="text-2xl font-extrabold text-[var(--tx)]">Prince Christian Parnada</h3>
               <p className="text-sm font-mono text-[var(--ac)] mt-1">IT Student & Web Developer</p>
             </div>
 
             {/* Social row */}
             <div data-r className="reveal d1 flex gap-2">
               {[
-                { icon: Mail,         href: 'mailto:hello@princeparnada.dev', label: 'Email' },
-                { icon: GithubIcon,   href: 'https://github.com',          label: 'GitHub' },
-                { icon: LinkedinIcon, href: 'https://linkedin.com',        label: 'LinkedIn' },
+                { icon: Mail,         href: 'mailto:princechristianparnada@gmail.com',                              label: 'Email' },
+                { icon: GithubIcon,   href: 'https://github.com/Prinss-git',                                        label: 'GitHub' },
+                { icon: LinkedinIcon, href: 'https://www.linkedin.com/in/prince-christian-parnada-3b8a3b400/',      label: 'LinkedIn' },
+                { icon: FacebookIcon, href: 'https://www.facebook.com/princechristian.parnada.9',                   label: 'Facebook' },
               ].map(({ icon: Icon, href, label }) => (
                 <a key={label} href={href} aria-label={label}
                    className="w-10 h-10 rounded-xl glass flex items-center justify-center

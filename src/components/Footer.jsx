@@ -1,9 +1,9 @@
-import { GithubIcon, LinkedinIcon, TwitterXIcon } from './SocialIcons'
+import { GithubIcon, LinkedinIcon, FacebookIcon } from './SocialIcons'
 
 const SOCIALS = [
-  { icon: GithubIcon,   href: 'https://github.com',   label: 'GitHub' },
-  { icon: LinkedinIcon, href: 'https://linkedin.com', label: 'LinkedIn' },
-  { icon: TwitterXIcon, href: 'https://twitter.com',  label: 'Twitter' },
+  { icon: GithubIcon,   href: 'https://github.com/Prinss-git',                                   label: 'GitHub' },
+  { icon: LinkedinIcon, href: 'https://www.linkedin.com/in/prince-christian-parnada-3b8a3b400/', label: 'LinkedIn' },
+  { icon: FacebookIcon, href: 'https://www.facebook.com/princechristian.parnada.9',              label: 'Facebook' },
 ]
 
 export default function Footer() {
@@ -11,7 +11,7 @@ export default function Footer() {
     <footer className="border-t border-[var(--glass-border)] py-8 glass" role="contentinfo">
       <div className="wrap flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-xs text-[var(--tx-3)] font-mono">
-          © {new Date().getFullYear()} Prince Parnada — crafted with React + Vite
+          © {new Date().getFullYear()} Prince Christian Parnada — crafted with React + Vite
         </p>
         <div className="flex items-center gap-2">
           {SOCIALS.map(({ icon: Icon, href, label }) => (

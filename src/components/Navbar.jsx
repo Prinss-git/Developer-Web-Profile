@@ -58,7 +58,7 @@ export default function Navbar({ theme, toggleTheme }) {
           aria-label="Go to top"
         >
           <span className="grad-text font-bold text-base">PP</span>
-          <span className="text-[var(--tx-2)] font-normal ml-2 hidden sm:inline">Prince Parnada</span>
+          <span className="text-[var(--tx-2)] font-normal ml-2 hidden sm:inline">Prince Christian Parnada</span>
         </a>
 
         {/* Desktop nav with sliding pill */}

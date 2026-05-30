@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
 import { Send, CheckCircle, AlertCircle, Mail, Phone } from 'lucide-react'
-import { GithubIcon, LinkedinIcon, TwitterXIcon } from '../components/SocialIcons'
+import { GithubIcon, LinkedinIcon, FacebookIcon } from '../components/SocialIcons'
 
 const SOCIALS = [
-  { icon: GithubIcon,   href: 'https://github.com',   label: 'GitHub',      handle: 'github.com/Prinss-git' },
-  { icon: LinkedinIcon, href: 'https://linkedin.com', label: 'LinkedIn',    handle: 'linkedin.com/in/princeparnada' },
-  { icon: TwitterXIcon, href: 'https://twitter.com',  label: 'Twitter / X', handle: '@princeparnada_dev' },
+  { icon: GithubIcon,   href: 'https://github.com/Prinss-git',                                    label: 'GitHub',   handle: 'github.com/Prinss-git' },
+  { icon: LinkedinIcon, href: 'https://www.linkedin.com/in/prince-christian-parnada-3b8a3b400/',  label: 'LinkedIn', handle: 'linkedin.com/in/prince-christian-parnada' },
+  { icon: FacebookIcon, href: 'https://www.facebook.com/princechristian.parnada.9',               label: 'Facebook', handle: 'facebook.com/princechristian.parnada.9' },
 ]
 
 const INITIAL = { name: '', email: '', message: '' }
@@ -166,7 +166,7 @@ export default function Contact() {
             <div className="space-y-3">
               {[
                 { icon: Phone, label: 'Phone', value: '+63 948 717 7945', href: null },
-                { icon: Mail,  label: 'Email', value: 'algomimics3.0@gmail.com', href: 'mailto:algomimics3.0@gmail.com' },
+                { icon: Mail,  label: 'Email', value: 'princechristianparnada@gmail.com', href: 'mailto:princechristianparnada@gmail.com' },
               ].map(({ icon: Icon, label, value, href }) => (
                 <div key={label} className="card p-4 flex items-center gap-4">
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
