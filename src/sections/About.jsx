@@ -48,9 +48,9 @@ export default function About() {
               <div className="relative w-48 h-48 rounded-full overflow-hidden
                               ring-2 ring-[var(--ac)]/30 ring-offset-4 ring-offset-[var(--bg)]">
                 <img
-                  src="/images/prince.jpg"
+                  src="/images/prince.jpeg"
                   alt="Prince Christian Parnada"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
               {/* Status badge */}
