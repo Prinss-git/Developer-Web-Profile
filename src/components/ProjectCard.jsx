@@ -10,7 +10,7 @@ const TECH_COLOR = {
 }
 
 export default function ProjectCard({ project }) {
-  const { title, description, stack, github, live, image } = project
+  const { title, description, stack, github, live, image, demo } = project
   return (
     <article className="card group flex flex-col h-full overflow-hidden" aria-label={`Project: ${title}`}>
       <div className="relative h-44 overflow-hidden rounded-t-[20px]"
@@ -43,6 +43,12 @@ export default function ProjectCard({ project }) {
             </span>
           ))}
         </div>
+        {demo && (
+          <div className="text-[11px] font-mono px-3 py-2 rounded-lg bg-[var(--glass)] border border-[var(--glass-border)] text-[var(--tx-2)] space-y-0.5">
+            <div><span className="text-[var(--tx-3)]">email</span> {demo.email}</div>
+            <div><span className="text-[var(--tx-3)]">pass </span> {demo.password}</div>
+          </div>
+        )}
         <div className="flex items-center justify-between pt-3 border-t border-[var(--glass-border)]">
           {live ? (
             <a href={live} target="_blank" rel="noopener noreferrer" aria-label={`${title} live demo`}

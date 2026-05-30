@@ -7,5 +7,6 @@ export const projects = [
     github: 'https://github.com/Prinss-git/MotoTrack',
     live: 'https://moto-track-inky.vercel.app/login',
     image: null,
+    demo: { email: 'demo@mototrack.com', password: 'demo1234' },
   },
 ]
