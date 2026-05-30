@@ -6,7 +6,7 @@ export const projects = [
     stack: ['React', 'Node.js', 'MySQL', 'Tailwind CSS'],
     github: 'https://github.com/Prinss-git/MotoTrack',
     live: 'https://moto-track-inky.vercel.app/login',
-    image: null,
+    image: '/images/Screenshot1.png',
     demo: { email: 'demo@mototrack.com', password: 'demo1234' },
   },
 ]
