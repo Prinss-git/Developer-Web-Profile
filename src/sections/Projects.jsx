@@ -20,26 +20,17 @@ function useReveal(ref) {
 export default function Projects() {
   const ref = useRef(null)
   useReveal(ref)
-
   return (
-    <section id="projects" className="py-28 relative" ref={ref} aria-label="Projects">
-      {/* Section background tint */}
-      <div className="absolute inset-0 pointer-events-none"
-           style={{ background: 'linear-gradient(180deg, transparent, var(--bg-2) 20%, var(--bg-2) 80%, transparent)' }} />
-
-      <div className="wrap relative">
-        <div data-r className="reveal text-center mb-16">
-          <div className="eyebrow justify-center">Selected work</div>
-          <h2 className="section-title mt-2">Projects</h2>
-          <p className="text-[var(--tx-2)] mt-4 max-w-md mx-auto leading-relaxed">
-            A handful of things I've built — from real-time collaboration tools to distributed systems.
-          </p>
+    <section id="projects" className="py-28 bg-[var(--bg-2)]" ref={ref} aria-label="Projects">
+      <div className="wrap">
+        <div data-r className="reveal mb-12">
+          <div className="eyebrow">Work</div>
+          <h2 className="section-title mt-3">Projects</h2>
         </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, i) => (
-            <div data-r key={project.id} className={`reveal d${i + 1}`}>
-              <ProjectCard project={project} />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {projects.map((p, i) => (
+            <div data-r key={p.id} className={`reveal d${Math.min(i + 1, 6)}`}>
+              <ProjectCard project={p} />
             </div>
           ))}
         </div>

@@ -1,91 +1,46 @@
-/* ═══════════════════════════════════════
-   DARK  (default)
-═══════════════════════════════════════ */
 :root,
 [data-theme="dark"] {
-  --bg:            #03070f;
-  --bg-2:          #070d1a;
-  --bg-3:          #0b1424;
-  --bg-4:          #0f1c32;
+  --bg:   #09090b;
+  --bg-2: #111113;
+  --bg-3: #18181b;
+  --bg-4: #27272a;
 
-  --glass:         rgba(255,255,255,0.03);
-  --glass-border:  rgba(255,255,255,0.07);
-  --glass-hover:   rgba(255,255,255,0.06);
+  --border:   #27272a;
+  --border-2: #3f3f46;
 
-  --tx:            #e8eef8;
-  --tx-2:          #94a3b8;
-  --tx-3:          #4a5a78;
+  --tx:   #fafafa;
+  --tx-2: #a1a1aa;
+  --tx-3: #52525b;
 
-  --ac:            #00e5c3;
-  --ac-dim:        rgba(0,229,195,0.12);
-  --ac-glow:       rgba(0,229,195,0.25);
+  --ac:     #f97316;
+  --ac-dim: rgba(249,115,22,0.1);
 
-  --ac2:           #a78bfa;
-  --ac2-dim:       rgba(167,139,250,0.12);
+  --grad:      linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+  --grad-text: linear-gradient(90deg,  #f97316 0%, #fbbf24 100%);
 
-  --border:        rgba(255,255,255,0.07);
-  --border-2:      rgba(255,255,255,0.12);
-
-  --dot:           rgba(0,229,195,0.08);
-
-  --shadow:        0 4px 24px rgba(0,0,0,0.5);
-  --shadow-lg:     0 8px 48px rgba(0,0,0,0.6);
-  --glow:          0 0 40px rgba(0,229,195,0.15);
-  --glow-lg:       0 0 80px rgba(0,229,195,0.20);
-
-  --grad:          linear-gradient(135deg, var(--ac) 0%, var(--ac2) 100%);
-  --grad-r:        linear-gradient(135deg, var(--ac2) 0%, var(--ac) 100%);
-
-  --mesh-1: radial-gradient(ellipse 70% 60% at 20%  5%,  rgba(0,229,195,0.10) 0%, transparent 65%);
-  --mesh-2: radial-gradient(ellipse 55% 45% at 80% 90%,  rgba(167,139,250,0.08) 0%, transparent 65%);
-  --mesh-3: radial-gradient(ellipse 40% 35% at 90% 20%,  rgba(0,229,195,0.05) 0%, transparent 55%);
-  --orb-opacity: 0.07;
+  --shadow:    0 1px 3px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.3);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
 }
 
-/* ═══════════════════════════════════════
-   LIGHT
-═══════════════════════════════════════ */
 [data-theme="light"] {
-  /* Warm blue-white tinted backgrounds — NOT pure white */
-  --bg:            #eef2fb;
-  --bg-2:          #e4eaf7;
-  --bg-3:          #d8e1f2;
-  --bg-4:          #ccd5ec;
+  --bg:   #fafaf9;
+  --bg-2: #f5f5f4;
+  --bg-3: #e7e5e4;
+  --bg-4: #d6d3d1;
 
-  /* White frosted glass — key to making light glassmorphism work */
-  --glass:         rgba(255,255,255,0.60);
-  --glass-border:  rgba(255,255,255,0.90);
-  --glass-hover:   rgba(255,255,255,0.80);
+  --border:   #e7e5e4;
+  --border-2: #d6d3d1;
 
-  --tx:            #0c1830;
-  --tx-2:          #3d5280;
-  --tx-3:          #8899bb;
+  --tx:   #1c1917;
+  --tx-2: #57534e;
+  --tx-3: #a8a29e;
 
-  /* Same teal but slightly deeper so it pops on light */
-  --ac:            #0891b2;
-  --ac-dim:        rgba(8,145,178,0.10);
-  --ac-glow:       rgba(8,145,178,0.25);
+  --ac:     #ea580c;
+  --ac-dim: rgba(234,88,12,0.08);
 
-  --ac2:           #7c3aed;
-  --ac2-dim:       rgba(124,58,237,0.10);
+  --grad:      linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+  --grad-text: linear-gradient(90deg,  #ea580c 0%, #f59e0b 100%);
 
-  --border:        rgba(0,0,0,0.07);
-  --border-2:      rgba(0,0,0,0.13);
-
-  --dot:           rgba(8,145,178,0.10);
-
-  /* Colored shadows — gives depth unlike flat gray */
-  --shadow:        0 4px 24px rgba(8,145,178,0.08), 0 1px 4px rgba(0,0,0,0.06);
-  --shadow-lg:     0 8px 48px rgba(8,145,178,0.12), 0 2px 8px rgba(0,0,0,0.08);
-  --glow:          0 0 40px rgba(8,145,178,0.18);
-  --glow-lg:       0 0 80px rgba(8,145,178,0.22);
-
-  --grad:          linear-gradient(135deg, var(--ac) 0%, var(--ac2) 100%);
-  --grad-r:        linear-gradient(135deg, var(--ac2) 0%, var(--ac) 100%);
-
-  /* Stronger mesh so light mode has atmosphere too */
-  --mesh-1: radial-gradient(ellipse 70% 60% at 20%  5%,  rgba(8,145,178,0.12) 0%, transparent 65%);
-  --mesh-2: radial-gradient(ellipse 55% 45% at 80% 90%,  rgba(124,58,237,0.10) 0%, transparent 65%);
-  --mesh-3: radial-gradient(ellipse 40% 35% at 90% 20%,  rgba(8,145,178,0.07) 0%, transparent 55%);
-  --orb-opacity: 0.12;
+  --shadow:    0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
 }
