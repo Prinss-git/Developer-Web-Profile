@@ -63,7 +63,7 @@ export default function Hero() {
                    aria-hidden="true" />
               <div className="relative w-[280px] h-[340px] rounded-2xl overflow-hidden bg-[var(--bg-3)]">
                 <img
-                  src="/images/prince.jpeg"
+                  src="/images/prince.png"
                   alt="Prince Christian Parnada"
                   className="w-full h-full object-cover object-center"
                 />
