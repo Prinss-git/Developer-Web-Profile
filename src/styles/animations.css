@@ -1,0 +1,76 @@
+/* ── Keyframes ───────────────────────────────── */
+@keyframes float    { 0%,100% { transform: translateY(0) }   50% { transform: translateY(-14px) } }
+@keyframes blink    { 0%,100% { opacity: 1 }                 50% { opacity: 0 } }
+@keyframes spin-slow{ from { transform: rotate(0deg) }       to  { transform: rotate(360deg) } }
+@keyframes shimmer  {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+@keyframes gradShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(-28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Scroll-triggered entrance ───────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(.22,.68,0,1), transform 0.65s cubic-bezier(.22,.68,0,1);
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition: opacity 0.65s cubic-bezier(.22,.68,0,1), transform 0.65s cubic-bezier(.22,.68,0,1);
+}
+.reveal-left.in { opacity: 1; transform: translateX(0); }
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 0.55s ease, transform 0.55s cubic-bezier(.22,.68,0,1.2);
+}
+.reveal-scale.in { opacity: 1; transform: scale(1); }
+
+/* Stagger delays */
+.d1 { transition-delay: 0.08s; }
+.d2 { transition-delay: 0.16s; }
+.d3 { transition-delay: 0.24s; }
+.d4 { transition-delay: 0.32s; }
+.d5 { transition-delay: 0.40s; }
+.d6 { transition-delay: 0.48s; }
+
+/* ── Utility animations ──────────────────────── */
+.float-anim    { animation: float     6s ease-in-out infinite; }
+.cursor-blink  { animation: blink     1s step-end   infinite; }
+.spin-slow     { animation: spin-slow 20s linear    infinite; }
+
+/* ── Shimmer gradient text ───────────────────── */
+.shimmer-text {
+  background: linear-gradient(90deg, var(--ac) 0%, var(--ac2) 45%, var(--ac) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3.5s linear infinite;
+}
+
+/* ── Animated gradient border ────────────────── */
+.anim-border::before {
+  background: linear-gradient(90deg, var(--ac), var(--ac2), var(--ac));
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
