@@ -17,8 +17,11 @@ export const skills = [
       { name: 'Node.js',    icon: '🟩' },
       { name: 'HTML',       icon: '🌐' },
       { name: 'CSS',        icon: '🎨' },
-      { name: 'Bootstrap',  icon: '🅱️' },
-      { name: 'TypeScript', icon: '🟦' },
+      { name: 'Bootstrap',   icon: '🅱️' },
+      { name: 'TypeScript',  icon: '🟦' },
+      { name: 'Tailwind CSS', icon: '🎨' },
+      { name: 'Express',     icon: '🟩' },
+      { name: 'Axios',       icon: '🔄' },
     ],
   },
   {
