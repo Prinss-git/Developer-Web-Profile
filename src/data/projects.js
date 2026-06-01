@@ -19,4 +19,14 @@ export const projects = [
     image: '/images/country_info.png',
     demo: null,
   },
+  {
+    id: 3,
+    title: 'GitHub Profile Analyzer',
+    description: 'Enter any GitHub username and get a visual breakdown of their public activity — profile card, top languages doughnut chart, 12-month commit activity, top repos by stars, and a stats summary. Backend proxy keeps the GitHub token server-side.',
+    stack: ['React', 'Node.js', 'Express', 'Chart.js'],
+    github: 'https://github.com/Prinss-git',
+    live: 'https://github-profile-analzyer.vercel.app/',
+    image: '/images/Github.png',
+    demo: null,
+  },
 ]
