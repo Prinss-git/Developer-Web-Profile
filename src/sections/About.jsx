@@ -22,14 +22,14 @@ export default function About() {
   useReveal(ref)
 
   return (
-    <section id="about" className="py-28 bg-[var(--bg-2)]" ref={ref} aria-label="About me">
+    <section id="about" className="py-16 lg:py-28 bg-[var(--bg-2)] overflow-x-hidden" ref={ref} aria-label="About me">
       <div className="wrap">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
 
           {/* Photo + socials */}
           <div data-r className="reveal-left flex flex-col gap-6">
             <div className="relative w-full max-w-sm">
-              <div className="absolute inset-0 translate-x-4 translate-y-4 rounded-2xl border border-[var(--border-2)]"
+              <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-2xl border border-[var(--border-2)]"
                    aria-hidden="true" />
               <div className="relative rounded-2xl overflow-hidden aspect-[4/5] bg-[var(--bg-3)]">
                 <img

@@ -11,7 +11,7 @@ export default function Footer() {
     <footer role="contentinfo">
 
       {/* Big CTA */}
-      <div className="border-t border-[var(--border)] py-24 bg-[var(--bg-2)]">
+      <div className="border-t border-[var(--border)] py-16 lg:py-24 bg-[var(--bg-2)]">
         <div className="wrap">
           <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--tx-3)] mb-8">
             Let's work together

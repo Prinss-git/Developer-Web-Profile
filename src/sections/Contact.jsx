@@ -75,7 +75,7 @@ export default function Contact() {
   const ic = n => `input${errors[n] && touched[n] ? ' input-error' : ''}`
 
   return (
-    <section id="contact" className="py-28" ref={ref} aria-label="Contact">
+    <section id="contact" className="py-16 lg:py-28" ref={ref} aria-label="Contact">
       <div className="wrap">
         <div data-r className="reveal mb-12">
           <div className="eyebrow">05 — Contact</div>

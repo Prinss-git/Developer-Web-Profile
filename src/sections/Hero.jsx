@@ -34,7 +34,7 @@ export default function Hero() {
         {/* Name — massive display type */}
         <div data-r className="reveal d2 mb-10">
           <h1 className="font-extrabold leading-[0.88] tracking-[-0.03em] text-[var(--tx)]"
-              style={{ fontSize: 'clamp(4.5rem, 14vw, 11rem)' }}>
+              style={{ fontSize: 'clamp(3rem, 12vw, 11rem)' }}>
             Prince<br />
             <span className="grad-text">Parnada.</span>
           </h1>
@@ -44,7 +44,7 @@ export default function Hero() {
         <div data-r className="reveal d3 h-px bg-[var(--border)] mb-8" />
 
         {/* Bottom row — role + CTAs */}
-        <div data-r className="reveal d4 flex flex-wrap items-center justify-between gap-6">
+        <div data-r className="reveal d4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <p className="text-sm font-semibold text-[var(--tx-2)]">Full-Stack Developer</p>
             <p className="text-xs text-[var(--tx-3)] mt-0.5">University of Cebu · BSIT</p>

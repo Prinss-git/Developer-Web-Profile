@@ -21,7 +21,7 @@ export default function Experience() {
   const ref = useRef(null)
   useReveal(ref)
   return (
-    <section id="experience" className="py-28" ref={ref} aria-label="Experience">
+    <section id="experience" className="py-16 lg:py-28" ref={ref} aria-label="Experience">
       <div className="wrap">
         <div data-r className="reveal mb-12">
           <div className="eyebrow">03 — Education</div>

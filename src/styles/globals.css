@@ -28,7 +28,9 @@ body {
 ::-webkit-scrollbar-thumb:hover { background: var(--ac); }
 
 /* Layout */
-.wrap { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 1rem; }
+@media (min-width: 640px)  { .wrap { padding: 0 1.5rem; } }
+@media (min-width: 1024px) { .wrap { padding: 0 2rem; } }
 
 /* Card */
 .card {

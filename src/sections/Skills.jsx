@@ -21,7 +21,7 @@ export default function Skills() {
   const ref = useRef(null)
   useReveal(ref)
   return (
-    <section id="skills" className="py-28 bg-[var(--bg-2)]" ref={ref} aria-label="Skills">
+    <section id="skills" className="py-16 lg:py-28 bg-[var(--bg-2)]" ref={ref} aria-label="Skills">
       <div className="wrap">
         <div data-r className="reveal mb-12">
           <div className="eyebrow">04 — Skills</div>
