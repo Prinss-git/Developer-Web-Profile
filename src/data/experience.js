@@ -1,14 +1,14 @@
 export const experience = [
   {
     id: 1,
-    company: 'University of Cebu - Banilad',
-    role: 'BS Information Technology Student',
+    company: 'University of Cebu – Banilad',
+    role: 'BS Information Technology',
     period: '2023 – Present',
     location: 'Cebu, Philippines',
     bullets: [
-      'Studying core CS fundamentals — data structures, algorithms, software engineering, and database management.',
-      'Building full-stack web projects using React, Node.js, PHP, and MySQL as part of coursework.',
-      'Collaborating with peers on group capstone projects using Git and GitHub for version control.',
+      'Currently in 2nd year. Coursework covers data structures, algorithms, database management, and software engineering.',
+      'Built MotoTrack — a full-stack inventory and sales system for a real motor parts business — as a personal project.',
+      'Using React, Node.js, PHP, and MySQL across school projects and self-initiated work.',
     ],
   },
   {
@@ -18,9 +18,8 @@ export const experience = [
     period: '2021 – 2023',
     location: 'Cebu, Philippines',
     bullets: [
-      'Completed the Technology, Vocational and Livelihood – Computer and Communication Services strand.',
-      'Gained foundational skills in HTML, CSS, and JavaScript web development.',
-      'Developed strong problem-solving and computer systems knowledge through practical coursework.',
+      'Took the Computer and Communication Services strand under TVL track.',
+      'First exposure to HTML, CSS, and JavaScript — where I figured out I actually liked this.',
     ],
   },
 ]

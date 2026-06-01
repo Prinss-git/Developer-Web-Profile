@@ -61,24 +61,26 @@ export default function About() {
             <div data-r className="reveal">
               <div className="eyebrow">01 — About me</div>
               <h2 className="section-title mt-3">
-                Building with care,<br />
-                <span className="grad-text">shipping with speed.</span>
+                IT student.<br />
+                <span className="grad-text">Full-stack builder.</span>
               </h2>
             </div>
 
             <div data-r className="reveal d1 space-y-4 text-[var(--tx-2)] leading-loose text-[0.95rem]">
               <p>
-                I'm Prince Christian S. Parnada, a 20-year-old IT student at the University of Cebu – Banilad,
-                passionate about building web applications that are both functional and beautifully designed.
+                I'm Prince Christian, 20, studying BSIT at the University of Cebu – Banilad.
+                I build full-stack web apps — the kind that actually get used by real people,
+                not just demoed in class.
               </p>
               <p>
-                I work across the full stack — from crafting responsive frontends in React to building
-                server-side logic with Node.js and PHP, and managing databases with MySQL and Firebase.
-                I love turning ideas into real, working products.
+                My main stack is React on the frontend and Node.js + MySQL on the backend.
+                I've also worked with PHP, Firebase, and plain CSS when the project calls for it.
+                MotoTrack — an inventory and sales system for a real motor parts shop here in Cebu —
+                is probably my most complete project so far.
               </p>
               <p>
-                Currently open to internships, freelance projects, and entry-level opportunities where I
-                can grow, contribute, and keep building things that matter.
+                Looking for an internship or entry-level role where I can work on real problems
+                and keep getting better.
               </p>
             </div>
 

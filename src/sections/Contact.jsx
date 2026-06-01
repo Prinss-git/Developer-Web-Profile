@@ -78,10 +78,10 @@ export default function Contact() {
     <section id="contact" className="py-28" ref={ref} aria-label="Contact">
       <div className="wrap">
         <div data-r className="reveal mb-12">
-          <div className="eyebrow">05 — Get in touch</div>
-          <h2 className="section-title mt-3">Contact</h2>
+          <div className="eyebrow">05 — Contact</div>
+          <h2 className="section-title mt-3">Let's talk.</h2>
           <p className="text-[var(--tx-2)] mt-3 max-w-md leading-relaxed">
-            Have a project or opportunity? I'd love to hear from you.
+            Got a project, an internship offer, or just want to say hi — send me a message.
           </p>
         </div>
 
@@ -134,7 +134,7 @@ export default function Contact() {
                     id="message" name="message" rows={5}
                     value={fields.message} onChange={change} onBlur={blur}
                     aria-required="true" aria-invalid={!!(errors.message && touched.message)}
-                    placeholder="Tell me about your project or idea..."
+                    placeholder="What's on your mind?"
                     className={`${ic('message')} resize-none`} />
                   {errors.message && touched.message && (
                     <p role="alert" className="text-red-400 text-xs mt-1.5 flex items-center gap-1">
@@ -162,8 +162,7 @@ export default function Contact() {
           {/* Info */}
           <div data-r className="reveal d2 flex flex-col gap-5">
             <p className="text-[var(--tx-2)] leading-loose text-sm">
-              Whether it's a project, an opportunity, or just a hello — I'm always happy to connect.
-              I aim to respond within one business day.
+              I usually reply within a day. Email works best, but the form is fine too.
             </p>
             <div className="space-y-3">
               {[
