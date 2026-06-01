@@ -24,7 +24,7 @@ export default function Projects() {
     <section id="projects" className="py-28 bg-[var(--bg-2)]" ref={ref} aria-label="Projects">
       <div className="wrap">
         <div data-r className="reveal mb-12">
-          <div className="eyebrow">Work</div>
+          <div className="eyebrow">02 — Work</div>
           <h2 className="section-title mt-3">Projects</h2>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">

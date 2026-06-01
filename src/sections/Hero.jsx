@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { ArrowRight, Download } from 'lucide-react'
+import { ArrowDown, Download } from 'lucide-react'
 
 export default function Hero() {
   const ref = useRef(null)
@@ -8,70 +8,61 @@ export default function Hero() {
     if (!ref.current) return
     const els = ref.current.querySelectorAll('[data-r]')
     const timers = []
-    els.forEach((el, i) => timers.push(setTimeout(() => el.classList.add('in'), 120 + i * 90)))
+    els.forEach((el, i) => timers.push(setTimeout(() => el.classList.add('in'), 80 + i * 70)))
     return () => timers.forEach(clearTimeout)
   }, [])
 
   return (
     <section id="hero" ref={ref}
-      className="min-h-screen flex items-center pt-16 pb-24"
+      className="min-h-screen flex flex-col justify-center pt-16"
       aria-label="Hero">
-      <div className="wrap w-full">
-        <div className="grid lg:grid-cols-[1fr_300px] gap-12 xl:gap-24 items-center">
+      <div className="wrap w-full py-16">
 
-          {/* Text */}
-          <div>
-            <div data-r className="reveal mb-8 flex items-center gap-2.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0"
-                    style={{ boxShadow: '0 0 8px #34d399' }} />
-              <span className="text-sm text-[var(--tx-2)]">Available for work</span>
-            </div>
-
-            <h1 data-r className="reveal d1 font-extrabold leading-[0.9] tracking-tight mb-7"
-                style={{ fontSize: 'clamp(3.5rem, 10vw, 7rem)' }}>
-              <span className="block text-[var(--tx)]">Prince</span>
-              <span className="block grad-text">Parnada.</span>
-            </h1>
-
-            <p data-r className="reveal d2 text-base font-semibold text-[var(--tx-2)] mb-4 tracking-wide">
-              Full-Stack Developer &amp; IT Student
-            </p>
-
-            <p data-r className="reveal d3 text-[var(--tx-3)] leading-relaxed mb-10 max-w-[440px]">
-              I build full-stack web applications for real businesses.
-              Based in Cebu, Philippines — studying BSIT at the University of Cebu.
-            </p>
-
-            <div data-r className="reveal d4 flex flex-wrap gap-3">
-              <button
-                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-                className="btn btn-primary group">
-                View Projects
-                <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
-              </button>
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
-                <Download size={14} />
-                Resume
-              </a>
-            </div>
-          </div>
-
-          {/* Photo */}
-          <div data-r className="reveal-scale hidden lg:flex justify-end">
-            <div className="relative">
-              <div className="absolute inset-0 translate-x-4 translate-y-4 rounded-2xl border border-[var(--border-2)]"
-                   aria-hidden="true" />
-              <div className="relative w-[280px] h-[340px] rounded-2xl overflow-hidden bg-[var(--bg-3)]">
-                <img
-                  src="/images/prince.jpg"
-                  alt="Prince Christian Parnada"
-                  className="w-full h-full object-cover object-center"
-                />
-              </div>
-            </div>
-          </div>
-
+        {/* Top rule row */}
+        <div data-r className="reveal mb-6 flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--tx-3)]">
+          <span className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"
+                  style={{ boxShadow: '0 0 6px #34d399' }} />
+            Open to work
+          </span>
+          <span>2026</span>
         </div>
+
+        {/* Divider */}
+        <div data-r className="reveal d1 h-px bg-[var(--border)] mb-10" />
+
+        {/* Name — massive display type */}
+        <div data-r className="reveal d2 mb-10">
+          <h1 className="font-extrabold leading-[0.88] tracking-[-0.03em] text-[var(--tx)]"
+              style={{ fontSize: 'clamp(4.5rem, 14vw, 11rem)' }}>
+            Prince<br />
+            <span className="grad-text">Parnada.</span>
+          </h1>
+        </div>
+
+        {/* Divider */}
+        <div data-r className="reveal d3 h-px bg-[var(--border)] mb-8" />
+
+        {/* Bottom row — role + CTAs */}
+        <div data-r className="reveal d4 flex flex-wrap items-center justify-between gap-6">
+          <div>
+            <p className="text-sm font-semibold text-[var(--tx-2)]">Full-Stack Developer</p>
+            <p className="text-xs text-[var(--tx-3)] mt-0.5">University of Cebu · BSIT</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+              className="btn btn-primary group">
+              View Projects
+              <ArrowDown size={13} className="group-hover:translate-y-0.5 transition-transform" />
+            </button>
+            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+              <Download size={13} />
+              Resume
+            </a>
+          </div>
+        </div>
+
       </div>
     </section>
   )

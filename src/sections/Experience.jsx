@@ -24,7 +24,7 @@ export default function Experience() {
     <section id="experience" className="py-28" ref={ref} aria-label="Experience">
       <div className="wrap">
         <div data-r className="reveal mb-12">
-          <div className="eyebrow">Background</div>
+          <div className="eyebrow">03 — Background</div>
           <h2 className="section-title mt-3">Experience</h2>
         </div>
         <div className="max-w-2xl space-y-4">

@@ -78,7 +78,7 @@ export default function Contact() {
     <section id="contact" className="py-28" ref={ref} aria-label="Contact">
       <div className="wrap">
         <div data-r className="reveal mb-12">
-          <div className="eyebrow">Get in touch</div>
+          <div className="eyebrow">05 — Get in touch</div>
           <h2 className="section-title mt-3">Contact</h2>
           <p className="text-[var(--tx-2)] mt-3 max-w-md leading-relaxed">
             Have a project or opportunity? I'd love to hear from you.

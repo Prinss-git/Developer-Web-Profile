@@ -59,7 +59,7 @@ export default function About() {
           {/* Bio */}
           <div className="flex flex-col gap-6">
             <div data-r className="reveal">
-              <div className="eyebrow">About me</div>
+              <div className="eyebrow">01 — About me</div>
               <h2 className="section-title mt-3">
                 Building with care,<br />
                 <span className="grad-text">shipping with speed.</span>

@@ -24,7 +24,7 @@ export default function Skills() {
     <section id="skills" className="py-28 bg-[var(--bg-2)]" ref={ref} aria-label="Skills">
       <div className="wrap">
         <div data-r className="reveal mb-12">
-          <div className="eyebrow">Toolbox</div>
+          <div className="eyebrow">04 — Toolbox</div>
           <h2 className="section-title mt-3">Skills</h2>
         </div>
         <div className="space-y-10">
