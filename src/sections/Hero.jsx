@@ -14,17 +14,17 @@ export default function Hero() {
 
   return (
     <section id="hero" ref={ref}
-      className="min-h-screen flex flex-col justify-center pt-16"
+      className="relative min-h-screen flex flex-col justify-center pt-16 overflow-hidden"
       aria-label="Hero">
-      <div className="wrap w-full py-16">
+      {/* Vignette */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true"
+           style={{ background: 'radial-gradient(ellipse at 50% 50%, transparent 45%, rgba(9,9,11,0.75) 100%)' }} />
+
+      <div className="wrap w-full py-16 relative z-10">
 
         {/* Top rule row */}
         <div data-r className="reveal mb-6 flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--tx-3)]">
-          <span className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"
-                  style={{ boxShadow: '0 0 6px #34d399' }} />
-            Open to work
-          </span>
+          <span>Available for internships &amp; freelance</span>
           <span>2026</span>
         </div>
 

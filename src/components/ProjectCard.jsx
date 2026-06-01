@@ -7,6 +7,7 @@ const TECH_COLOR = {
   'Node.js': '#339933', GraphQL: '#e535ab', Docker: '#2496ed',
   Redis: '#dc382d', PostgreSQL: '#336791', Rust: '#ce422b',
   'Tailwind CSS': '#06b6d4', MySQL: '#4479a1', PHP: '#777bb4',
+  'Chart.js': '#ff6384', Express: '#68a063', Axios: '#5a29e4',
   default: 'var(--ac)',
 }
 
@@ -15,19 +16,31 @@ export default function ProjectCard({ project }) {
   return (
     <article className="card group flex flex-col h-full overflow-hidden" aria-label={`Project: ${title}`}>
 
-      {/* Image / placeholder */}
+      {/* Image */}
       <div className="relative h-44 bg-[var(--bg-3)] overflow-hidden shrink-0">
-        {image
-          ? <img src={image} alt={title} className="w-full h-full object-cover" />
-          : (
-            <div className="absolute inset-0 flex items-center justify-center" aria-hidden="true">
-              <div className="space-y-2.5 opacity-[0.08]">
-                {[80, 55, 70, 40, 62].map((w, i) => (
-                  <div key={i} className="h-1.5 rounded-full bg-[var(--tx)]" style={{ width: w }} />
-                ))}
-              </div>
+        {image ? (
+          <>
+            <img
+              src={image} alt={title}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            {/* Hover overlay */}
+            <div className="absolute inset-0 bg-[var(--bg)]/85 opacity-0 group-hover:opacity-100
+                            transition-opacity duration-300 flex items-center justify-center p-5">
+              <p className="text-xs text-[var(--tx-2)] text-center leading-relaxed line-clamp-5">
+                {description}
+              </p>
             </div>
-          )}
+          </>
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+            <div className="space-y-2.5 opacity-[0.08]">
+              {[80, 55, 70, 40, 62].map((w, i) => (
+                <div key={i} className="h-1.5 rounded-full bg-[var(--tx)]" style={{ width: w }} />
+              ))}
+            </div>
+          </div>
+        )}
         <div className="absolute inset-x-0 bottom-0 h-1" style={{ background: 'var(--ac)' }} />
       </div>
 
