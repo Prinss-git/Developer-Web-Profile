@@ -9,4 +9,14 @@ export const projects = [
     image: '/images/Screenshot1.png',
     demo: { email: 'demo@mototrack.com', password: 'demo1234' },
   },
+  {
+    id: 2,
+    title: 'GlobeScope',
+    description: 'Country info app covering all 250 countries — searchable card grid, interactive SVG world map, 3D rotating globe, side-by-side country comparison, and authenticated favorites with notes. Data from REST Countries API v3.1.',
+    stack: ['React', 'Node.js', 'Express', 'Axios'],
+    github: 'https://github.com/Prinss-git',
+    live: 'https://country-info-beta-beryl.vercel.app/explore',
+    image: '/images/country_info.png',
+    demo: null,
+  },
 ]
