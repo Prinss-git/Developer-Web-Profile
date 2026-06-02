@@ -17,18 +17,31 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col items-center justify-center pt-16 overflow-hidden text-center"
       aria-label="Hero">
 
-      {/* Vignette */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true"
-           style={{ background: 'radial-gradient(ellipse at 50% 50%, transparent 45%, rgba(9,9,11,0.75) 100%)' }} />
+      {/* ── Background ── */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        {/* Dot grid */}
+        <div className="hero-dot-grid" />
 
-      {/* Subtle glow behind name */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px]
-                      rounded-full pointer-events-none" aria-hidden="true"
-           style={{ background: 'radial-gradient(ellipse, rgba(249,115,22,0.07) 0%, transparent 70%)' }} />
+        {/* Fade grid out toward center so name reads clean */}
+        <div className="absolute inset-0"
+             style={{ background: 'radial-gradient(ellipse 65% 65% at 50% 50%, var(--bg) 30%, transparent 100%)' }} />
 
+        {/* Orange glow behind name */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] rounded-full"
+             style={{ background: 'radial-gradient(ellipse, rgba(249,115,22,0.06) 0%, transparent 70%)', filter: 'blur(40px)' }} />
+
+        {/* Scan lines */}
+        <div className="hero-scan" style={{ top: '20%' }} />
+        <div className="hero-scan hero-scan-2" style={{ top: '20%' }} />
+
+        {/* Edge vignette */}
+        <div className="absolute inset-0"
+             style={{ background: 'radial-gradient(ellipse at 50% 50%, transparent 50%, rgba(9,9,11,0.85) 100%)' }} />
+      </div>
+
+      {/* ── Content ── */}
       <div className="wrap w-full relative z-10 py-16 flex flex-col items-center">
 
-        {/* Name */}
         <div data-r className="reveal mb-6">
           <h1 className="font-extrabold leading-[0.9] tracking-tight text-[var(--tx)]"
               style={{ fontSize: 'clamp(3rem, 12vw, 9rem)' }}>
@@ -36,12 +49,10 @@ export default function Hero() {
           </h1>
         </div>
 
-        {/* Role */}
         <p data-r className="reveal d1 text-sm font-semibold text-[var(--tx-2)] mb-10 tracking-wide">
           Full-Stack Developer &amp; IT Student · University of Cebu
         </p>
 
-        {/* CTAs */}
         <div data-r className="reveal d2 flex flex-wrap items-center justify-center gap-3">
           <button
             onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}

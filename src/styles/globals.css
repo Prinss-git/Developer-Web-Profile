@@ -126,6 +126,37 @@ body {
 .input:focus { border-color: var(--ac); }
 .input-error { border-color: #ef4444; }
 
+/* ── Hero background ─────────────────────────── */
+@keyframes grid-drift {
+  0%   { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+@keyframes scan {
+  0%   { transform: translateY(-10%); opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { transform: translateY(110vh); opacity: 0; }
+}
+.hero-dot-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(249,115,22,0.18) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: grid-drift 6s linear infinite;
+}
+.hero-scan {
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(249,115,22,0.25) 30%, rgba(249,115,22,0.5) 50%, rgba(249,115,22,0.25) 70%, transparent 100%);
+  animation: scan 9s ease-in-out infinite;
+  pointer-events: none;
+}
+.hero-scan-2 {
+  animation-delay: 4.5s;
+  opacity: 0.5;
+}
+
 /* ── Custom cursor ───────────────────────────── */
 .custom-cursor, .custom-cursor * { cursor: none !important; }
 
