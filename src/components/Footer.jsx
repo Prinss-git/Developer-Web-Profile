@@ -31,11 +31,12 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-[var(--border)] py-6 bg-[var(--bg-2)]">
-        <div className="wrap flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="wrap grid grid-cols-3 items-center gap-4">
           <p className="text-xs text-[var(--tx-3)]">
             © {new Date().getFullYear()} Prince Christian Parnada
           </p>
-          <div className="flex items-center gap-2">
+          <p className="text-xs text-[var(--tx-3)] text-center font-medium">Let's work together</p>
+          <div className="flex items-center gap-2 justify-end">
             {SOCIALS.map(({ icon: Icon, href, label }) => (
               <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
                  className="w-8 h-8 rounded-lg flex items-center justify-center border border-[var(--border)]

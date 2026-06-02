@@ -6,8 +6,7 @@ import Marquee from './components/Marquee'
 import Hero from './sections/Hero'
 import About from './sections/About'
 import Projects from './sections/Projects'
-import Experience from './sections/Experience'
-import Skills from './sections/Skills'
+import ExperienceSkills from './sections/ExperienceSkills'
 import Contact from './sections/Contact'
 
 export default function App() {
@@ -22,8 +21,7 @@ export default function App() {
         <Marquee />
         <About />
         <Projects />
-        <Experience />
-        <Skills />
+        <ExperienceSkills />
         <Contact />
       </main>
       <Footer />

@@ -9,7 +9,7 @@ const SOCIALS = [
   { icon: FacebookIcon, href: 'https://www.facebook.com/princechristian.parnada.9',              label: 'Facebook', handle: 'facebook.com/princechristian.parnada.9' },
 ]
 
-const INITIAL = { name: '', email: '', message: '' }
+const INITIAL = { name: '', email: '', subject: '', message: '' }
 
 function validate(f) {
   const e = {}
@@ -105,8 +105,9 @@ export default function Contact() {
             ) : (
               <form ref={formRef} onSubmit={submit} noValidate className="card p-7 space-y-5">
                 {[
-                  { id: 'name',  label: 'Name',  type: 'text',  ph: 'Jane Smith' },
-                  { id: 'email', label: 'Email', type: 'email', ph: 'jane@example.com' },
+                  { id: 'name',    label: 'Name',    type: 'text',  ph: 'Jane Smith' },
+                  { id: 'email',   label: 'Email',   type: 'email', ph: 'jane@example.com' },
+                  { id: 'subject', label: 'Subject', type: 'text',  ph: 'Internship opportunity' },
                 ].map(({ id, label, type, ph }) => (
                   <div key={id}>
                     <label htmlFor={id}

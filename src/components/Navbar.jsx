@@ -32,27 +32,31 @@ export default function Navbar({ theme, toggleTheme }) {
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-200
       ${scrolled ? 'bg-[var(--bg)] border-b border-[var(--border)]' : 'bg-transparent'}`}>
-      <nav className="wrap h-[64px] flex items-center justify-between" aria-label="Main navigation">
+      <nav className="wrap h-[64px] flex items-center justify-between gap-4" aria-label="Main navigation">
 
-        <a
-          href="#"
-          onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
-          className="font-bold text-[var(--tx)] text-sm tracking-tight"
-          aria-label="Go to top">
+        {/* Left — availability */}
+        <span className="hidden sm:flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.15em] text-[var(--tx-3)] shrink-0">
+          Available for Internships &amp; Freelance
+          <span className="text-[var(--border-2)]">|</span>
+          2026
+        </span>
+
+        {/* Mobile — name */}
+        <a href="#" onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+           className="sm:hidden font-bold text-sm text-[var(--tx)]">
           Prince Parnada
         </a>
 
+        {/* Nav links */}
         <ul className="hidden md:flex items-center gap-0.5" role="list">
           {LINKS.map(({ label, href }) => {
             const active = activeId === href.slice(1)
             return (
               <li key={href}>
-                <a
-                  href={href}
-                  onClick={e => nav(e, href)}
-                  aria-current={active ? 'location' : undefined}
-                  className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-150
-                    ${active ? 'text-[var(--ac)]' : 'text-[var(--tx-2)] hover:text-[var(--tx)]'}`}>
+                <a href={href} onClick={e => nav(e, href)}
+                   aria-current={active ? 'location' : undefined}
+                   className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-150
+                     ${active ? 'text-[var(--ac)]' : 'text-[var(--tx-2)] hover:text-[var(--tx)]'}`}>
                   {label}
                 </a>
               </li>
@@ -79,8 +83,7 @@ export default function Navbar({ theme, toggleTheme }) {
             {LINKS.map(({ label, href }) => (
               <li key={href}>
                 <a href={href} onClick={e => nav(e, href)}
-                   className="block px-3 py-2.5 rounded-lg text-sm text-[var(--tx-2)]
-                              hover:text-[var(--tx)] transition-colors">
+                   className="block px-3 py-2.5 rounded-lg text-sm text-[var(--tx-2)] hover:text-[var(--tx)] transition-colors">
                   {label}
                 </a>
               </li>
