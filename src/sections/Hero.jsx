@@ -24,7 +24,6 @@ export default function Hero() {
   useMagnetic(btn1Ref, 0.35)
   useMagnetic(btn2Ref, 0.35)
 
-  /* Parallax — dot grid scrolls at 30% of page scroll speed */
   useEffect(() => {
     const fn = () => {
       if (gridRef.current)
@@ -39,7 +38,7 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col items-center justify-center pt-16 overflow-hidden text-center"
       aria-label="Hero">
 
-      {/* ── Background ── */}
+      {/* Background */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div ref={gridRef} className="hero-dot-grid" />
         <div className="absolute inset-0"
@@ -52,10 +51,19 @@ export default function Hero() {
              style={{ background: 'radial-gradient(ellipse at 50% 50%, transparent 50%, rgba(14,12,10,0.88) 100%)' }} />
       </div>
 
-      {/* ── Content ── */}
+      {/* Content */}
       <div className="wrap w-full relative z-10 py-16 flex flex-col items-center">
 
-        <div className="reveal in mb-6">
+        {/* Photo */}
+        <div className="reveal in mb-7">
+          <div className="w-20 h-20 rounded-full overflow-hidden border-2 mx-auto"
+               style={{ borderColor: 'var(--border-2)' }}>
+            <img src="/images/prince.jpg" alt="Prince Christian Parnada"
+                 className="w-full h-full object-cover object-center" />
+          </div>
+        </div>
+
+        <div className="reveal in mb-5">
           <h1 className="font-extrabold leading-[0.9] tracking-tight text-[var(--tx)] font-mono"
               style={{ fontSize: 'clamp(3rem, 12vw, 9rem)' }}
               aria-label="Prince Parnada">

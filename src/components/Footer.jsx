@@ -20,7 +20,7 @@ export default function Footer() {
             href="mailto:princechristianparnada@gmail.com"
             className="group inline-block font-extrabold leading-[0.88] tracking-tight text-[var(--tx)]
                        hover:text-[var(--ac)] transition-colors duration-300 break-all"
-            style={{ fontSize: 'clamp(1.6rem, 4.5vw, 3.75rem)' }}>
+            style={{ fontSize: 'clamp(1rem, 3.5vw, 3.75rem)' }}>
             princechristianparnada@gmail.com
             <span className="inline-block ml-3 opacity-0 -translate-x-2
                              group-hover:opacity-100 group-hover:translate-x-0

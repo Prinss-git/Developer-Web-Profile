@@ -31,10 +31,10 @@ export default function About() {
 
           {/* Photo + socials */}
           <div data-r className="reveal-left flex flex-col gap-6">
-            <div ref={photoRef} className="relative w-full max-w-sm">
+            <div ref={photoRef} className="relative w-full max-w-[280px]">
               <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-2xl border border-[var(--border-2)]"
                    aria-hidden="true" />
-              <div className="relative rounded-2xl overflow-hidden aspect-[4/5] bg-[var(--bg-3)]">
+              <div className="relative rounded-2xl overflow-hidden aspect-[3/4] bg-[var(--bg-3)]">
                 <img
                   src="/images/prince.jpg"
                   alt="Prince Christian Parnada"

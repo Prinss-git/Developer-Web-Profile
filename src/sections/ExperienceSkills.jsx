@@ -72,13 +72,20 @@ export default function ExperienceSkills() {
             <div className="space-y-8">
               {skills.map((group, gi) => (
                 <div data-r key={group.category} className={`reveal d${Math.min(gi + 1, 6)}`}>
-                  <h3 className="text-xs font-semibold text-[var(--tx-3)] uppercase tracking-[0.12em] mb-3">
-                    {group.category}
-                  </h3>
+                  <div className="flex items-baseline gap-3 mb-3">
+                    <h3 className="text-xs font-semibold text-[var(--tx-3)] uppercase tracking-[0.12em]">
+                      {group.category}
+                    </h3>
+                    {group.note && (
+                      <span className="text-[10px] text-[var(--tx-3)] italic normal-case tracking-normal">
+                        — {group.note}
+                      </span>
+                    )}
+                  </div>
                   <div className="flex flex-wrap gap-2" role="list" aria-label={`${group.category} skills`}>
                     {group.items.map(item => (
                       <div key={item.name} role="listitem">
-                        <SkillBadge name={item.name} />
+                        <SkillBadge name={item.name} primary={gi === 0} />
                       </div>
                     ))}
                   </div>

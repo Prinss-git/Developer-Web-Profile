@@ -9,6 +9,7 @@ import About from './sections/About'
 import Projects from './sections/Projects'
 import ExperienceSkills from './sections/ExperienceSkills'
 import Contact from './sections/Contact'
+import CTABanner from './components/CTABanner'
 
 export default function App() {
   const { theme, toggle } = useTheme()
@@ -24,6 +25,7 @@ export default function App() {
         <About />
         <Projects />
         <ExperienceSkills />
+        <CTABanner />
         <Contact />
       </main>
       <Footer />

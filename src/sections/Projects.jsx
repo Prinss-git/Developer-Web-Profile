@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { projects } from '../data/projects'
 import ProjectCard from '../components/ProjectCard'
+import FeaturedProjectCard from '../components/FeaturedProjectCard'
 
 function useReveal(ref) {
   useEffect(() => {
@@ -20,6 +21,8 @@ function useReveal(ref) {
 export default function Projects() {
   const ref = useRef(null)
   useReveal(ref)
+  const [featured, ...rest] = projects
+
   return (
     <section id="projects" className="py-16 lg:py-28 bg-[var(--bg-2)]" ref={ref} aria-label="Projects">
       <div className="wrap">
@@ -27,13 +30,24 @@ export default function Projects() {
           <div className="eyebrow">02 — Projects</div>
           <h2 className="section-title mt-3">Things I've built.</h2>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {projects.map((p, i) => (
-            <div data-r key={p.id} className={`reveal d${Math.min(i + 1, 6)}`}>
-              <ProjectCard project={p} />
-            </div>
-          ))}
-        </div>
+
+        {/* Featured */}
+        {featured && (
+          <div data-r className="reveal mb-5">
+            <FeaturedProjectCard project={featured} />
+          </div>
+        )}
+
+        {/* Rest */}
+        {rest.length > 0 && (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {rest.map((p, i) => (
+              <div data-r key={p.id} className={`reveal d${Math.min(i + 1, 6)}`}>
+                <ProjectCard project={p} />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   )

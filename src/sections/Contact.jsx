@@ -80,9 +80,13 @@ export default function Contact() {
         <div data-r className="reveal mb-12">
           <div className="eyebrow">05 — Contact</div>
           <h2 className="section-title mt-3">Let's talk.</h2>
-          <p className="text-[var(--tx-2)] mt-3 max-w-md leading-relaxed">
-            Got a project, an internship offer, or just want to say hi — send me a message.
-          </p>
+          <a href="mailto:princechristianparnada@gmail.com"
+             className="group inline-flex items-center gap-2 mt-4 font-bold text-[var(--tx)] hover:text-[var(--ac)] transition-colors duration-200"
+             style={{ fontSize: 'clamp(1rem, 2.5vw, 1.5rem)' }}>
+            princechristianparnada@gmail.com
+            <span className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-[var(--ac)]">↗</span>
+          </a>
+          <p className="text-[var(--tx-3)] text-xs mt-2">Or fill out the form below</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">

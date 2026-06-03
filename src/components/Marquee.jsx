@@ -1,19 +1,17 @@
 const ITEMS = [
   'Full-Stack Developer',
+  'Built MotoTrack for a real business',
   'Cebu, Philippines',
-  'Open to Work',
-  'React',
-  'Node.js',
-  'MySQL',
-  'Tailwind CSS',
-  'IT Student',
+  'Open to Internships',
+  'React · Node.js · MySQL',
+  'IT Student — 3rd Year',
 ]
 
 const text = ITEMS.join(' · ') + ' · '
 
 export default function Marquee() {
   return (
-    <div className="overflow-hidden border-y border-[var(--border)] py-3 bg-[var(--bg)]"
+    <div className="marquee-wrap overflow-hidden border-y border-[var(--border)] py-3 bg-[var(--bg)]"
          aria-hidden="true">
       <div className="marquee-inner flex whitespace-nowrap select-none">
         {[0, 1, 2, 3].map(i => (
