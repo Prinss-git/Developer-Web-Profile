@@ -140,7 +140,7 @@ body {
 .hero-dot-grid {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(249,115,22,0.18) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(232,145,106,0.2) 1px, transparent 1px);
   background-size: 40px 40px;
   animation: grid-drift 6s linear infinite;
 }
@@ -148,7 +148,7 @@ body {
   position: absolute;
   left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(249,115,22,0.25) 30%, rgba(249,115,22,0.5) 50%, rgba(249,115,22,0.25) 70%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(232,145,106,0.25) 30%, rgba(232,145,106,0.5) 50%, rgba(232,145,106,0.25) 70%, transparent 100%);
   animation: scan 9s ease-in-out infinite;
   pointer-events: none;
 }
@@ -197,6 +197,7 @@ body {
   to   { transform: translateX(-50%); }
 }
 .marquee-inner { animation: marquee 30s linear infinite; }
+.marquee-wrap:hover .marquee-inner { animation-play-state: paused; }
 
 /* ── Noise overlay ───────────────────────────── */
 body::after {

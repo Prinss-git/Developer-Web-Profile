@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { projects } from '../data/projects'
 import ProjectCard from '../components/ProjectCard'
+import { useHoverScramble } from '../hooks/useHoverScramble'
 
 function useReveal(ref) {
   useEffect(() => {
@@ -20,12 +21,16 @@ function useReveal(ref) {
 export default function Projects() {
   const ref = useRef(null)
   useReveal(ref)
+  const title = useHoverScramble("Things I've built.")
   return (
     <section id="projects" className="py-16 lg:py-28 bg-[var(--bg-2)]" ref={ref} aria-label="Projects">
       <div className="wrap">
         <div data-r className="reveal mb-12">
           <div className="eyebrow">02 — Projects</div>
-          <h2 className="section-title mt-3">Things I've built.</h2>
+          <h2 className="section-title mt-3 cursor-default"
+              onMouseEnter={title.onEnter} onMouseLeave={title.onLeave}>
+            {title.display}
+          </h2>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {projects.map((p, i) => (

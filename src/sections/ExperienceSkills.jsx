@@ -3,6 +3,7 @@ import { experience } from '../data/experience'
 import { skills } from '../data/skills'
 import { MapPin } from 'lucide-react'
 import SkillBadge from '../components/SkillBadge'
+import { useHoverScramble } from '../hooks/useHoverScramble'
 
 function useReveal(ref) {
   useEffect(() => {
@@ -22,6 +23,8 @@ function useReveal(ref) {
 export default function ExperienceSkills() {
   const ref = useRef(null)
   useReveal(ref)
+  const expTitle   = useHoverScramble("Where I've been.")
+  const skillTitle = useHoverScramble('What I work with.')
 
   return (
     <section id="experience" className="py-16 lg:py-28" ref={ref} aria-label="Experience and Skills">
@@ -32,7 +35,10 @@ export default function ExperienceSkills() {
           <div>
             <div data-r className="reveal mb-8">
               <div className="eyebrow">03 — Education</div>
-              <h2 className="section-title mt-3">Where I've been.</h2>
+              <h2 className="section-title mt-3 cursor-default"
+                  onMouseEnter={expTitle.onEnter} onMouseLeave={expTitle.onLeave}>
+                {expTitle.display}
+              </h2>
             </div>
             <div className="space-y-4">
               {experience.map((job, i) => (
@@ -67,7 +73,10 @@ export default function ExperienceSkills() {
           <div id="skills">
             <div data-r className="reveal mb-8">
               <div className="eyebrow">04 — Skills</div>
-              <h2 className="section-title mt-3">What I work with.</h2>
+              <h2 className="section-title mt-3 cursor-default"
+                  onMouseEnter={skillTitle.onEnter} onMouseLeave={skillTitle.onLeave}>
+                {skillTitle.display}
+              </h2>
             </div>
             <div className="space-y-8">
               {skills.map((group, gi) => (

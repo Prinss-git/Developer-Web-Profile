@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react'
 import { Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon, FacebookIcon } from '../components/SocialIcons'
+import { useTilt } from '../hooks/useTilt'
+import { useHoverScramble } from '../hooks/useHoverScramble'
 
 function useReveal(ref) {
   useEffect(() => {
@@ -19,7 +21,10 @@ function useReveal(ref) {
 
 export default function About() {
   const ref = useRef(null)
+  const photoRef = useRef(null)
   useReveal(ref)
+  useTilt(photoRef, { max: 6, scale: 1.01 })
+  const title = useHoverScramble('Full-stack builder.')
 
   return (
     <section id="about" className="py-16 lg:py-28 bg-[var(--bg-2)] overflow-x-hidden" ref={ref} aria-label="About me">
@@ -28,7 +33,7 @@ export default function About() {
 
           {/* Photo + socials */}
           <div data-r className="reveal-left flex flex-col gap-6">
-            <div className="relative w-full max-w-sm">
+            <div ref={photoRef} className="relative w-full max-w-sm">
               <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-2xl border border-[var(--border-2)]"
                    aria-hidden="true" />
               <div className="relative rounded-2xl overflow-hidden aspect-[4/5] bg-[var(--bg-3)]">
@@ -62,7 +67,10 @@ export default function About() {
               <div className="eyebrow">01 — About me</div>
               <h2 className="section-title mt-3">
                 IT student.<br />
-                <span className="grad-text">Full-stack builder.</span>
+                <span className="grad-text cursor-default"
+                      onMouseEnter={title.onEnter} onMouseLeave={title.onLeave}>
+                  {title.display}
+                </span>
               </h2>
             </div>
 

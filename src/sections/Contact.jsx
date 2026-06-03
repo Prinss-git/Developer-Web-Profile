@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useHoverScramble } from '../hooks/useHoverScramble'
 import emailjs from '@emailjs/browser'
 import { Send, CheckCircle, AlertCircle, Mail, Phone } from 'lucide-react'
 import { GithubIcon, LinkedinIcon, FacebookIcon } from '../components/SocialIcons'
@@ -43,6 +44,7 @@ export default function Contact() {
   const [errors, setErrors] = useState({})
   const [touched, setTouched] = useState({})
   const [status, setStatus] = useState('idle')
+  const title = useHoverScramble("Let's talk.")
   useReveal(ref)
 
   const change = e => {
@@ -79,7 +81,10 @@ export default function Contact() {
       <div className="wrap">
         <div data-r className="reveal mb-12">
           <div className="eyebrow">05 — Contact</div>
-          <h2 className="section-title mt-3">Let's talk.</h2>
+          <h2 className="section-title mt-3 cursor-default"
+              onMouseEnter={title.onEnter} onMouseLeave={title.onLeave}>
+            {title.display}
+          </h2>
           <p className="text-[var(--tx-2)] mt-3 max-w-md leading-relaxed">
             Got a project, an internship offer, or just want to say hi — send me a message.
           </p>

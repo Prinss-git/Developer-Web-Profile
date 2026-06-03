@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import { ArrowDown, Download } from 'lucide-react'
 import { useScramble } from '../hooks/useScramble'
 import { useMagnetic } from '../hooks/useMagnetic'
@@ -17,11 +17,22 @@ function addRipple(e) {
 }
 
 export default function Hero() {
-  const name = useScramble('Prince Parnada', { delay: 400, duration: 1400 })
+  const name    = useScramble('Prince Parnada', { delay: 400, duration: 1400 })
   const btn1Ref = useRef(null)
   const btn2Ref = useRef(null)
+  const gridRef = useRef(null)
   useMagnetic(btn1Ref, 0.35)
   useMagnetic(btn2Ref, 0.35)
+
+  /* Parallax — dot grid scrolls at 30% of page scroll speed */
+  useEffect(() => {
+    const fn = () => {
+      if (gridRef.current)
+        gridRef.current.style.transform = `translateY(${window.scrollY * 0.3}px)`
+    }
+    window.addEventListener('scroll', fn, { passive: true })
+    return () => window.removeEventListener('scroll', fn)
+  }, [])
 
   return (
     <section id="hero"
@@ -30,15 +41,15 @@ export default function Hero() {
 
       {/* ── Background ── */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="hero-dot-grid" />
+        <div ref={gridRef} className="hero-dot-grid" />
         <div className="absolute inset-0"
              style={{ background: 'radial-gradient(ellipse 65% 65% at 50% 50%, var(--bg) 30%, transparent 100%)' }} />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] rounded-full"
-             style={{ background: 'radial-gradient(ellipse, rgba(249,115,22,0.06) 0%, transparent 70%)', filter: 'blur(40px)' }} />
+             style={{ background: 'radial-gradient(ellipse, rgba(232,145,106,0.07) 0%, transparent 70%)', filter: 'blur(40px)' }} />
         <div className="hero-scan" style={{ top: '20%' }} />
         <div className="hero-scan hero-scan-2" style={{ top: '20%' }} />
         <div className="absolute inset-0"
-             style={{ background: 'radial-gradient(ellipse at 50% 50%, transparent 50%, rgba(9,9,11,0.85) 100%)' }} />
+             style={{ background: 'radial-gradient(ellipse at 50% 50%, transparent 50%, rgba(14,12,10,0.88) 100%)' }} />
       </div>
 
       {/* ── Content ── */}
@@ -67,8 +78,7 @@ export default function Hero() {
           </div>
           <div ref={btn2Ref}>
             <a href="/resume.pdf" target="_blank" rel="noopener noreferrer"
-               className="btn btn-secondary"
-               onClick={addRipple}>
+               className="btn btn-secondary" onClick={addRipple}>
               <Download size={13} />
               Download Resume
             </a>
