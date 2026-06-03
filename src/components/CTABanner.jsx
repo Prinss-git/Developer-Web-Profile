@@ -8,7 +8,7 @@ export default function CTABanner() {
           </p>
           <h2 className="font-extrabold text-[var(--tx)] leading-tight"
               style={{ fontSize: 'clamp(1.75rem, 4vw, 2.75rem)' }}>
-            An internship or entry-level role<br className="hidden sm:block" /> starting 2025.
+            An internship or entry-level role<br className="hidden sm:block" /> starting 2026.
           </h2>
         </div>
         <a

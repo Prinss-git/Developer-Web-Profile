@@ -9,7 +9,7 @@ const SOCIALS = [
   { icon: FacebookIcon, href: 'https://www.facebook.com/princechristian.parnada.9',              label: 'Facebook', handle: 'facebook.com/princechristian.parnada.9' },
 ]
 
-const INITIAL = { name: '', email: '', subject: '', message: '' }
+const INITIAL = { name: '', email: '', subject: '', message: '', _trap: '' }
 
 function validate(f) {
   const e = {}
@@ -39,6 +39,7 @@ function useReveal(ref) {
 export default function Contact() {
   const ref = useRef(null)
   const formRef = useRef(null)
+  const lastSubmit = useRef(0)
   const [fields, setFields] = useState(INITIAL)
   const [errors, setErrors] = useState({})
   const [touched, setTouched] = useState({})
@@ -57,9 +58,15 @@ export default function Contact() {
   }
   const submit = async e => {
     e.preventDefault()
+    if (fields._trap) return
+    const now = Date.now()
+    if (now - lastSubmit.current < 60000) {
+      setStatus('error'); return
+    }
     setTouched({ name: true, email: true, message: true })
     const errs = validate(fields); setErrors(errs)
     if (Object.keys(errs).length) return
+    lastSubmit.current = now
     setStatus('sending')
     try {
       await emailjs.sendForm(
@@ -108,6 +115,9 @@ export default function Contact() {
               </div>
             ) : (
               <form ref={formRef} onSubmit={submit} noValidate className="card p-7 space-y-5">
+                {/* Honeypot — hidden from humans, bots fill it */}
+                <input name="_trap" value={fields._trap} onChange={change}
+                       style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
                 {[
                   { id: 'name',    label: 'Name',    type: 'text',  ph: 'Jane Smith' },
                   { id: 'email',   label: 'Email',   type: 'email', ph: 'jane@example.com' },

@@ -27,11 +27,11 @@ export default function About() {
   return (
     <section id="about" className="py-16 lg:py-28 bg-[var(--bg-2)] overflow-x-hidden" ref={ref} aria-label="About me">
       <div className="wrap">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="grid lg:grid-cols-[300px_1fr] gap-16 items-start">
 
           {/* Photo + socials */}
           <div data-r className="reveal-left flex flex-col gap-6">
-            <div ref={photoRef} className="relative w-full max-w-[280px]">
+            <div ref={photoRef} className="relative w-full max-w-[300px]">
               <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-2xl border border-[var(--border-2)]"
                    aria-hidden="true" />
               <div className="relative rounded-2xl overflow-hidden aspect-[3/4] bg-[var(--bg-3)]">

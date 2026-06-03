@@ -27,7 +27,7 @@ function addRipple(e) {
 }
 
 export default function ProjectCard({ project }) {
-  const { title, description, stack, github, live, image, demo } = project
+  const { title, description, stack, github, privateRepo, live, image, demo } = project
   const cardRef = useRef(null)
   useTilt(cardRef, { max: 8, scale: 1.02 })
 
@@ -105,6 +105,12 @@ export default function ProjectCard({ project }) {
                           transition-all duration-200">
               <GithubIcon size={14} />
             </a>
+          )}
+          {privateRepo && !github && (
+            <span className="flex items-center gap-1.5 text-[11px] text-[var(--tx-3)] border border-[var(--border)]
+                             bg-[var(--bg-3)] px-2.5 py-1.5 rounded-lg font-mono">
+              <Lock size={11} /> Private Repo
+            </span>
           )}
         </div>
       </div>

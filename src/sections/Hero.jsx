@@ -48,7 +48,7 @@ export default function Hero() {
         <div className="hero-scan" style={{ top: '20%' }} />
         <div className="hero-scan hero-scan-2" style={{ top: '20%' }} />
         <div className="absolute inset-0"
-             style={{ background: 'radial-gradient(ellipse at 50% 50%, transparent 50%, rgba(14,12,10,0.88) 100%)' }} />
+             style={{ background: 'radial-gradient(ellipse at 50% 50%, transparent 50%, var(--vignette) 100%)' }} />
       </div>
 
       {/* Content */}
