@@ -6,7 +6,7 @@ export const experience = [
     period: '2023 – Present',
     location: 'Cebu, Philippines',
     bullets: [
-      'Currently in 2nd year. Coursework covers data structures, algorithms, database management, and software engineering.',
+      'Currently in 3rd year. Coursework covers data structures, algorithms, database management, and software engineering.',
       'Built MotoTrack — a full-stack inventory and sales system for a real motor parts business — as a personal project.',
       'Using React, Node.js, PHP, and MySQL across school projects and self-initiated work.',
     ],
