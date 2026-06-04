@@ -85,7 +85,7 @@ export default function ExperienceSkills() {
                   <div className="flex flex-wrap gap-2" role="list" aria-label={`${group.category} skills`}>
                     {group.items.map(item => (
                       <div key={item.name} role="listitem">
-                        <SkillBadge name={item.name} primary={gi === 0} />
+                        <SkillBadge name={item.name} context={item.context} primary={gi === 0} />
                       </div>
                     ))}
                   </div>

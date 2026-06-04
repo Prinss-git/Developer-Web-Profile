@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon, FacebookIcon } from '../components/SocialIcons'
 import { useTilt } from '../hooks/useTilt'
+import WordReveal from '../components/WordReveal'
 
 function useReveal(ref) {
   useEffect(() => {
@@ -69,22 +70,16 @@ export default function About() {
               </h2>
             </div>
 
-            <div data-r className="reveal d1 space-y-4 text-[var(--tx-2)] leading-loose text-[0.95rem]">
-              <p>
-                I'm Prince Christian, 20, studying BSIT at the University of Cebu – Banilad.
-                I build full-stack web apps — the kind that actually get used by real people,
-                not just demoed in class.
-              </p>
-              <p>
-                My main stack is React on the frontend and Node.js + MySQL on the backend.
-                I've also worked with PHP, Firebase, and plain CSS when the project calls for it.
-                MotoTrack — an inventory and sales system for a real motor parts shop here in Cebu —
-                is probably my most complete project so far.
-              </p>
-              <p>
-                Looking for an internship or entry-level role where I can work on real problems
-                and keep getting better.
-              </p>
+            <div className="space-y-4 text-[var(--tx-2)] leading-loose text-[0.95rem]">
+              <WordReveal baseDelay={100}>
+                I'm Prince Christian, 20, studying BSIT at the University of Cebu – Banilad. I build full-stack web apps — the kind that actually get used by real people, not just demoed in class.
+              </WordReveal>
+              <WordReveal baseDelay={200}>
+                My main stack is React on the frontend and Node.js + MySQL on the backend. I've also worked with PHP, Firebase, and plain CSS when the project calls for it. MotoTrack — an inventory and sales system for a real motor parts shop here in Cebu — is probably my most complete project so far.
+              </WordReveal>
+              <WordReveal baseDelay={300}>
+                Looking for an internship or entry-level role where I can work on real problems and keep getting better.
+              </WordReveal>
               <div className="pt-2 border-t border-[var(--border)]">
                 <span className="text-xs font-bold uppercase tracking-[0.12em] text-[var(--ac)]">Currently</span>
                 <p className="mt-1 text-sm text-[var(--tx-2)]">
