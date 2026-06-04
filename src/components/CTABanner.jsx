@@ -13,8 +13,9 @@ export default function CTABanner() {
         </div>
         <a
           href="mailto:princechristianparnada@gmail.com"
-          className="btn btn-primary shrink-0 text-base px-6 py-3">
-          Let's talk →
+          className="btn btn-primary shrink-0 text-base px-6 py-3 group">
+          Let's talk
+          <span className="inline-block ml-1 transition-transform duration-200 group-hover:translate-x-1">→</span>
         </a>
       </div>
     </section>

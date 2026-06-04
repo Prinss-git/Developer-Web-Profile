@@ -1,3 +1,15 @@
+/* Loading screen */
+@keyframes loader-in {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes loader-bar {
+  from { width: 0; opacity: 0; }
+  to   { width: 2.5rem; opacity: 1; }
+}
+.loader-text { animation: loader-in  0.5s cubic-bezier(.22,.68,0,1.2) 0.1s both; }
+.loader-bar  { animation: loader-bar 0.5s ease 0.45s both; }
+
 /* Ripple */
 @keyframes ripple {
   0%   { transform: scale(0); opacity: 0.5; }

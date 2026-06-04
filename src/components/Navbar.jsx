@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Menu, X } from 'lucide-react'
 import ThemeToggle from './ThemeToggle'
 import { useScrollSpy } from '../hooks/useScrollSpy'
@@ -12,15 +12,22 @@ const LINKS = [
 const IDS = LINKS.map(l => l.href.slice(1))
 
 export default function Navbar({ theme, toggleTheme }) {
-  const [scrolled, setScrolled] = useState(false)
-  const [open, setOpen] = useState(false)
-  const activeId = useScrollSpy(IDS)
+  const [scrolled, setScrolled]   = useState(false)
+  const [hidden, setHidden]       = useState(false)
+  const [open, setOpen]           = useState(false)
+  const activeId                  = useScrollSpy(IDS)
+  const lastY                     = useRef(0)
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 16)
+    const fn = () => {
+      const y = window.scrollY
+      setScrolled(y > 16)
+      if (!open) setHidden(y > lastY.current && y > 80)
+      lastY.current = y
+    }
     window.addEventListener('scroll', fn, { passive: true })
     return () => window.removeEventListener('scroll', fn)
-  }, [])
+  }, [open])
 
   const nav = (e, href) => {
     e.preventDefault()
@@ -29,24 +36,22 @@ export default function Navbar({ theme, toggleTheme }) {
   }
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-200
-      ${scrolled ? 'bg-[var(--bg)] border-b border-[var(--border)]' : 'bg-transparent'}`}>
+    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300
+      ${scrolled ? 'bg-[var(--bg)] border-b border-[var(--border)]' : 'bg-transparent'}
+      ${hidden ? '-translate-y-full' : 'translate-y-0'}`}>
       <nav className="wrap h-[64px] flex items-center justify-between gap-4" aria-label="Main navigation">
 
-        {/* Left — availability */}
         <span className="hidden sm:flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.15em] text-[var(--tx-3)] shrink-0">
           Available for Internships &amp; Freelance
           <span className="text-[var(--border-2)]">|</span>
           2026
         </span>
 
-        {/* Mobile — name */}
         <a href="#" onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
            className="sm:hidden font-bold text-sm text-[var(--tx)]">
           Prince Parnada
         </a>
 
-        {/* Nav links */}
         <ul className="hidden md:flex items-center gap-0.5" role="list">
           {LINKS.map(({ label, href }) => {
             const active = activeId === href.slice(1)

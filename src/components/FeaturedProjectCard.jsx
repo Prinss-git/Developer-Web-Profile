@@ -37,7 +37,7 @@ export default function FeaturedProjectCard({ project }) {
       <div className="grid md:grid-cols-2">
 
         {/* Image */}
-        <div className="relative h-56 md:h-auto bg-[var(--bg-3)] overflow-hidden group">
+        <div className="relative h-64 sm:h-72 md:h-auto bg-[var(--bg-3)] overflow-hidden group">
           {image ? (
             <>
             <img src={image} alt={title} loading="lazy"

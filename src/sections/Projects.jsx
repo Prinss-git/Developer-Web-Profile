@@ -33,7 +33,7 @@ export default function Projects() {
 
         {/* Featured */}
         {featured && (
-          <div data-r className="reveal mb-5">
+          <div data-r className="reveal-scale mb-5">
             <FeaturedProjectCard project={featured} />
           </div>
         )}
