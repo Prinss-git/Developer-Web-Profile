@@ -29,7 +29,6 @@ function addRipple(e) {
 export default function ProjectCard({ project }) {
   const { title, description, stack, github, privateRepo, live, image, demo } = project
   const cardRef = useRef(null)
-  const [mouse, setMouse] = useState({ x: 0, y: 0, show: false })
   const [imgLoaded, setImgLoaded] = useState(false)
   useTilt(cardRef, { max: 8, scale: 1.02 })
 
@@ -38,9 +37,7 @@ export default function ProjectCard({ project }) {
              aria-label={`Project: ${title}`}>
 
       {/* Image */}
-      <div className="relative h-44 bg-[var(--bg-3)] overflow-hidden shrink-0"
-           onMouseMove={e => { const r = e.currentTarget.getBoundingClientRect(); setMouse({ x: e.clientX - r.left, y: e.clientY - r.top, show: true }) }}
-           onMouseLeave={() => setMouse(m => ({ ...m, show: false }))}>
+      <div className="relative h-44 bg-[var(--bg-3)] overflow-hidden shrink-0">
         {image ? (
           <>
             <img src={image} alt={title} loading="lazy"
@@ -52,13 +49,6 @@ export default function ProjectCard({ project }) {
               <p className="text-xs text-[var(--tx-2)] text-center leading-relaxed line-clamp-5">
                 {description}
               </p>
-            </div>
-            {/* VIEW cursor */}
-            <div className={`absolute pointer-events-none z-10 w-14 h-14 rounded-full flex items-center
-                             justify-center text-[10px] font-bold text-white -translate-x-1/2 -translate-y-1/2
-                             transition-opacity duration-150 ${mouse.show ? 'opacity-100' : 'opacity-0'}`}
-                 style={{ left: mouse.x, top: mouse.y, background: 'var(--ac)' }}>
-              VIEW
             </div>
           </>
         ) : (

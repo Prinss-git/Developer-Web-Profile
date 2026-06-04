@@ -29,7 +29,6 @@ function addRipple(e) {
 export default function FeaturedProjectCard({ project }) {
   const { title, description, stack, github, live, image, demo, stats } = project
   const cardRef = useRef(null)
-  const [mouse, setMouse] = useState({ x: 0, y: 0, show: false })
   const [imgLoaded, setImgLoaded] = useState(false)
   useTilt(cardRef, { max: 4, scale: 1.01 })
 
@@ -38,21 +37,13 @@ export default function FeaturedProjectCard({ project }) {
       <div className="grid md:grid-cols-2">
 
         {/* Image */}
-        <div className="relative h-56 md:h-auto bg-[var(--bg-3)] overflow-hidden group"
-             onMouseMove={e => { const r = e.currentTarget.getBoundingClientRect(); setMouse({ x: e.clientX - r.left, y: e.clientY - r.top, show: true }) }}
-             onMouseLeave={() => setMouse(m => ({ ...m, show: false }))}>
+        <div className="relative h-56 md:h-auto bg-[var(--bg-3)] overflow-hidden group">
           {image ? (
             <>
             <img src={image} alt={title} loading="lazy"
                  onLoad={() => setImgLoaded(true)}
                  className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105
                              ${imgLoaded ? 'blur-0 scale-100' : 'blur-sm scale-105'}`} />
-            <div className={`absolute pointer-events-none z-10 w-16 h-16 rounded-full flex items-center
-                             justify-center text-[10px] font-bold text-white -translate-x-1/2 -translate-y-1/2
-                             transition-opacity duration-150 ${mouse.show ? 'opacity-100' : 'opacity-0'}`}
-                 style={{ left: mouse.x, top: mouse.y, background: 'var(--ac)' }}>
-              VIEW
-            </div>
             </>
           ) : (
             <div className="absolute inset-0 flex items-center justify-center" aria-hidden="true">
