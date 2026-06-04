@@ -8,9 +8,9 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; overflow-x: hidden; }
 
-body {
+body { overflow-x: hidden;
   background-color: var(--bg);
   color: var(--tx);
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
