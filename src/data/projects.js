@@ -8,6 +8,7 @@ export const projects = [
     live: 'https://moto-track-inky.vercel.app/login',
     image: '/images/Screenshot1.png',
     demo: { email: 'demo@mototrack.com', password: 'demo1234' },
+    stats: ['2,000+ SKUs', '158 categories', '1 real client', 'Live in production'],
   },
   {
     id: 2,

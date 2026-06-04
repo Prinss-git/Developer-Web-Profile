@@ -12,8 +12,7 @@ export default function CTABanner() {
           </h2>
         </div>
         <a
-          href="#contact"
-          onClick={e => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) }}
+          href="mailto:princechristianparnada@gmail.com"
           className="btn btn-primary shrink-0 text-base px-6 py-3">
           Let's talk →
         </a>

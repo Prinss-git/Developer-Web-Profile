@@ -27,7 +27,7 @@ function addRipple(e) {
 }
 
 export default function FeaturedProjectCard({ project }) {
-  const { title, description, stack, github, live, image, demo } = project
+  const { title, description, stack, github, live, image, demo, stats } = project
   const cardRef = useRef(null)
   useTilt(cardRef, { max: 4, scale: 1.01 })
 
@@ -58,6 +58,16 @@ export default function FeaturedProjectCard({ project }) {
           <div>
             <span className="eyebrow text-[10px] mb-3 block">Featured Project</span>
             <h3 className="font-extrabold text-[var(--tx)] text-2xl mb-2">{title}</h3>
+            {stats && (
+              <div className="flex flex-wrap gap-2 mb-3">
+                {stats.map(s => (
+                  <span key={s} className="text-[11px] font-bold px-2.5 py-1 rounded-md"
+                        style={{ background: 'var(--ac-dim)', color: 'var(--ac)' }}>
+                    {s}
+                  </span>
+                ))}
+              </div>
+            )}
             <p className="text-sm text-[var(--tx-2)] leading-relaxed">{description}</p>
           </div>
 

@@ -85,6 +85,12 @@ export default function About() {
                 Looking for an internship or entry-level role where I can work on real problems
                 and keep getting better.
               </p>
+              <div className="pt-2 border-t border-[var(--border)]">
+                <span className="text-xs font-bold uppercase tracking-[0.12em] text-[var(--ac)]">Currently</span>
+                <p className="mt-1 text-sm text-[var(--tx-2)]">
+                  3rd year BSIT at UC Banilad · building side projects · open to internships starting 2026.
+                </p>
+              </div>
             </div>
 
             <div data-r className="reveal d2 flex flex-wrap gap-2">

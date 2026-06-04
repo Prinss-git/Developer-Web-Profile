@@ -8,7 +8,6 @@ import Hero from './sections/Hero'
 import About from './sections/About'
 import Projects from './sections/Projects'
 import ExperienceSkills from './sections/ExperienceSkills'
-import Contact from './sections/Contact'
 import CTABanner from './components/CTABanner'
 
 export default function App() {
@@ -26,7 +25,6 @@ export default function App() {
         <Projects />
         <ExperienceSkills />
         <CTABanner />
-        <Contact />
       </main>
       <Footer />
     </>

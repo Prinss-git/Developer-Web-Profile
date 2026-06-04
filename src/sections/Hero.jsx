@@ -72,7 +72,7 @@ export default function Hero() {
         </div>
 
         <p className="reveal in d1 text-sm font-semibold text-[var(--tx-2)] mb-10 tracking-wide">
-          Full-Stack Developer &amp; IT Student · University of Cebu
+          Full-Stack Developer · Cebu, Philippines
         </p>
 
         <div className="reveal in d2 flex flex-wrap items-center justify-center gap-3">
