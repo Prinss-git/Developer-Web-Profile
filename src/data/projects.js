@@ -22,6 +22,17 @@ export const projects = [
     demo: null,
   },
   {
+    id: 4,
+    title: 'Gastador',
+    description: 'AI-powered personal expense tracker PWA. Log expenses and income with a custom numpad, get automatic AI categorization as you type, and receive monthly money-saving insights powered by Groq (Llama 3.3). Offline-capable via Firebase persistent cache, installable on any device, swipe to delete, and monthly history with search and category filters.',
+    stack: ['React', 'TypeScript', 'Firebase', 'Groq API', 'Tailwind CSS'],
+    github: null,
+    privateRepo: true,
+    live: 'https://gastador.vercel.app/profile',
+    image: '/images/gastador.png',
+    demo: null,
+  },
+  {
     id: 3,
     title: 'GitHub Profile Analyzer',
     description: 'Enter any GitHub username and get a visual breakdown of their public activity — profile card, top languages doughnut chart, 12-month commit activity, top repos by stars, and a stats summary. Backend proxy keeps the GitHub token server-side.',
