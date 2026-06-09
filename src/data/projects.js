@@ -29,7 +29,7 @@ export const projects = [
     github: null,
     privateRepo: true,
     live: 'https://gastador.vercel.app/profile',
-    image: '/images/gastador.png',
+    image: '/images/Gastador.png',
     demo: null,
   },
   {
