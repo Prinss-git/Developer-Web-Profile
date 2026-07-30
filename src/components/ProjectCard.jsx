@@ -2,16 +2,6 @@ import { useState } from 'react'
 import { ExternalLink, Lock } from 'lucide-react'
 import { GithubIcon } from './SocialIcons'
 
-const TECH_COLOR = {
-  React: '#61dafb', TypeScript: '#3178c6', JavaScript: '#f7df1e',
-  'Next.js': '#aaaaaa', Go: '#00add8', Python: '#3776ab',
-  'Node.js': '#339933', GraphQL: '#e535ab', Docker: '#2496ed',
-  Redis: '#dc382d', PostgreSQL: '#336791', Rust: '#ce422b',
-  'Tailwind CSS': '#06b6d4', MySQL: '#4479a1', PHP: '#777bb4',
-  'Chart.js': '#ff6384', Express: '#68a063', Axios: '#5a29e4',
-  default: 'var(--ac)',
-}
-
 export default function ProjectCard({ project }) {
   const { title, description, stack, github, privateRepo, live, image, demo } = project
   const [imgLoaded, setImgLoaded] = useState(false)
@@ -47,11 +37,7 @@ export default function ProjectCard({ project }) {
 
         <div className="flex flex-wrap gap-1.5">
           {stack.map(tech => (
-            <span key={tech}
-              className="text-[11px] px-2 py-0.5 rounded-md font-mono font-medium bg-[var(--bg-3)] border border-[var(--border)]"
-              style={{ color: TECH_COLOR[tech] || TECH_COLOR.default }}>
-              {tech}
-            </span>
+            <span key={tech} className="tech-tag">{tech}</span>
           ))}
         </div>
 

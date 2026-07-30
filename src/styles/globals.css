@@ -157,6 +157,47 @@ body { overflow-x: hidden;
   animation: grid-drift 6s linear infinite;
 }
 
+/* Dot cluster, top right */
+.hero-dot-cluster {
+  position: absolute;
+  top: 16%;
+  right: 6%;
+  width: 132px;
+  height: 108px;
+  background-image: radial-gradient(circle, var(--ac-grid) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+  opacity: 0.7;
+}
+
+/* Gold arc behind the portrait */
+.hero-arc {
+  position: relative;
+  width: min(120%, 34rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid var(--ac);
+  opacity: 0.45;
+  /* Fade the ring out toward the bottom so it reads as an arc, not a circle */
+  -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 85%);
+          mask-image: linear-gradient(to bottom, #000 30%, transparent 85%);
+}
+.hero-arc::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: min(96%, 27rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--ac-glow) 0%, transparent 70%);
+}
+
+/* Portrait: soft bottom fade so a rectangular photo blends into the page */
+.hero-portrait {
+  -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 99%);
+          mask-image: linear-gradient(to bottom, #000 62%, transparent 99%);
+}
+
 /* ── Marquee ─────────────────────────────────── */
 @keyframes marquee {
   from { transform: translateX(0); }
@@ -176,6 +217,22 @@ body::after {
   z-index: 9990;
 }
 [data-theme="light"] body::after { opacity: 0.015; }
+
+/* ── Tech stack tag ──────────────────────────── */
+.tech-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  color: var(--tx-2);
+  transition: color 0.2s, border-color 0.2s;
+}
+.card:hover .tech-tag { color: var(--ac); border-color: var(--border-2); }
 
 /* ── Chip / tag */
 .chip {
