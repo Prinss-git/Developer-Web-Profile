@@ -24,7 +24,7 @@ export default function Projects() {
   const [featured, ...rest] = projects
 
   return (
-    <section id="projects" className="py-16 lg:py-28 bg-[var(--bg-2)]" ref={ref} aria-label="Projects">
+    <section id="projects" className="py-16 lg:py-28 bg-[var(--bg)]" ref={ref} aria-label="Projects">
       <div className="wrap">
         <div data-r className="reveal mb-12">
           <div className="eyebrow">02 — Projects</div>

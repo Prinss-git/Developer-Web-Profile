@@ -1,6 +1,6 @@
 export default function CTABanner() {
   return (
-    <section className="py-20 bg-[var(--bg-3)] border-y border-[var(--border)]" aria-label="Call to action">
+    <section id="contact" className="py-20 bg-[var(--bg-3)] border-y border-[var(--border)]" aria-label="Call to action">
       <div className="wrap flex flex-col md:flex-row md:items-center md:justify-between gap-8">
         <div>
           <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--ac)] mb-3">

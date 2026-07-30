@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon, FacebookIcon } from '../components/SocialIcons'
-import { useTilt } from '../hooks/useTilt'
 import WordReveal from '../components/WordReveal'
 
 function useReveal(ref) {
@@ -21,9 +20,7 @@ function useReveal(ref) {
 
 export default function About() {
   const ref = useRef(null)
-  const photoRef = useRef(null)
   useReveal(ref)
-  useTilt(photoRef, { max: 6, scale: 1.01 })
 
   return (
     <section id="about" className="py-16 lg:py-28 bg-[var(--bg-2)] overflow-x-hidden" ref={ref} aria-label="About me">
@@ -32,7 +29,7 @@ export default function About() {
 
           {/* Photo + socials */}
           <div data-r className="reveal-left flex flex-col gap-6">
-            <div ref={photoRef} className="relative w-full max-w-[300px]">
+            <div className="relative w-full max-w-[300px]">
               <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-2xl border border-[var(--border-2)]"
                    aria-hidden="true" />
               <div className="relative rounded-2xl overflow-hidden aspect-[3/4] bg-[var(--bg-3)]">

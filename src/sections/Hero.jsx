@@ -1,23 +1,8 @@
 import { useRef, useEffect } from 'react'
 import { ArrowDown, Download } from 'lucide-react'
-import { useScramble } from '../hooks/useScramble'
 import { useMagnetic } from '../hooks/useMagnetic'
 
-function addRipple(e) {
-  const btn = e.currentTarget
-  const rect = btn.getBoundingClientRect()
-  const size = Math.max(rect.width, rect.height)
-  const span = document.createElement('span')
-  span.className = 'ripple-effect'
-  span.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - rect.left - size / 2}px;top:${e.clientY - rect.top - size / 2}px`
-  btn.style.position = 'relative'
-  btn.style.overflow = 'hidden'
-  btn.appendChild(span)
-  setTimeout(() => span.remove(), 600)
-}
-
 export default function Hero() {
-  const name    = useScramble('Prince Parnada', { delay: 400, duration: 1400 })
   const btn1Ref = useRef(null)
   const btn2Ref = useRef(null)
   const gridRef = useRef(null)
@@ -25,12 +10,17 @@ export default function Hero() {
   useMagnetic(btn2Ref, 0.35)
 
   useEffect(() => {
+    let raf = 0
     const fn = () => {
-      if (gridRef.current)
-        gridRef.current.style.transform = `translateY(${window.scrollY * 0.3}px)`
+      if (raf) return
+      raf = requestAnimationFrame(() => {
+        raf = 0
+        if (gridRef.current)
+          gridRef.current.style.transform = `translateY(${window.scrollY * 0.3}px)`
+      })
     }
     window.addEventListener('scroll', fn, { passive: true })
-    return () => window.removeEventListener('scroll', fn)
+    return () => { window.removeEventListener('scroll', fn); cancelAnimationFrame(raf) }
   }, [])
 
   return (
@@ -44,9 +34,7 @@ export default function Hero() {
         <div className="absolute inset-0"
              style={{ background: 'radial-gradient(ellipse 65% 65% at 50% 50%, var(--bg) 30%, transparent 100%)' }} />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] rounded-full"
-             style={{ background: 'radial-gradient(ellipse, rgba(232,145,106,0.07) 0%, transparent 70%)', filter: 'blur(40px)' }} />
-        <div className="hero-scan" style={{ top: '20%' }} />
-        <div className="hero-scan hero-scan-2" style={{ top: '20%' }} />
+             style={{ background: 'radial-gradient(ellipse, var(--ac-glow) 0%, transparent 70%)', filter: 'blur(40px)' }} />
         <div className="absolute inset-0"
              style={{ background: 'radial-gradient(ellipse at 50% 50%, transparent 50%, var(--vignette) 100%)' }} />
       </div>
@@ -65,9 +53,8 @@ export default function Hero() {
 
         <div className="reveal in mb-5">
           <h1 className="font-extrabold leading-[0.9] tracking-tight text-[var(--tx)] font-mono"
-              style={{ fontSize: 'clamp(3rem, 12vw, 9rem)' }}
-              aria-label="Prince Parnada">
-            {name}
+              style={{ fontSize: 'clamp(3rem, 12vw, 9rem)' }}>
+            Prince Parnada
           </h1>
         </div>
 
@@ -78,7 +65,7 @@ export default function Hero() {
         <div className="reveal in d2 flex flex-wrap items-center justify-center gap-3">
           <div ref={btn1Ref}>
             <button
-              onClick={e => { addRipple(e); setTimeout(() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }), 150) }}
+              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
               className="btn btn-primary group">
               View Projects
               <ArrowDown size={13} className="group-hover:translate-y-0.5 transition-transform" />
@@ -86,7 +73,7 @@ export default function Hero() {
           </div>
           <div ref={btn2Ref}>
             <a href="/resume.pdf" target="_blank" rel="noopener noreferrer"
-               className="btn btn-secondary" onClick={addRipple}>
+               className="btn btn-secondary">
               <Download size={13} />
               Download Resume
             </a>

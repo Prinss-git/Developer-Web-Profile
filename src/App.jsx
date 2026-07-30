@@ -3,7 +3,6 @@ import { useTheme } from './hooks/useTheme'
 import { useLenis } from './hooks/useLenis'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import CustomCursor from './components/CustomCursor'
 import ScrollProgress from './components/ScrollProgress'
 import LoadingScreen from './components/LoadingScreen'
 import KeyboardNav from './components/KeyboardNav'
@@ -22,7 +21,6 @@ export default function App() {
   return (
     <>
       <LoadingScreen onDone={() => setReady(true)} />
-      <CustomCursor />
       <ScrollProgress />
       <KeyboardNav />
       <div style={{ opacity: ready ? 1 : 0, transition: 'opacity 0.4s ease' }}>

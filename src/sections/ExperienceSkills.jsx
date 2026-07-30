@@ -24,7 +24,7 @@ export default function ExperienceSkills() {
   useReveal(ref)
 
   return (
-    <section id="experience" className="py-16 lg:py-28" ref={ref} aria-label="Experience and Skills">
+    <section id="experience" className="py-16 lg:py-28 bg-[var(--bg-2)]" ref={ref} aria-label="Experience and Skills">
       <div className="wrap">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
 

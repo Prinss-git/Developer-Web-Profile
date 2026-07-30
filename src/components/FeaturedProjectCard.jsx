@@ -1,7 +1,6 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { ExternalLink, Lock } from 'lucide-react'
 import { GithubIcon } from './SocialIcons'
-import { useTilt } from '../hooks/useTilt'
 
 const TECH_COLOR = {
   React: '#61dafb', TypeScript: '#3178c6', JavaScript: '#f7df1e',
@@ -13,38 +12,21 @@ const TECH_COLOR = {
   default: 'var(--ac)',
 }
 
-function addRipple(e) {
-  const btn = e.currentTarget
-  const rect = btn.getBoundingClientRect()
-  const size = Math.max(rect.width, rect.height)
-  const span = document.createElement('span')
-  span.className = 'ripple-effect'
-  span.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - rect.left - size / 2}px;top:${e.clientY - rect.top - size / 2}px`
-  btn.style.position = 'relative'
-  btn.style.overflow = 'hidden'
-  btn.appendChild(span)
-  setTimeout(() => span.remove(), 600)
-}
-
 export default function FeaturedProjectCard({ project }) {
   const { title, description, stack, github, live, image, demo, stats } = project
-  const cardRef = useRef(null)
   const [imgLoaded, setImgLoaded] = useState(false)
-  useTilt(cardRef, { max: 4, scale: 1.01 })
 
   return (
-    <article ref={cardRef} className="card overflow-hidden" aria-label={`Featured project: ${title}`}>
+    <article className="card overflow-hidden" aria-label={`Featured project: ${title}`}>
       <div className="grid md:grid-cols-2">
 
         {/* Image */}
         <div className="relative h-64 sm:h-72 md:h-auto bg-[var(--bg-3)] overflow-hidden group">
           {image ? (
-            <>
             <img src={image} alt={title} loading="lazy"
                  onLoad={() => setImgLoaded(true)}
                  className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105
                              ${imgLoaded ? 'blur-0 scale-100' : 'blur-sm scale-105'}`} />
-            </>
           ) : (
             <div className="absolute inset-0 flex items-center justify-center" aria-hidden="true">
               <div className="space-y-3 opacity-[0.08]">
@@ -99,7 +81,6 @@ export default function FeaturedProjectCard({ project }) {
           <div className="mt-auto flex items-center gap-3 pt-4 border-t border-[var(--border)]">
             {live && (
               <a href={live} target="_blank" rel="noopener noreferrer"
-                 onClick={addRipple}
                  className="btn btn-primary text-sm">
                 Live Demo <ExternalLink size={13} />
               </a>

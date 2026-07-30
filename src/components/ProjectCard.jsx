@@ -1,7 +1,6 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { ExternalLink, Lock } from 'lucide-react'
 import { GithubIcon } from './SocialIcons'
-import { useTilt } from '../hooks/useTilt'
 
 const TECH_COLOR = {
   React: '#61dafb', TypeScript: '#3178c6', JavaScript: '#f7df1e',
@@ -13,44 +12,21 @@ const TECH_COLOR = {
   default: 'var(--ac)',
 }
 
-function addRipple(e) {
-  const btn = e.currentTarget
-  const rect = btn.getBoundingClientRect()
-  const size = Math.max(rect.width, rect.height)
-  const span = document.createElement('span')
-  span.className = 'ripple-effect'
-  span.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - rect.left - size / 2}px;top:${e.clientY - rect.top - size / 2}px`
-  btn.style.position = 'relative'
-  btn.style.overflow = 'hidden'
-  btn.appendChild(span)
-  setTimeout(() => span.remove(), 600)
-}
-
 export default function ProjectCard({ project }) {
   const { title, description, stack, github, privateRepo, live, image, demo } = project
-  const cardRef = useRef(null)
   const [imgLoaded, setImgLoaded] = useState(false)
-  useTilt(cardRef, { max: 8, scale: 1.02 })
 
   return (
-    <article ref={cardRef} className="card group flex flex-col h-full overflow-hidden"
+    <article className="card group flex flex-col h-full overflow-hidden"
              aria-label={`Project: ${title}`}>
 
       {/* Image */}
       <div className="relative h-44 bg-[var(--bg-3)] overflow-hidden shrink-0">
         {image ? (
-          <>
-            <img src={image} alt={title} loading="lazy"
-                 onLoad={() => setImgLoaded(true)}
-                 className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105
-                             ${imgLoaded ? 'blur-0 scale-100' : 'blur-sm scale-105'}`} />
-            <div className="absolute inset-0 bg-[var(--bg)]/85 opacity-0 group-hover:opacity-100
-                            transition-opacity duration-300 flex items-center justify-center p-5">
-              <p className="text-xs text-[var(--tx-2)] text-center leading-relaxed line-clamp-5">
-                {description}
-              </p>
-            </div>
-          </>
+          <img src={image} alt={title} loading="lazy"
+               onLoad={() => setImgLoaded(true)}
+               className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105
+                           ${imgLoaded ? 'blur-0 scale-100' : 'blur-sm scale-105'}`} />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center" aria-hidden="true">
             <div className="space-y-2.5 opacity-[0.08]">
@@ -93,7 +69,6 @@ export default function ProjectCard({ project }) {
           {live ? (
             <a href={live} target="_blank" rel="noopener noreferrer"
                aria-label={`${title} live demo`}
-               onClick={addRipple}
                className="btn btn-primary text-xs py-1.5 px-3">
               Live Demo <ExternalLink size={12} />
             </a>
