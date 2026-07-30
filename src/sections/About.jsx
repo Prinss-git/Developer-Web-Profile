@@ -34,8 +34,9 @@ export default function About() {
                    aria-hidden="true" />
               <div className="relative rounded-2xl overflow-hidden aspect-[3/4] bg-[var(--bg-3)]">
                 <img
-                  src="/images/prince.jpg"
+                  src="/images/prince-about.jpg"
                   alt="Prince Christian Parnada"
+                  loading="lazy"
                   className="w-full h-full object-cover object-center"
                 />
               </div>

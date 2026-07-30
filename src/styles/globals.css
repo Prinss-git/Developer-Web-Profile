@@ -192,10 +192,13 @@ body { overflow-x: hidden;
   background: radial-gradient(circle, var(--ac-glow) 0%, transparent 70%);
 }
 
-/* Portrait: soft bottom fade so a rectangular photo blends into the page */
+/* Portrait: the source photo has a studio backdrop, so fade every edge to
+   dissolve the rectangle into the page. Biased upward (center at 38%) so the
+   bottom fades hardest and the face stays fully opaque. Swap this for a plain
+   bottom fade if a background-removed cutout is dropped in. */
 .hero-portrait {
-  -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 99%);
-          mask-image: linear-gradient(to bottom, #000 62%, transparent 99%);
+  -webkit-mask-image: radial-gradient(ellipse 78% 92% at 50% 38%, #000 56%, transparent 100%);
+          mask-image: radial-gradient(ellipse 78% 92% at 50% 38%, #000 56%, transparent 100%);
 }
 
 /* ── Marquee ─────────────────────────────────── */
