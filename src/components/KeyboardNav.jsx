@@ -4,8 +4,17 @@ const SHORTCUTS = [
   { key: 'G', label: 'GitHub',   action: () => window.open('https://github.com/Prinss-git', '_blank') },
   { key: 'L', label: 'LinkedIn', action: () => window.open('https://www.linkedin.com/in/prince-christian-parnada-3b8a3b400/', '_blank') },
   { key: 'E', label: 'Email',    action: () => { window.location.href = 'mailto:princechristianparnada@gmail.com' } },
-  { key: 'R', label: 'Resume',   action: () => window.open('/resume.pdf', '_blank') },
+  { key: 'R', label: 'Résumé',   action: () => window.open('/resume.pdf', '_blank') },
 ]
+
+function Key({ children, lit }) {
+  return (
+    <kbd className={`typed !mt-0 inline-flex min-w-[1.6rem] justify-center px-1.5 py-0.5 text-[0.75rem] font-bold border transition-colors duration-150
+      ${lit ? 'bg-[var(--stamp)] border-[var(--stamp)] text-[var(--on-stamp)]' : 'border-[var(--rule)] text-[var(--rule)]'}`}>
+      {children}
+    </kbd>
+  )
+}
 
 export default function KeyboardNav() {
   const [show, setShow] = useState(false)
@@ -14,9 +23,10 @@ export default function KeyboardNav() {
   useEffect(() => {
     const handler = e => {
       const tag = document.activeElement?.tagName
-      if (tag === 'INPUT' || tag === 'TEXTAREA') return
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || e.metaKey || e.ctrlKey || e.altKey) return
 
       if (e.key === '?') { setShow(s => !s); return }
+      if (e.key === 'Escape') { setShow(false); return }
 
       const shortcut = SHORTCUTS.find(s => s.key.toLowerCase() === e.key.toLowerCase())
       if (shortcut) {
@@ -31,38 +41,29 @@ export default function KeyboardNav() {
 
   return (
     <>
-      {/* ? hint button */}
       <button
         onClick={() => setShow(s => !s)}
-        className="fixed bottom-5 right-5 z-50 w-8 h-8 rounded-full border border-[var(--border-2)]
-                   bg-[var(--bg-3)] text-[var(--tx-3)] text-xs font-bold hover:text-[var(--ac)]
-                   hover:border-[var(--ac)] transition-all duration-200 hidden md:flex items-center justify-center"
-        aria-label="Keyboard shortcuts">
+        className="fixed bottom-5 right-5 z-50 max-md:!hidden icon-btn !w-9 !h-9 bg-[var(--paper)] typed !mt-0 font-bold"
+        aria-label="Keyboard shortcuts"
+        aria-expanded={show}>
         ?
       </button>
 
-      {/* Shortcuts panel */}
       {show && (
-        <div className="fixed bottom-16 right-5 z-50 card p-4 w-52 shadow-lg" role="dialog" aria-label="Keyboard shortcuts">
-          <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[var(--tx-3)] mb-3">
-            Shortcuts
-          </p>
-          <ul className="space-y-2">
+        <div className="fixed bottom-16 right-5 z-50 w-56 bg-[var(--paper)] border-[1.5px] border-[var(--rule)]"
+             style={{ boxShadow: 'var(--photo-shadow)' }}
+             role="dialog" aria-label="Keyboard shortcuts">
+          <p className="bar !py-1.5 !text-[0.7rem] font-bold uppercase tracking-[0.09em]">Shortcuts</p>
+          <ul className="px-3 py-2">
             {SHORTCUTS.map(({ key, label }) => (
-              <li key={key} className="flex items-center justify-between">
-                <span className="text-xs text-[var(--tx-2)]">{label}</span>
-                <kbd className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border
-                                transition-all duration-150
-                                ${flash === key
-                                  ? 'bg-[var(--ac)] border-[var(--ac)] text-white'
-                                  : 'bg-[var(--bg-3)] border-[var(--border-2)] text-[var(--tx-3)]'}`}>
-                  {key}
-                </kbd>
+              <li key={key} className="flex items-center justify-between py-1.5 border-b border-[var(--rule-soft)]">
+                <span className="text-[0.85rem]">{label}</span>
+                <Key lit={flash === key}>{key}</Key>
               </li>
             ))}
-            <li className="flex items-center justify-between pt-1 border-t border-[var(--border)]">
-              <span className="text-xs text-[var(--tx-2)]">Toggle this</span>
-              <kbd className="text-[10px] font-mono font-bold px-2 py-0.5 rounded border bg-[var(--bg-3)] border-[var(--border-2)] text-[var(--tx-3)]">?</kbd>
+            <li className="flex items-center justify-between py-1.5">
+              <span className="text-[0.85rem]">Toggle this</span>
+              <Key>?</Key>
             </li>
           </ul>
         </div>

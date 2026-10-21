@@ -1,50 +1,37 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
-import { Send, CheckCircle, AlertCircle, Mail, Phone } from 'lucide-react'
+import { Send, AlertCircle, Mail, Phone, ArrowUpRight } from 'lucide-react'
 import { GithubIcon, LinkedinIcon, FacebookIcon } from '../components/SocialIcons'
+import { Stamp } from '../components/Record'
 
-const SOCIALS = [
-  { icon: GithubIcon,   href: 'https://github.com/Prinss-git',                                   label: 'GitHub',   handle: 'github.com/Prinss-git' },
-  { icon: LinkedinIcon, href: 'https://www.linkedin.com/in/prince-christian-parnada-3b8a3b400/', label: 'LinkedIn', handle: 'linkedin.com/in/prince-christian-parnada' },
-  { icon: FacebookIcon, href: 'https://www.facebook.com/princechristian.parnada.9',              label: 'Facebook', handle: 'facebook.com/princechristian.parnada.9' },
+const LINES = [
+  { icon: Mail,         label: 'Email',    value: 'princechristianparnada@gmail.com',     href: 'mailto:princechristianparnada@gmail.com' },
+  { icon: Phone,        label: 'Phone',    value: '+63 948 717 7945',                     href: 'tel:+639487177945' },
+  { icon: GithubIcon,   label: 'GitHub',   value: 'github.com/Prinss-git',                href: 'https://github.com/Prinss-git' },
+  { icon: LinkedinIcon, label: 'LinkedIn', value: 'in/prince-christian-parnada',          href: 'https://www.linkedin.com/in/prince-christian-parnada-3b8a3b400/' },
+  { icon: FacebookIcon, label: 'Facebook', value: 'princechristian.parnada.9',            href: 'https://www.facebook.com/princechristian.parnada.9' },
 ]
 
 const INITIAL = { name: '', email: '', subject: '', message: '', _trap: '' }
 
 function validate(f) {
   const e = {}
-  if (!f.name.trim()) e.name = 'Name is required.'
-  if (!f.email.trim()) e.email = 'Email is required.'
-  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) e.email = 'Enter a valid email.'
-  if (!f.message.trim()) e.message = 'Message is required.'
-  else if (f.message.trim().length < 10) e.message = 'At least 10 characters.'
+  if (!f.name.trim()) e.name = 'Write your name so I know who to reply to.'
+  if (!f.email.trim()) e.email = 'Add an email address for the reply.'
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) e.email = 'That email looks incomplete. Check for a typo.'
+  if (!f.message.trim()) e.message = 'Write a short message.'
+  else if (f.message.trim().length < 10) e.message = 'A little more detail, please (10 characters or more).'
   return e
 }
 
-function useReveal(ref) {
-  useEffect(() => {
-    if (!ref.current) return
-    const obs = new IntersectionObserver(
-      entries => entries.forEach(e => {
-        if (e.isIntersecting) e.target.querySelectorAll('[data-r]').forEach((el, i) =>
-          setTimeout(() => el.classList.add('in'), i * 100))
-      }),
-      { threshold: 0.08 }
-    )
-    obs.observe(ref.current)
-    return () => obs.disconnect()
-  }, [])
-}
-
 export default function Contact() {
-  const ref = useRef(null)
   const formRef = useRef(null)
   const lastSubmit = useRef(0)
   const [fields, setFields] = useState(INITIAL)
   const [errors, setErrors] = useState({})
   const [touched, setTouched] = useState({})
   const [status, setStatus] = useState('idle')
-  useReveal(ref)
+  const [errorMsg, setErrorMsg] = useState('')
 
   const change = e => {
     const { name, value } = e.target
@@ -59,13 +46,14 @@ export default function Contact() {
   const submit = async e => {
     e.preventDefault()
     if (fields._trap) return
-    const now = Date.now()
-    if (now - lastSubmit.current < 60000) {
-      setStatus('error'); return
-    }
     setTouched({ name: true, email: true, message: true })
     const errs = validate(fields); setErrors(errs)
     if (Object.keys(errs).length) return
+    const now = Date.now()
+    if (now - lastSubmit.current < 60000) {
+      setErrorMsg('You just sent one. Wait a minute before sending another, or email me directly.')
+      setStatus('error'); return
+    }
     lastSubmit.current = now
     setStatus('sending')
     try {
@@ -76,143 +64,96 @@ export default function Contact() {
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
       setStatus('success'); setFields(INITIAL); setTouched({})
-    } catch { setStatus('error') }
+    } catch {
+      setErrorMsg('The message didn’t go through. Try again, or email princechristianparnada@gmail.com directly.')
+      setStatus('error')
+    }
   }
 
-  const ic = n => `input${errors[n] && touched[n] ? ' input-error' : ''}`
+  const invalid = n => !!(errors[n] && touched[n])
+
+  const input = (id, label, props = {}) => (
+    <div className="field">
+      <label htmlFor={id} className="field-label">{label}{props.required !== false && <span className="text-[var(--stamp)]"> *</span>}</label>
+      {props.multiline ? (
+        <textarea id={id} name={id} rows={5} value={fields[id]} onChange={change} onBlur={blur}
+                  aria-required="true" aria-invalid={invalid(id)} aria-describedby={invalid(id) ? `${id}-err` : undefined}
+                  placeholder={props.ph} className="input resize-none leading-[1.9]"
+                  style={{ backgroundImage: 'repeating-linear-gradient(transparent 0 1.85rem, var(--rule-soft) 1.85rem 1.9rem)', borderBottom: 0 }} />
+      ) : (
+        <input id={id} name={id} type={props.type || 'text'} autoComplete={props.ac || id}
+               value={fields[id]} onChange={change} onBlur={blur}
+               aria-required={props.required !== false} aria-invalid={invalid(id)}
+               aria-describedby={invalid(id) ? `${id}-err` : undefined}
+               placeholder={props.ph} className="input" />
+      )}
+      {invalid(id) && (
+        <p id={`${id}-err`} className="field-error"><AlertCircle size={13} /> {errors[id]}</p>
+      )}
+    </div>
+  )
 
   return (
-    <section id="contact" className="py-16 lg:py-28" ref={ref} aria-label="Contact">
+    <section id="contact" className="pb-16 lg:pb-24" aria-labelledby="contact-title">
       <div className="wrap">
-        <div data-r className="reveal mb-12">
-          <div className="eyebrow">05 — Contact</div>
-          <h2 className="section-title mt-3">Let's talk.</h2>
-          <a href="mailto:princechristianparnada@gmail.com"
-             className="group inline-flex items-center gap-2 mt-4 font-bold text-[var(--tx)] hover:text-[var(--ac)] transition-colors duration-200"
-             style={{ fontSize: 'clamp(1rem, 2.5vw, 1.5rem)' }}>
-            princechristianparnada@gmail.com
-            <span className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-[var(--ac)]">↗</span>
-          </a>
-          <p className="text-[var(--tx-3)] text-xs mt-2">Or fill out the form below</p>
+        <div className="bar">
+          <h2 id="contact-title">Request form</h2>
+          <p>Internships, roles, freelance builds</p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Form */}
-          <div data-r className="reveal d1">
-            {status === 'success' ? (
-              <div className="card flex flex-col items-center gap-5 py-20 text-center"
-                   role="alert" aria-live="polite">
-                <div className="w-14 h-14 rounded-full flex items-center justify-center bg-[var(--ac-dim)]">
-                  <CheckCircle size={28} style={{ color: 'var(--ac)' }} />
+        <div className="sheet mt-6">
+          <div className="cells grid-cols-1 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
+
+            <div className="relative">
+              {status === 'success' ? (
+                <div className="field min-h-[26rem] flex flex-col items-center justify-center gap-6 text-center" role="status" aria-live="polite">
+                  <Stamp sub="reply within 24 hours" tilt={-9} size="2.4rem" instant>Received</Stamp>
+                  <p className="text-[var(--ink-2)] max-w-[36ch]">Thanks, your request is filed. I’ll get back to you within a day.</p>
+                  <button onClick={() => setStatus('idle')} className="act-line">File another request</button>
                 </div>
-                <div>
-                  <p className="font-bold text-[var(--tx)] text-lg">Message sent!</p>
-                  <p className="text-[var(--tx-2)] text-sm mt-1">I'll get back to you within 24 hours.</p>
-                </div>
-                <button onClick={() => setStatus('idle')} className="btn btn-secondary text-sm">
-                  Send another
-                </button>
-              </div>
-            ) : (
-              <form ref={formRef} onSubmit={submit} noValidate className="card p-7 space-y-5">
-                {/* Honeypot — hidden from humans, bots fill it */}
-                <input name="_trap" value={fields._trap} onChange={change}
-                       style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
-                {[
-                  { id: 'name',    label: 'Name',    type: 'text',  ph: 'Jane Smith' },
-                  { id: 'email',   label: 'Email',   type: 'email', ph: 'jane@example.com' },
-                  { id: 'subject', label: 'Subject', type: 'text',  ph: 'Internship opportunity' },
-                ].map(({ id, label, type, ph }) => (
-                  <div key={id}>
-                    <label htmlFor={id}
-                           className="block text-xs font-semibold text-[var(--tx-3)] uppercase tracking-widest mb-2">
-                      {label} <span style={{ color: 'var(--ac)' }}>*</span>
-                    </label>
-                    <input
-                      id={id} name={id} type={type} autoComplete={id}
-                      value={fields[id]} onChange={change} onBlur={blur}
-                      aria-required="true" aria-invalid={!!(errors[id] && touched[id])}
-                      placeholder={ph} className={ic(id)} />
-                    {errors[id] && touched[id] && (
-                      <p role="alert" className="text-red-400 text-xs mt-1.5 flex items-center gap-1">
-                        <AlertCircle size={11} /> {errors[id]}
+              ) : (
+                <form ref={formRef} onSubmit={submit} noValidate className="cells !border-0 grid-cols-1 sm:grid-cols-2">
+                  {/* Honeypot: hidden from people, filled by bots */}
+                  <input name="_trap" value={fields._trap} onChange={change}
+                         style={{ display: 'none' }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
+                  {input('name', 'Your name', { ph: 'Jane Santos' })}
+                  {input('email', 'Reply-to email', { type: 'email', ph: 'jane@company.com' })}
+                  <div className="sm:col-span-2">{input('subject', 'Subject', { required: false, ph: 'Internship opportunity', ac: 'off' })}</div>
+                  <div className="sm:col-span-2">{input('message', 'Message', { multiline: true, ph: 'What are you hiring for, or what would you like built?' })}</div>
+                  <div className="field sm:col-span-2 flex flex-wrap items-center justify-between gap-4 !py-4">
+                    <p className="typed !mt-0 text-[0.85rem] text-[var(--ink-2)]">I usually reply within a day.</p>
+                    <button type="submit" disabled={status === 'sending'} className="act">
+                      {status === 'sending'
+                        ? <>Filing… <span className="w-3.5 h-3.5 border-2 border-current border-t-transparent rounded-full animate-spin" aria-hidden="true" /></>
+                        : <>File request <Send size={15} /></>}
+                    </button>
+                    {status === 'error' && (
+                      <p role="alert" className="field-error w-full !mt-0">
+                        <AlertCircle size={14} /> {errorMsg}
                       </p>
                     )}
                   </div>
-                ))}
-                <div>
-                  <label htmlFor="message"
-                         className="block text-xs font-semibold text-[var(--tx-3)] uppercase tracking-widest mb-2">
-                    Message <span style={{ color: 'var(--ac)' }}>*</span>
-                  </label>
-                  <textarea
-                    id="message" name="message" rows={5}
-                    value={fields.message} onChange={change} onBlur={blur}
-                    aria-required="true" aria-invalid={!!(errors.message && touched.message)}
-                    placeholder="What's on your mind?"
-                    className={`${ic('message')} resize-none`} />
-                  {errors.message && touched.message && (
-                    <p role="alert" className="text-red-400 text-xs mt-1.5 flex items-center gap-1">
-                      <AlertCircle size={11} /> {errors.message}
-                    </p>
-                  )}
-                </div>
-                {status === 'error' && (
-                  <div role="alert"
-                       className="flex items-center gap-2 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
-                    <AlertCircle size={15} /> Something went wrong. Please try again.
-                  </div>
-                )}
-                <button type="submit" disabled={status === 'sending'} className="btn btn-primary w-full justify-center">
-                  {status === 'sending' ? (
-                    <><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />Sending…</>
-                  ) : (
-                    <>Send Message <Send size={14} /></>
-                  )}
-                </button>
-              </form>
-            )}
-          </div>
-
-          {/* Info */}
-          <div data-r className="reveal d2 flex flex-col gap-5">
-            <p className="text-[var(--tx-2)] leading-loose text-sm">
-              I usually reply within a day. Email works best, but the form is fine too.
-            </p>
-            <div className="space-y-3">
-              {[
-                { icon: Phone, label: 'Phone', value: '+63 948 717 7945',                     href: null },
-                { icon: Mail,  label: 'Email', value: 'princechristianparnada@gmail.com',     href: 'mailto:princechristianparnada@gmail.com' },
-              ].map(({ icon: Icon, label, value, href }) => (
-                <div key={label} className="card p-4 flex items-center gap-4">
-                  <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 bg-[var(--ac-dim)]"
-                       style={{ color: 'var(--ac)' }}>
-                    <Icon size={15} />
-                  </div>
-                  <div>
-                    <p className="text-xs text-[var(--tx-3)] uppercase tracking-widest font-mono">{label}</p>
-                    {href
-                      ? <a href={href} className="text-sm text-[var(--tx)] hover:text-[var(--ac)] transition-colors">{value}</a>
-                      : <p className="text-sm text-[var(--tx)]">{value}</p>}
-                  </div>
-                </div>
-              ))}
+                </form>
+              )}
             </div>
-            <div className="space-y-2.5">
-              {SOCIALS.map(({ icon: Icon, href, label, handle }) => (
-                <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-                   aria-label={`Visit my ${label} profile`}
-                   className="card p-4 flex items-center gap-4 group">
-                  <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 border border-[var(--border)]
-                                  bg-[var(--bg-3)] text-[var(--tx-3)] group-hover:text-[var(--ac)]
-                                  group-hover:border-[var(--ac)] transition-all duration-200">
-                    <Icon size={15} />
-                  </div>
-                  <span className="text-sm text-[var(--tx-2)] group-hover:text-[var(--ac)] transition-colors">
-                    {handle}
-                  </span>
-                </a>
-              ))}
+
+            <div className="field !p-0">
+              <div className="px-[0.85rem] pt-[0.55rem]"><span className="field-label">Direct lines</span></div>
+              <ul role="list" className="mt-1">
+                {LINES.map(({ icon: Icon, label, value, href }) => (
+                  <li key={label} className="border-t border-[var(--rule-soft)] first:border-0">
+                    <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer"
+                       className="group flex items-center gap-3 px-[0.85rem] py-3.5 no-underline hover:bg-[var(--paper-2)] transition-colors">
+                      <Icon size={16} className="text-[var(--rule)] shrink-0" />
+                      <span className="min-w-0 flex-1">
+                        <span className="field-label">{label}</span>
+                        <span className="typed block !mt-0 text-[0.92rem] truncate group-hover:text-[var(--stamp)]">{value}</span>
+                      </span>
+                      <ArrowUpRight size={15} className="text-[var(--ink-3)] group-hover:text-[var(--stamp)] shrink-0" aria-hidden="true" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

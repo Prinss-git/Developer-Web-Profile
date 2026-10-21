@@ -4,12 +4,14 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#e7eee2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1428" media="(prefers-color-scheme: dark)" />
 
     <!-- Fonts: connect early and fetch in parallel with the stylesheet -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" />
+          href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" />
 
     <!-- Primary meta -->
     <title>Prince Parnada — Full-Stack Developer</title>
@@ -37,10 +39,11 @@
           (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         document.documentElement.setAttribute('data-theme', t);
       } catch(e) {}
+      document.documentElement.classList.add('js');
     </script>
   </head>
   <body>
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded-lg focus:font-medium">
+    <a href="#main-content" class="skip-link">
       Skip to main content
     </a>
     <div id="root"></div>
