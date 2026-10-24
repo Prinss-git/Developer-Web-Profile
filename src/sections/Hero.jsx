@@ -127,10 +127,11 @@ export default function Hero() {
 
             <div className="relative w-[min(78vw,26rem)] lg:w-full lg:max-w-[27rem] aspect-[4/5]">
               <img
-                src="/images/prince-hero.jpg"
+                src="/images/prince-portrait.jpg"
                 alt="Prince Christian Parnada"
+                width="900" height="1200"
                 fetchPriority="high"
-                className="hero-portrait w-full h-full object-cover object-center"
+                className="hero-portrait w-full h-full object-cover object-[50%_30%]"
               />
             </div>
           </div>
