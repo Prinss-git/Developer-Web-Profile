@@ -77,7 +77,7 @@ export default function Hero() {
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer"
+              <a href="/Prince-Christian-Parnada-Resume.pdf" target="_blank" rel="noopener noreferrer"
                  className="text-sm font-semibold text-[var(--tx-2)] hover:text-[var(--ac)]
                             underline underline-offset-4 decoration-[var(--border-2)]
                             hover:decoration-[var(--ac)] transition-colors">

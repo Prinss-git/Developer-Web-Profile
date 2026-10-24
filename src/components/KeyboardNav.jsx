@@ -4,7 +4,7 @@ const SHORTCUTS = [
   { key: 'G', label: 'GitHub',   action: () => window.open('https://github.com/Prinss-git', '_blank') },
   { key: 'L', label: 'LinkedIn', action: () => window.open('https://www.linkedin.com/in/prince-christian-parnada-3b8a3b400/', '_blank') },
   { key: 'E', label: 'Email',    action: () => { window.location.href = 'mailto:princechristianparnada@gmail.com' } },
-  { key: 'R', label: 'Resume',   action: () => window.open('/resume.pdf', '_blank') },
+  { key: 'R', label: 'Resume',   action: () => window.open('/Prince-Christian-Parnada-Resume.pdf', '_blank') },
 ]
 
 export default function KeyboardNav() {
