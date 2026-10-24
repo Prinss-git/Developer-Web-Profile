@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Portfolio directions · Prince Parnada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Manrope:wght@400..800&display=swap" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #e9e9ec; color: #111; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ── Switcher ── */
+  .switch { position: sticky; top: 0; z-index: 50; background: #111; color: #fff; display: flex; gap: 6px; align-items: center; padding: 10px 16px; flex-wrap: wrap; font: 500 14px/1.2 Geist, sans-serif; }
+  .switch strong { margin-right: 10px; font-weight: 600; }
+  .switch button { font: inherit; background: #2a2a2e; color: #ddd; border: 0; padding: 8px 14px; border-radius: 8px; cursor: pointer; }
+  .switch button[aria-pressed="true"] { background: #fff; color: #111; }
+  .switch .hint { margin-left: auto; color: #9a9aa2; font-size: 13px; }
+  .note { max-width: 1200px; margin: 18px auto 0; padding: 0 16px; font: 15px/1.5 Geist, sans-serif; color: #333; }
+  .note b { color: #111; }
+  .frame { max-width: 1200px; margin: 14px auto 48px; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,.06), 0 20px 50px -20px rgba(0,0,0,.35); }
+  .mock { display: none; }
+  .mock.on { display: block; }
+  .shot { aspect-ratio: 16/9; background-size: cover; background-position: top left; }
+
+  /* ═════════ A · Clean Professional (light) ═════════ */
+  .A { --bg:#fff; --soft:#f6f7f9; --line:#e6e8ec; --tx:#0f172a; --tx2:#475569; --tx3:#64748b; --ac:#1d4ed8; font-family: Geist, sans-serif; background: var(--bg); color: var(--tx); }
+  .A .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  .A nav { display:flex; align-items:center; justify-content:space-between; height:68px; border-bottom:1px solid var(--line); }
+  .A .logo { font-weight:650; letter-spacing:-.01em; }
+  .A nav ul { display:flex; gap:28px; list-style:none; font-size:14.5px; color:var(--tx2); }
+  .A .btn { display:inline-flex; align-items:center; gap:8px; font-weight:550; font-size:14.5px; padding:11px 18px; border-radius:8px; }
+  .A .btn-p { background:var(--tx); color:#fff; }
+  .A .btn-s { border:1px solid var(--line); color:var(--tx); }
+  .A .hero { display:grid; grid-template-columns: 1.35fr 1fr; gap:56px; align-items:center; padding:72px 0 64px; }
+  .A .status { display:inline-flex; align-items:center; gap:8px; font-size:13.5px; color:var(--tx2); border:1px solid var(--line); padding:6px 12px; border-radius:99px; }
+  .A .dot { width:8px; height:8px; border-radius:50%; background:#16a34a; box-shadow:0 0 0 3px #dcfce7; }
+  .A h1 { font-size:54px; line-height:1.05; letter-spacing:-.035em; font-weight:650; margin:22px 0 18px; }
+  .A h1 span { color:var(--tx3); }
+  .A .lead { font-size:18px; line-height:1.6; color:var(--tx2); max-width:34em; }
+  .A .ctas { display:flex; gap:12px; margin-top:30px; }
+  .A .portrait { border-radius:16px; overflow:hidden; aspect-ratio:4/5; background:#0b1a3a; }
+  .A .portrait img { width:100%; height:100%; object-fit:cover; object-position:50% 30%; }
+  .A .facts { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .A .facts div { padding:22px 0; }
+  .A .facts div + div { padding-left:24px; border-left:1px solid var(--line); }
+  .A .facts b { display:block; font-size:22px; letter-spacing:-.02em; font-weight:650; }
+  .A .facts span { font-size:13.5px; color:var(--tx3); }
+  .A section { padding:72px 0; }
+  .A h2 { font-size:30px; letter-spacing:-.025em; font-weight:650; }
+  .A .sub { color:var(--tx3); margin-top:6px; }
+  .A .feat { display:grid; grid-template-columns:1.25fr 1fr; gap:40px; margin-top:32px; padding:28px; background:var(--soft); border:1px solid var(--line); border-radius:16px; align-items:center; }
+  .A .feat .shot { border-radius:10px; border:1px solid var(--line); }
+  .A .tag { display:inline-block; font-size:12.5px; font-weight:550; color:var(--ac); background:#eff4ff; padding:4px 10px; border-radius:99px; }
+  .A h3 { font-size:26px; letter-spacing:-.02em; font-weight:650; margin:12px 0 10px; }
+  .A p { color:var(--tx2); line-height:1.65; font-size:15.5px; }
+  .A .stack { display:flex; flex-wrap:wrap; gap:6px; margin:16px 0 22px; }
+  .A .stack span { font-size:12.5px; color:var(--tx2); border:1px solid var(--line); background:#fff; padding:4px 9px; border-radius:6px; }
+  .A .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:20px; }
+  .A .card .shot { border-radius:10px; border:1px solid var(--line); }
+  .A .card h4 { font-size:17px; font-weight:600; margin:14px 0 6px; }
+  .A .card p { font-size:14px; }
+  .A .link { font-size:14px; font-weight:550; color:var(--ac); display:inline-block; margin-top:10px; }
+  .A .contact { background:var(--tx); color:#fff; border-radius:16px; padding:44px; display:flex; justify-content:space-between; align-items:center; gap:24px; }
+  .A .contact h2 { color:#fff; }
+  .A .contact p { color:#cbd5e1; }
+
+  /* ═════════ B · Refined Dark (engineering) ═════════ */
+  .B { --bg:#0a0b0d; --panel:#111317; --line:#1f232a; --line2:#2a2f38; --tx:#ededef; --tx2:#a0a4ad; --tx3:#71767f; --ac:#4ade80; font-family: Geist, sans-serif; background: var(--bg); color: var(--tx); }
+  .B .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  .B .mono { font-family:'Geist Mono', monospace; }
+  .B nav { display:flex; align-items:center; justify-content:space-between; height:64px; border-bottom:1px solid var(--line); font-size:14px; }
+  .B nav ul { display:flex; gap:26px; list-style:none; color:var(--tx2); }
+  .B .btn { display:inline-flex; align-items:center; gap:8px; font-weight:550; font-size:14px; padding:10px 16px; border-radius:8px; }
+  .B .btn-p { background:#fff; color:#0a0b0d; }
+  .B .btn-s { border:1px solid var(--line2); color:var(--tx); }
+  .B .hero { padding:88px 0 56px; display:grid; grid-template-columns:1fr auto; gap:48px; align-items:end; }
+  .B .kick { color:var(--tx3); font-size:13px; display:flex; gap:10px; align-items:center; }
+  .B .live { color:var(--ac); display:inline-flex; gap:6px; align-items:center; }
+  .B .live i { width:7px; height:7px; border-radius:50%; background:var(--ac); }
+  .B h1 { font-size:60px; line-height:1.02; letter-spacing:-.04em; font-weight:600; margin:20px 0; max-width:13em; }
+  .B h1 em { font-style:normal; color:var(--tx3); }
+  .B .lead { color:var(--tx2); font-size:17.5px; line-height:1.6; max-width:36em; }
+  .B .ctas { display:flex; gap:12px; margin-top:28px; }
+  .B .me { width:230px; border-radius:14px; overflow:hidden; border:1px solid var(--line2); }
+  .B .me img { aspect-ratio:1; object-fit:cover; object-position:50% 30%; width:100%; }
+  .B .me div { padding:12px 14px; font-size:13px; color:var(--tx2); background:var(--panel); }
+  .B .me b { color:var(--tx); display:block; font-weight:600; }
+  .B section { padding:64px 0; border-top:1px solid var(--line); }
+  .B .sh { display:flex; justify-content:space-between; align-items:baseline; }
+  .B h2 { font-size:26px; letter-spacing:-.02em; font-weight:600; }
+  .B .feat { margin-top:28px; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--panel); }
+  .B .feat .shot { aspect-ratio: 21/9; border-bottom:1px solid var(--line); }
+  .B .feat-body { display:grid; grid-template-columns:1.3fr 1fr; gap:36px; padding:28px; }
+  .B h3 { font-size:24px; font-weight:600; letter-spacing:-.02em; margin-bottom:10px; }
+  .B p { color:var(--tx2); line-height:1.65; font-size:15px; }
+  .B .metrics { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .B .metrics div { background:var(--panel); padding:14px 16px; }
+  .B .metrics b { display:block; font-size:20px; font-weight:600; letter-spacing:-.02em; }
+  .B .metrics span { font-size:12.5px; color:var(--tx3); }
+  .B .rows { margin-top:20px; border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+  .B .row { display:grid; grid-template-columns:120px 1fr auto; gap:24px; align-items:center; padding:18px 20px; background:var(--panel); }
+  .B .row + .row { border-top:1px solid var(--line); }
+  .B .row .shot { aspect-ratio:4/3; border-radius:6px; border:1px solid var(--line2); }
+  .B .row h4 { font-size:16px; font-weight:600; }
+  .B .row p { font-size:14px; margin-top:4px; }
+  .B .chips { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .B .chips span { font-size:12px; color:var(--tx2); border:1px solid var(--line2); padding:2px 8px; border-radius:6px; }
+  .B .contact { display:flex; justify-content:space-between; align-items:center; gap:24px; }
+
+  /* ═════════ C · Editorial Minimal ═════════ */
+  .C { --bg:#f7f6f2; --line:#dcd9d0; --tx:#1a1917; --tx2:#57544d; --tx3:#7c786f; --ac:#1a1917; font-family: Manrope, sans-serif; background: var(--bg); color: var(--tx); }
+  .C .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  .C .serif { font-family: Newsreader, Georgia, serif; }
+  .C nav { display:flex; justify-content:space-between; align-items:center; height:72px; font-size:14px; }
+  .C nav ul { display:flex; gap:28px; list-style:none; color:var(--tx2); }
+  .C .hero { padding:56px 0 64px; display:grid; grid-template-columns: 1fr 300px; gap:56px; align-items:end; border-bottom:1px solid var(--line); }
+  .C h1 { font-family:Newsreader, serif; font-weight:400; font-size:76px; line-height:.98; letter-spacing:-.025em; }
+  .C h1 i { color:var(--tx3); }
+  .C .lead { margin-top:28px; font-size:18px; line-height:1.6; color:var(--tx2); max-width:32em; }
+  .C .ctas { display:flex; gap:22px; align-items:center; margin-top:30px; font-weight:600; font-size:15px; }
+  .C .btn { background:var(--tx); color:var(--bg); padding:13px 20px; border-radius:99px; }
+  .C .ul { border-bottom:1.5px solid var(--tx); padding-bottom:2px; }
+  .C .ph img { aspect-ratio:3/4; object-fit:cover; object-position:50% 30%; width:100%; filter:grayscale(.15); }
+  .C .ph p { font-size:13px; color:var(--tx3); margin-top:10px; }
+  .C section { padding:64px 0; }
+  .C .label { font-size:13px; letter-spacing:.02em; color:var(--tx3); }
+  .C .work { margin-top:24px; }
+  .C .item { display:grid; grid-template-columns:60px 1fr 1.1fr; gap:32px; padding:32px 0; border-top:1px solid var(--line); align-items:start; }
+  .C .item .n { font-family:Newsreader, serif; font-size:22px; color:var(--tx3); }
+  .C .item h3 { font-family:Newsreader, serif; font-weight:400; font-size:38px; line-height:1.05; letter-spacing:-.02em; }
+  .C .item p { color:var(--tx2); line-height:1.65; font-size:15px; margin-top:12px; }
+  .C .meta { font-size:13px; color:var(--tx3); margin-top:14px; }
+  .C .item .shot { border-radius:4px; }
+  .C .more { font-weight:600; font-size:14px; margin-top:16px; display:inline-block; }
+  .C .contact { border-top:1px solid var(--line); padding:64px 0; }
+  .C .contact h2 { font-family:Newsreader, serif; font-weight:400; font-size:56px; letter-spacing:-.02em; line-height:1; }
+
+  /* ═════════ D · Bento Grid ═════════ */
+  .D { --bg:#f2f3f5; --tile:#fff; --line:#e4e6ea; --tx:#111318; --tx2:#4b5160; --tx3:#7a8090; --ac:#6d28d9; font-family: Geist, sans-serif; background: var(--bg); color: var(--tx); padding-bottom: 40px; }
+  .D .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  .D nav { display:flex; justify-content:space-between; align-items:center; height:68px; font-size:14px; }
+  .D nav ul { display:flex; gap:6px; list-style:none; background:var(--tile); border:1px solid var(--line); padding:5px; border-radius:99px; }
+  .D nav li { padding:6px 14px; border-radius:99px; color:var(--tx2); }
+  .D nav li:first-child { background:var(--tx); color:#fff; }
+  .D .bento { display:grid; grid-template-columns:repeat(4, 1fr); grid-auto-rows:150px; gap:14px; margin-top:12px; }
+  .D .t { background:var(--tile); border:1px solid var(--line); border-radius:20px; padding:22px; overflow:hidden; position:relative; }
+  .D .intro { grid-column:span 2; grid-row:span 2; display:flex; flex-direction:column; justify-content:space-between; }
+  .D .intro h1 { font-size:40px; line-height:1.08; letter-spacing:-.03em; font-weight:650; }
+  .D .intro p { color:var(--tx2); font-size:15.5px; line-height:1.55; }
+  .D .photo { grid-row:span 2; padding:0; }
+  .D .photo img { width:100%; height:100%; object-fit:cover; object-position:50% 30%; }
+  .D .avail { background:var(--tx); color:#fff; border:0; }
+  .D .avail b { font-size:22px; letter-spacing:-.02em; display:block; margin-top:28px; }
+  .D .lbl { font-size:12.5px; color:var(--tx3); font-weight:500; }
+  .D .avail .lbl { color:#9ca3af; }
+  .D .pulse { display:inline-block; width:8px; height:8px; border-radius:50%; background:#22c55e; margin-right:6px; }
+  .D .big { font-size:42px; font-weight:650; letter-spacing:-.03em; margin-top:18px; line-height:1; }
+  .D .mt { grid-column:span 3; grid-row:span 2; display:grid; grid-template-columns:1fr 1.3fr; gap:20px; padding:22px; }
+  .D .mt h3 { font-size:24px; font-weight:650; letter-spacing:-.02em; margin:8px 0; }
+  .D .mt p { color:var(--tx2); font-size:14.5px; line-height:1.6; }
+  .D .mt .shot { border-radius:12px; height:100%; aspect-ratio:auto; border:1px solid var(--line); }
+  .D .pill { display:inline-block; font-size:12px; background:#f3e8ff; color:var(--ac); padding:4px 10px; border-radius:99px; font-weight:550; }
+  .D .stack { grid-row:span 2; }
+  .D .stack ul { list-style:none; margin-top:14px; display:flex; flex-wrap:wrap; gap:6px; }
+  .D .stack li { font-size:12.5px; border:1px solid var(--line); padding:5px 10px; border-radius:99px; color:var(--tx2); }
+  .D .proj { padding:0; grid-column:span 1; grid-row:span 2; display:flex; flex-direction:column; }
+  .D .proj .shot { aspect-ratio:auto; flex:1; }
+  .D .proj div.b { padding:14px 16px; }
+  .D .proj h4 { font-size:15px; font-weight:600; }
+  .D .proj p { font-size:13px; color:var(--tx3); margin-top:2px; }
+  .D .cta { grid-column:span 2; background:var(--ac); color:#fff; border:0; display:flex; justify-content:space-between; align-items:center; }
+  .D .cta h3 { font-size:24px; font-weight:650; letter-spacing:-.02em; }
+  .D .cta a { background:#fff; color:var(--ac); padding:10px 16px; border-radius:99px; font-weight:600; font-size:14px; }
+
+  /* ═════════ E · Split Sidebar ═════════ */
+  .E { --bg:#0f172a; --tx:#e2e8f0; --tx2:#94a3b8; --tx3:#64748b; --ac:#5eead4; --line:#1e293b; font-family: Manrope, sans-serif; background: var(--bg); color: var(--tx2); }
+  .E .split { display:grid; grid-template-columns: 0.9fr 1.1fr; gap:64px; max-width:1080px; margin:0 auto; padding:0 40px; }
+  .E aside { position:sticky; top:0; align-self:start; padding:80px 0 60px; height: 720px; display:flex; flex-direction:column; }
+  .E h1 { color:var(--tx); font-size:46px; font-weight:800; letter-spacing:-.03em; line-height:1.05; }
+  .E .role { color:var(--tx); font-size:19px; font-weight:600; margin-top:12px; }
+  .E .tagline { margin-top:14px; font-size:15.5px; line-height:1.6; max-width:22em; }
+  .E .snav { list-style:none; margin-top:48px; display:flex; flex-direction:column; gap:14px; font-size:12.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+  .E .snav li { display:flex; align-items:center; gap:14px; color:var(--tx3); }
+  .E .snav li::before { content:''; width:32px; height:1px; background:var(--tx3); }
+  .E .snav li.on { color:var(--tx); }
+  .E .snav li.on::before { width:64px; background:var(--tx); }
+  .E .soc { margin-top:auto; display:flex; gap:18px; font-size:14px; }
+  .E .me { display:flex; gap:14px; align-items:center; margin-top:26px; }
+  .E .me img { width:52px; height:52px; border-radius:50%; object-fit:cover; object-position:50% 30%; }
+  .E main { padding:80px 0 60px; }
+  .E main p { line-height:1.7; font-size:15.5px; }
+  .E main p b { color:var(--tx); font-weight:600; }
+  .E .sec { margin-bottom:64px; }
+  .E .h { display:none; }
+  .E .job { display:grid; grid-template-columns:120px 1fr; gap:20px; padding:18px; margin:0 -18px; border-radius:10px; }
+  .E .job:hover, .E .job.hov { background:rgba(30,41,59,.55); box-shadow: inset 0 1px 0 rgba(148,163,184,.08); }
+  .E .yr { font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--tx3); padding-top:4px; }
+  .E .job h3 { color:var(--tx); font-size:16px; font-weight:600; }
+  .E .job h3 span { color:var(--ac); }
+  .E .job p { font-size:14px; margin-top:6px; }
+  .E .chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
+  .E .chips span { font-size:12px; font-weight:600; color:var(--ac); background:rgba(45,212,191,.1); padding:4px 11px; border-radius:99px; }
+  .E .job .shot { aspect-ratio:16/10; border-radius:6px; border:2px solid var(--line); }
+
+  /* ═════════ F · Swiss Bold ═════════ */
+  .F { --bg:#ffffff; --tx:#0a0a0a; --tx2:#404040; --ac:#ff4f1f; --line:#0a0a0a; font-family: Geist, sans-serif; background: var(--bg); color: var(--tx); }
+  .F .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  .F nav { display:grid; grid-template-columns:repeat(4,1fr); border-bottom:2px solid var(--line); font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+  .F nav span { padding:18px 0; }
+  .F nav span:last-child { text-align:right; color:var(--ac); }
+  .F .hero { display:grid; grid-template-columns:repeat(12,1fr); gap:0 20px; padding:48px 0 0; }
+  .F h1 { grid-column:1/-1; font-size:150px; font-weight:800; letter-spacing:-.06em; line-height:.82; text-transform:uppercase; }
+  .F h1 span { color:var(--ac); }
+  .F .hcol1 { grid-column:1/5; margin-top:40px; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; line-height:1.6; }
+  .F .hcol2 { grid-column:5/9; margin-top:40px; font-size:19px; line-height:1.45; font-weight:500; }
+  .F .hcol3 { grid-column:9/13; margin-top:40px; }
+  .F .hcol3 img { width:100%; aspect-ratio:4/5; object-fit:cover; object-position:50% 30%; filter:grayscale(1) contrast(1.05); }
+  .F .btn { display:inline-block; background:var(--ac); color:#fff; font-weight:700; font-size:14px; padding:14px 22px; margin-top:24px; text-transform:uppercase; letter-spacing:.03em; }
+  .F .strip { margin-top:56px; background:var(--ac); color:#fff; display:grid; grid-template-columns:repeat(4,1fr); }
+  .F .strip div { padding:26px 32px; border-right:2px solid rgba(255,255,255,.35); }
+  .F .strip b { font-size:44px; font-weight:800; letter-spacing:-.04em; display:block; line-height:1; }
+  .F .strip span { font-size:12.5px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; }
+  .F section { padding:64px 0; }
+  .F h2 { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; border-top:2px solid var(--line); padding-top:14px; }
+  .F .proj { display:grid; grid-template-columns:repeat(12,1fr); gap:20px; padding:28px 0; border-bottom:1px solid #d4d4d4; align-items:start; }
+  .F .proj .n { grid-column:1/2; font-size:13px; font-weight:700; }
+  .F .proj h3 { grid-column:2/6; font-size:40px; font-weight:800; letter-spacing:-.04em; line-height:.95; text-transform:uppercase; }
+  .F .proj p { grid-column:6/10; font-size:15px; line-height:1.55; color:var(--tx2); }
+  .F .proj .shot { grid-column:10/13; aspect-ratio:4/3; }
+  .F .proj .meta { display:block; margin-top:10px; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--tx); }
+</style>
+</head>
+<body>
+
+<div class="switch" role="group" aria-label="Choose a direction">
+  <strong>Directions</strong>
+  <button data-k="A" aria-pressed="true">A · Clean Professional</button>
+  <button data-k="B" aria-pressed="false">B · Refined Dark</button>
+  <button data-k="C" aria-pressed="false">C · Editorial Minimal</button>
+  <button data-k="D" aria-pressed="false">D · Bento Grid</button>
+  <button data-k="E" aria-pressed="false">E · Split Sidebar</button>
+  <button data-k="F" aria-pressed="false">F · Swiss Bold</button>
+  <span class="hint">Mockups use your real content. Each keeps a light/dark toggle when built.</span>
+</div>
+
+<p class="note" id="note"></p>
+
+<div class="frame">
+
+<!-- ═══════════ A ═══════════ -->
+<div class="mock A on" data-k="A">
+  <div class="wrap">
+    <nav><span class="logo">Prince Parnada</span>
+      <ul><li>Work</li><li>About</li><li>Experience</li><li>Contact</li></ul>
+      <a class="btn btn-s">Résumé</a></nav>
+    <div class="hero">
+      <div>
+        <span class="status"><span class="dot"></span>Open to internships · 2026</span>
+        <h1>Full-stack developer building software <span>real businesses run on.</span></h1>
+        <p class="lead">I'm Prince, a 3rd-year BSIT student at the University of Cebu. My flagship project, MotoTrack, runs inventory, sales and forecasting for a motor parts shop in Cebu, every day.</p>
+        <div class="ctas"><a class="btn btn-p">View my work →</a><a class="btn btn-s">Get in touch</a></div>
+      </div>
+      <div class="portrait"><img src="../../public/images/prince-hero.jpg" alt="" /></div>
+    </div>
+    <div class="facts">
+      <div><b>4</b><span>Live applications</span></div>
+      <div><b>2,000+</b><span>SKUs managed in MotoTrack</span></div>
+      <div><b>React · Node</b><span>Primary stack</span></div>
+      <div><b>Cebu, PH</b><span>Remote or on-site</span></div>
+    </div>
+    <section>
+      <h2>Selected work</h2><p class="sub">Every project is deployed and live.</p>
+      <div class="feat">
+        <div class="shot" style="background-image:url(../../public/images/Screenshot1.png)"></div>
+        <div>
+          <span class="tag">In production · 1 real client</span>
+          <h3>MotoTrack</h3>
+          <p>Inventory, point of sale, sales reporting and demand forecasting for a single-store motor parts business. 2,000+ SKUs across 158 categories, with role-based access for admin and staff.</p>
+          <div class="stack"><span>React</span><span>Node.js</span><span>MySQL</span><span>Tailwind CSS</span></div>
+          <a class="btn btn-p">Live demo ↗</a> <a class="btn btn-s">Source</a>
+        </div>
+      </div>
+      <div class="grid3">
+        <div class="card"><div class="shot" style="background-image:url(../../public/images/country_info.png)"></div><h4>GlobeScope</h4><p>Explore 250 countries: interactive map, 3D globe, side-by-side comparison.</p><a class="link">Live demo ↗</a></div>
+        <div class="card"><div class="shot" style="background-image:url(../../public/images/Gastador.png);background-position:center"></div><h4>Gastador</h4><p>AI expense tracker PWA with automatic categorization and monthly insights.</p><a class="link">Live demo ↗</a></div>
+        <div class="card"><div class="shot" style="background-image:url(../../public/images/Github.png);background-position:center 20%;background-size:160%"></div><h4>GitHub Profile Analyzer</h4><p>Visual breakdown of any GitHub user's languages, activity and top repos.</p><a class="link">Live demo ↗</a></div>
+      </div>
+    </section>
+    <section style="padding-top:0">
+      <div class="contact"><div><h2>Let's work together</h2><p>Internships, entry-level roles and freelance builds. I reply within a day.</p></div><a class="btn" style="background:#fff;color:#0f172a">princechristianparnada@gmail.com</a></div>
+    </section>
+  </div>
+</div>
+
+<!-- ═══════════ B ═══════════ -->
+<div class="mock B" data-k="B">
+  <div class="wrap">
+    <nav><span style="font-weight:600">prince<span style="color:var(--tx3)">.dev</span></span>
+      <ul><li>Work</li><li>About</li><li>Stack</li><li>Contact</li></ul>
+      <a class="btn btn-s">Résumé</a></nav>
+    <div class="hero">
+      <div>
+        <div class="kick mono"><span class="live"><i></i>Available</span><span>·</span><span>Cebu, Philippines</span><span>·</span><span>Internship 2026</span></div>
+        <h1>I build full-stack apps <em>that get used, not just demoed.</em></h1>
+        <p class="lead">Full-stack developer and 3rd-year BSIT student. React and Node.js on the front and back, MySQL underneath, with one system already in production for a real business.</p>
+        <div class="ctas"><a class="btn btn-p">See projects</a><a class="btn btn-s">Contact</a></div>
+      </div>
+      <div class="me"><img src="../../public/images/prince-hero.jpg" alt="" /><div><b>Prince Christian Parnada</b>BSIT · UC Banilad</div></div>
+    </div>
+    <section>
+      <div class="sh"><h2>Featured</h2><span class="mono" style="color:var(--tx3);font-size:13px">01 / 04</span></div>
+      <div class="feat">
+        <div class="shot" style="background-image:url(../../public/images/Screenshot1.png)"></div>
+        <div class="feat-body">
+          <div>
+            <div class="kick mono"><span class="live"><i></i>Live in production</span></div>
+            <h3 style="margin-top:10px">MotoTrack</h3>
+            <p>Inventory, POS, monthly sales reports and stockout forecasting for a motor parts shop in Cebu. Excel bulk import, CSV export, admin and staff roles.</p>
+            <div class="chips"><span>React</span><span>Node.js</span><span>MySQL</span><span>Tailwind</span></div>
+            <div class="ctas" style="margin-top:20px"><a class="btn btn-p">Open live demo ↗</a><a class="btn btn-s">GitHub</a></div>
+          </div>
+          <div class="metrics">
+            <div><b>2,000+</b><span>SKUs</span></div><div><b>158</b><span>Categories</span></div>
+            <div><b>1</b><span>Real client</span></div><div><b>2</b><span>User roles</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="rows">
+        <div class="row"><div class="shot" style="background-image:url(../../public/images/country_info.png);background-position:40% 40%;background-size:200%"></div><div><h4>GlobeScope</h4><p>250 countries, interactive SVG map, 3D globe and comparisons.</p><div class="chips"><span>React</span><span>Express</span><span>Axios</span></div></div><a class="btn btn-s">Live ↗</a></div>
+        <div class="row"><div class="shot" style="background-image:url(../../public/images/Gastador.png);background-position:50% 0;background-size:300%"></div><div><h4>Gastador</h4><p>AI-powered expense tracker PWA, offline-capable, Groq insights.</p><div class="chips"><span>React</span><span>TypeScript</span><span>Firebase</span></div></div><a class="btn btn-s">Live ↗</a></div>
+        <div class="row"><div class="shot" style="background-image:url(../../public/images/Github.png);background-position:50% 15%;background-size:280%"></div><div><h4>GitHub Profile Analyzer</h4><p>Languages, commit activity and top repos for any GitHub user.</p><div class="chips"><span>React</span><span>Express</span><span>Chart.js</span></div></div><a class="btn btn-s">Live ↗</a></div>
+      </div>
+    </section>
+    <section>
+      <div class="contact"><div><h2>Let's talk.</h2><p style="margin-top:6px">Open to internships, entry-level roles and freelance work.</p></div><a class="btn btn-p">Send a message</a></div>
+    </section>
+  </div>
+</div>
+
+<!-- ═══════════ C ═══════════ -->
+<div class="mock C" data-k="C">
+  <div class="wrap">
+    <nav><span class="serif" style="font-size:20px">Prince Parnada</span>
+      <ul><li>Work</li><li>About</li><li>Contact</li></ul>
+      <span style="font-size:14px;color:var(--tx3)">Cebu · Open to work</span></nav>
+    <div class="hero">
+      <div>
+        <h1>Web apps for <i>real</i> businesses, built by a student who ships.</h1>
+        <p class="lead">Full-stack developer, 3rd-year BSIT at the University of Cebu – Banilad. My work runs a motor parts shop's inventory every day.</p>
+        <div class="ctas"><a class="btn">Selected work</a><a class="ul">Download résumé</a></div>
+      </div>
+      <div class="ph"><img src="../../public/images/prince-hero.jpg" alt="" /><p>Prince Christian Parnada, Cebu</p></div>
+    </div>
+    <section>
+      <span class="label">Selected work, 2024–2026</span>
+      <div class="work">
+        <div class="item"><span class="n">01</span><div><h3>MotoTrack</h3><p>Inventory, sales and forecasting for a single-store motor parts business. 2,000+ SKUs, live in production.</p><p class="meta">React · Node.js · MySQL · Tailwind</p><a class="more">View live system →</a></div><div class="shot" style="background-image:url(../../public/images/Screenshot1.png)"></div></div>
+        <div class="item"><span class="n">02</span><div><h3>GlobeScope</h3><p>A country explorer with an interactive map, 3D globe and comparisons.</p><p class="meta">React · Node.js · Express</p><a class="more">View live →</a></div><div class="shot" style="background-image:url(../../public/images/country_info.png)"></div></div>
+        <div class="item"><span class="n">03</span><div><h3>Gastador</h3><p>AI expense tracker PWA with automatic categorization.</p><p class="meta">React · TypeScript · Firebase · Groq</p><a class="more">View live →</a></div><div class="shot" style="background-image:url(../../public/images/Gastador.png);background-position:center"></div></div>
+      </div>
+    </section>
+    <div class="contact"><span class="label">Contact</span><h2 style="margin-top:14px">princechristianparnada<br/>@gmail.com</h2></div>
+  </div>
+</div>
+
+<!-- ═══════════ D ═══════════ -->
+<div class="mock D" data-k="D">
+  <div class="wrap">
+    <nav><b>Prince Parnada</b><ul><li>Home</li><li>Work</li><li>About</li><li>Contact</li></ul><span style="color:var(--tx3)">Résumé ↓</span></nav>
+    <div class="bento">
+      <div class="t intro">
+        <span class="lbl">Full-stack developer · Cebu, PH</span>
+        <h1>Hi, I'm Prince. I build web apps that real businesses rely on.</h1>
+        <p>3rd-year BSIT at UC Banilad. React, Node.js and MySQL.</p>
+      </div>
+      <div class="t photo"><img src="../../public/images/prince-hero.jpg" alt="" /></div>
+      <div class="t avail"><span class="lbl"><span class="pulse"></span>Status</span><b>Open to internships, 2026</b></div>
+      <div class="t"><span class="lbl">Live apps</span><div class="big">4</div></div>
+      <div class="t mt">
+        <div><span class="pill">Featured · in production</span><h3>MotoTrack</h3><p>Inventory, POS and demand forecasting for a real motor parts shop. 2,000+ SKUs across 158 categories.</p><p style="margin-top:12px;font-weight:600;color:var(--ac)">Open live demo ↗</p></div>
+        <div class="shot" style="background-image:url(../../public/images/Screenshot1.png)"></div>
+      </div>
+      <div class="t stack"><span class="lbl">Primary stack</span><ul><li>React</li><li>Node.js</li><li>MySQL</li><li>Express</li><li>Tailwind</li><li>Firebase</li><li>PHP</li><li>Git</li></ul></div>
+      <div class="t proj"><div class="shot" style="background-image:url(../../public/images/country_info.png);background-position:45% 40%;background-size:220%"></div><div class="b"><h4>GlobeScope</h4><p>Country explorer</p></div></div>
+      <div class="t proj"><div class="shot" style="background-image:url(../../public/images/Gastador.png);background-position:50% 0;background-size:330%"></div><div class="b"><h4>Gastador</h4><p>AI expense tracker</p></div></div>
+      <div class="t proj"><div class="shot" style="background-image:url(../../public/images/Github.png);background-position:50% 12%;background-size:330%"></div><div class="b"><h4>GitHub Analyzer</h4><p>Profile insights</p></div></div>
+      <div class="t"><span class="lbl">SKUs managed</span><div class="big">2,000+</div></div>
+      <div class="t cta"><h3>Have a role or project?</h3><a>Get in touch</a></div>
+      <div class="t" style="grid-column:span 2"><span class="lbl">Education</span><p style="margin-top:12px;font-weight:600">BS Information Technology</p><p style="color:var(--tx2);font-size:14px">University of Cebu – Banilad · 2023 – present</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ E ═══════════ -->
+<div class="mock E" data-k="E">
+  <div class="split">
+    <aside>
+      <h1>Prince Christian Parnada</h1>
+      <p class="role">Full-Stack Developer</p>
+      <p class="tagline">I build web apps that real businesses run on, not just demos for class.</p>
+      <ul class="snav"><li class="on">About</li><li>Experience</li><li>Projects</li><li>Contact</li></ul>
+      <div class="me"><img src="../../public/images/prince-hero.jpg" alt="" /><span style="font-size:13.5px">Cebu, Philippines<br/><span style="color:var(--ac)">● Open to internships</span></span></div>
+      <div class="soc"><span>GitHub</span><span>LinkedIn</span><span>Email</span><span>Résumé</span></div>
+    </aside>
+    <main>
+      <div class="sec">
+        <p>I'm a <b>3rd-year BSIT student</b> at the University of Cebu – Banilad who builds full-stack web apps with <b>React, Node.js and MySQL</b>.</p>
+        <p style="margin-top:14px">My most complete project, <b>MotoTrack</b>, is an inventory and sales system that runs a real motor parts shop here in Cebu. I'm looking for an internship or entry-level role where I can work on real problems.</p>
+      </div>
+      <div class="sec">
+        <div class="job hov"><span class="yr">2023 — Now</span><div><h3>BS Information Technology · <span>UC Banilad</span></h3><p>Data structures, algorithms, databases and software engineering. Building MotoTrack alongside coursework.</p><div class="chips"><span>React</span><span>Node.js</span><span>PHP</span><span>MySQL</span></div></div></div>
+        <div class="job"><span class="yr">2021 — 2023</span><div><h3>Senior High, TVL-CCS · <span>Benedicto College</span></h3><p>First exposure to HTML, CSS and JavaScript.</p></div></div>
+      </div>
+      <div class="sec">
+        <div class="job hov"><div class="shot" style="background-image:url(../../public/images/Screenshot1.png)"></div><div><h3>MotoTrack ↗</h3><p>Inventory, POS, reports and stockout forecasting for a live motor parts business. 2,000+ SKUs.</p><div class="chips"><span>React</span><span>Node.js</span><span>MySQL</span></div></div></div>
+        <div class="job"><div class="shot" style="background-image:url(../../public/images/country_info.png)"></div><div><h3>GlobeScope ↗</h3><p>250 countries, interactive map, 3D globe and comparisons.</p><div class="chips"><span>React</span><span>Express</span></div></div></div>
+        <div class="job"><div class="shot" style="background-image:url(../../public/images/Gastador.png);background-position:center"></div><div><h3>Gastador ↗</h3><p>AI expense tracker PWA with Groq-powered insights.</p><div class="chips"><span>TypeScript</span><span>Firebase</span></div></div></div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ═══════════ F ═══════════ -->
+<div class="mock F" data-k="F">
+  <div class="wrap">
+    <nav><span>Prince Parnada</span><span>Work</span><span>About</span><span>Available 2026 ●</span></nav>
+    <div class="hero">
+      <h1>Full<span>—</span>stack<br/>developer</h1>
+      <div class="hcol1">Based in Cebu, PH<br/>BSIT, 3rd year<br/>UC Banilad<br/><br/>React / Node.js<br/>MySQL / Express</div>
+      <div class="hcol2">I build web apps that real businesses run on. MotoTrack manages inventory, sales and forecasting for a motor parts shop, every day.<br/><a class="btn">See the work →</a></div>
+      <div class="hcol3"><img src="../../public/images/prince-hero.jpg" alt="" /></div>
+    </div>
+  </div>
+  <div class="strip"><div><b>4</b><span>Live apps</span></div><div><b>2,000+</b><span>SKUs managed</span></div><div><b>158</b><span>Categories</span></div><div><b>1</b><span>Real client</span></div></div>
+  <div class="wrap">
+    <section>
+      <h2>Selected work</h2>
+      <div class="proj"><span class="n">01</span><h3>Moto<br/>Track</h3><p>Inventory, POS, sales reports and stockout forecasting for a single-store motor parts business.<span class="meta">React · Node · MySQL — Live ↗</span></p><div class="shot" style="background-image:url(../../public/images/Screenshot1.png)"></div></div>
+      <div class="proj"><span class="n">02</span><h3>Globe<br/>Scope</h3><p>Country explorer with interactive map, 3D globe and comparisons.<span class="meta">React · Express — Live ↗</span></p><div class="shot" style="background-image:url(../../public/images/country_info.png);background-position:45% 40%;background-size:200%"></div></div>
+      <div class="proj"><span class="n">03</span><h3>Gas<br/>tador</h3><p>AI expense tracker PWA with automatic categorization.<span class="meta">TypeScript · Firebase — Live ↗</span></p><div class="shot" style="background-image:url(../../public/images/Gastador.png);background-position:50% 0;background-size:300%"></div></div>
+    </section>
+  </div>
+</div>
+
+</div>
+
+<script>
+  const notes = {
+    A: '<b>A · Clean Professional.</b> White, navy text, one blue accent, photo beside a clear headline, a facts strip, then case-study style projects. Reads like a polished résumé: safest for recruiters and HR.',
+    B: '<b>B · Refined Dark.</b> Near-black with fine borders and one green "live" signal, in the style of Vercel and Linear. A big featured project with metrics, then compact rows. Strongest signal to engineers and dev leads.',
+    C: '<b>C · Editorial Minimal.</b> Warm off-white, a large serif headline and a numbered work list with lots of white space. Feels confident and personal; best for standing out, but a bit less "corporate".',
+    D: '<b>D · Bento Grid.</b> Rounded tiles of different sizes: intro, photo, status, numbers, a big MotoTrack tile, stack and project tiles. Modern and scannable in seconds; very current, so a little less distinctive.',
+    E: '<b>E · Split Sidebar.</b> Name, role, section nav and links stay fixed on the left while experience and projects scroll on the right. Deep navy with a teal accent. A classic, trusted developer-portfolio layout that reads like a résumé.',
+    F: '<b>F · Swiss Bold.</b> Pure white, huge uppercase type, a strict 12-column grid and one strong orange accent band with your numbers. Confident and design-forward; the most striking of the six.'
+  }
+  const show = k => {
+    document.querySelectorAll('.mock').forEach(m => m.classList.toggle('on', m.dataset.k === k))
+    document.querySelectorAll('.switch button').forEach(b => b.setAttribute('aria-pressed', b.dataset.k === k))
+    document.getElementById('note').innerHTML = notes[k]
+  }
+  document.querySelectorAll('.switch button').forEach(b => b.onclick = () => show(b.dataset.k))
+  show('A')
+</script>
+</body>
+</html>
