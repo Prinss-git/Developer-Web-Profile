@@ -4,7 +4,7 @@ const ITEMS = [
   'Cebu, Philippines',
   'Open to Internships',
   'React · Node.js · MySQL',
-  'IT Student — 3rd Year',
+  'IT Student — 4th Year',
 ]
 
 export default function Marquee() {

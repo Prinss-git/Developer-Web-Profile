@@ -145,16 +145,14 @@ body { overflow-x: hidden;
 }
 
 /* ── Hero background ─────────────────────────── */
-@keyframes grid-drift {
-  0%   { background-position: 0 0; }
-  100% { background-position: 40px 40px; }
-}
+/* Dot pattern artwork used as a mask, so the dots take the theme's gold
+   in both light and dark mode. */
 .hero-dot-grid {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, var(--ac-grid) 1px, transparent 1px);
-  background-size: 40px 40px;
-  animation: grid-drift 6s linear infinite;
+  background-color: var(--ac);
+  -webkit-mask: url('/images/hero-dots.png') no-repeat left 6% center / min(860px, 95vw) auto;
+          mask: url('/images/hero-dots.png') no-repeat left 6% center / min(860px, 95vw) auto;
 }
 
 /* Dot cluster, top right */
