@@ -9,16 +9,6 @@ export const projects = [
     image: '/images/Screenshot1.png',
     demo: { email: 'demo@mototrack.com', password: 'demo1234' },
     stats: ['2,000+ SKUs', '158 categories', '1 real client', 'Live in production'],
-    client: 'A single-store motor parts business in Cebu',
-    // Reviewer's notes pinned to the dashboard screenshot (x/y in % of the image).
-    notes: [
-      { x: 21, y: 17,   text: 'Point of sale feeds today’s revenue, cost and profit' },
-      { x: 18, y: 31,   text: 'Live SKU count across 158 categories' },
-      { x: 44, y: 60,   text: 'Monthly sales reports with daily breakdowns' },
-      { x: 9,  y: 35.4, text: 'Demand forecasting with stockout prediction' },
-      { x: 88, y: 5.2,  text: 'Excel bulk import and CSV export' },
-      { x: 5,  y: 92.5, text: 'Role-based access for Admin and Staff' },
-    ],
   },
   {
     id: 2,

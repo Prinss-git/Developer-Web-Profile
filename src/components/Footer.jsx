@@ -1,4 +1,3 @@
-import { Scissors } from 'lucide-react'
 import { GithubIcon, LinkedinIcon, FacebookIcon } from './SocialIcons'
 
 const SOCIALS = [
@@ -9,38 +8,47 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer role="contentinfo" className="pb-10">
-      <div className="wrap">
-        <p className="typed text-center tracking-[0.2em] text-[var(--ink-2)] text-[0.9rem]">*** NOTHING FOLLOWS ***</p>
+    <footer role="contentinfo">
 
-        <div className="relative mt-10 tear">
-          <Scissors size={16} className="absolute -top-[9px] left-4 bg-[var(--paper)] px-0.5 box-content text-[var(--rule)] -rotate-90" aria-hidden="true" />
+      {/* Big CTA */}
+      <div className="border-t border-[var(--border)] py-16 lg:py-24 bg-[var(--bg-2)]">
+        <div className="wrap">
+          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--tx-3)] mb-8">
+            Let's work together
+          </p>
+          <a
+            href="mailto:princechristianparnada@gmail.com"
+            className="group inline-block font-extrabold leading-[0.88] tracking-tight text-[var(--tx)]
+                       hover:text-[var(--ac)] transition-colors duration-300 break-all"
+            style={{ fontSize: 'clamp(1rem, 2.8vw, 3.5rem)' }}>
+            princechristianparnada@gmail.com
+            <span className="inline-block ml-3 opacity-0 -translate-x-2
+                             group-hover:opacity-100 group-hover:translate-x-0
+                             transition-all duration-300 text-[var(--ac)]">↗</span>
+          </a>
         </div>
+      </div>
 
-        <div className="mt-8 grid gap-8 md:grid-cols-[1fr_auto] items-end">
-          <div className="max-w-md">
-            <span className="field-label">Certified true and correct</span>
-            <p className="mt-6 text-[1.6rem] font-extrabold uppercase leading-none" style={{ fontVariationSettings: "'wdth' 125" }}>
-              Prince Christian Parnada
-            </p>
-            <div className="mt-2 border-t border-[var(--rule)] pt-1.5 flex justify-between gap-4">
-              <span className="field-label">Signature over printed name</span>
-              <span className="field-label">© {new Date().getFullYear()}</span>
-            </div>
-          </div>
-
-          <div className="flex flex-col md:items-end gap-3">
-            <div className="flex gap-2">
-              {SOCIALS.map(({ icon: Icon, href, label }) => (
-                <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="icon-btn">
-                  <Icon size={15} />
-                </a>
-              ))}
-            </div>
-            <p className="hidden md:block typed !mt-0 text-[0.8rem] text-[var(--ink-3)]">Press ? for keyboard shortcuts</p>
+      {/* Bottom bar */}
+      <div className="border-t border-[var(--border)] py-6 bg-[var(--bg-2)]">
+        <div className="wrap grid grid-cols-3 items-center gap-4">
+          <p className="text-xs text-[var(--tx-3)]">
+            © {new Date().getFullYear()} Prince Christian Parnada
+          </p>
+          <p className="text-xs text-[var(--tx-3)] text-center font-medium">Let's work together</p>
+          <div className="flex items-center gap-2 justify-end">
+            {SOCIALS.map(({ icon: Icon, href, label }) => (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+                 className="w-8 h-8 rounded-lg flex items-center justify-center border border-[var(--border)]
+                            text-[var(--tx-3)] hover:text-[var(--ac)] hover:border-[var(--ac)]
+                            transition-all duration-200">
+                <Icon size={14} />
+              </a>
+            ))}
           </div>
         </div>
       </div>
+
     </footer>
   )
 }

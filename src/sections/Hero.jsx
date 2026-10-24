@@ -1,107 +1,140 @@
-import { ArrowUpRight, ArrowDown, FileText } from 'lucide-react'
-import { Field, Stamp, Tick, Rosette } from '../components/Record'
-import { projects } from '../data/projects'
+import { useRef, useEffect } from 'react'
+import { ArrowRight, Code2, Rocket, Smartphone } from 'lucide-react'
+import { useMagnetic } from '../hooks/useMagnetic'
 
-const ISSUED = new Date().toLocaleDateString('en-PH', { day: '2-digit', month: 'short', year: 'numeric' })
-const LIVE_COUNT = projects.filter(p => p.live).length
-const MOTOTRACK = projects[0]
+const FEATURES = [
+  { icon: Code2,      title: 'Full-Stack',      sub: 'React, Node & MySQL' },
+  { icon: Rocket,     title: 'Production Ready', sub: 'Live with real users' },
+  { icon: Smartphone, title: 'Responsive',      sub: 'Seamless on all devices' },
+]
 
 export default function Hero() {
+  const ctaRef  = useRef(null)
+  const gridRef = useRef(null)
+  useMagnetic(ctaRef, 0.35)
+
+  useEffect(() => {
+    let raf = 0
+    const fn = () => {
+      if (raf) return
+      raf = requestAnimationFrame(() => {
+        raf = 0
+        if (gridRef.current)
+          gridRef.current.style.transform = `translateY(${window.scrollY * 0.3}px)`
+      })
+    }
+    window.addEventListener('scroll', fn, { passive: true })
+    return () => { window.removeEventListener('scroll', fn); cancelAnimationFrame(raf) }
+  }, [])
+
   return (
-    <section id="top" className="pt-[84px] pb-14 lg:pb-20" aria-label="Record header">
-      <div className="wrap">
-        <div className="sheet thud" style={{ '--delay': '700ms' }}>
+    <section id="hero"
+      className="relative min-h-screen flex items-center pt-24 pb-16 lg:pt-20 lg:pb-0 overflow-hidden"
+      aria-label="Hero">
 
-          {/* Form header strip */}
-          <div className="cells grid-cols-2 md:grid-cols-[1fr_auto_1fr]">
-            <Field label="Form" className="order-1">PP-26 · Rev. 2026</Field>
-            <div className="order-3 md:order-2 col-span-2 md:col-span-1 flex items-center justify-center px-5 py-3 bg-[var(--rule)] text-[var(--on-rule)]">
-              <p className="text-center font-extrabold uppercase tracking-[0.08em] text-[0.95rem] sm:text-[1.05rem] leading-tight"
-                 style={{ fontVariationSettings: "'wdth' 125" }}>
-                Transcript of Shipped Work
+      {/* ── Background ───────────────────────────── */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div ref={gridRef} className="hero-dot-grid opacity-40" />
+        {/* Gold bloom behind the portrait */}
+        <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4
+                        w-[850px] h-[850px] max-w-[110vw] rounded-full"
+             style={{ background: 'radial-gradient(circle, var(--ac-glow) 0%, transparent 65%)',
+                      filter: 'blur(30px)' }} />
+        <div className="absolute inset-0"
+             style={{ background: 'radial-gradient(ellipse at 50% 50%, transparent 45%, var(--vignette) 100%)' }} />
+        {/* Dot cluster, top right */}
+        <div className="hero-dot-cluster hidden md:block" />
+      </div>
+
+      {/* ── Content ──────────────────────────────── */}
+      <div className="wrap w-full relative z-10">
+        <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-8 items-center">
+
+          {/* Left column */}
+          <div className="order-2 lg:order-1">
+
+            <div className="reveal in eyebrow mb-6">Full-Stack Developer</div>
+
+            <h1 className="reveal in d1 font-extrabold tracking-[-0.03em] leading-[1.05] text-[var(--tx)]"
+                style={{ fontSize: 'clamp(2.5rem, 5.4vw, 4.4rem)' }}>
+              I Design &amp; Develop<br />
+              Web Apps that <span className="grad-text">Elevate</span><br />
+              Real Businesses
+            </h1>
+
+            <p className="reveal in d2 mt-6 max-w-[34rem] text-[var(--tx-2)] leading-relaxed"
+               style={{ fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)' }}>
+              I build modern, responsive, production-grade web applications — including
+              a live inventory and forecasting system running a real motor parts shop in Cebu.
+            </p>
+
+            <div className="reveal in d3 mt-9 flex flex-wrap items-center gap-4">
+              <div ref={ctaRef}>
+                <button
+                  onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="btn btn-primary group text-[0.8rem] tracking-[0.08em] uppercase font-bold px-6 py-3.5">
+                  View My Work
+                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer"
+                 className="text-sm font-semibold text-[var(--tx-2)] hover:text-[var(--ac)]
+                            underline underline-offset-4 decoration-[var(--border-2)]
+                            hover:decoration-[var(--ac)] transition-colors">
+                Download Resume
+              </a>
+            </div>
+
+            {/* Feature row */}
+            <ul className="reveal in d4 mt-12 lg:mt-14 grid grid-cols-1 sm:grid-cols-3 gap-3"
+                role="list">
+              {FEATURES.map(({ icon: Icon, title, sub }) => (
+                <li key={title}
+                    className="flex items-center gap-3 rounded-xl border border-[var(--border)]
+                               bg-[var(--bg-2)]/60 px-3.5 py-3 backdrop-blur-sm
+                               transition-colors duration-200 hover:border-[var(--border-2)]">
+                  <span className="shrink-0 w-9 h-9 rounded-lg flex items-center justify-center
+                                   border border-[var(--border-2)] text-[var(--ac)]"
+                        aria-hidden="true">
+                    <Icon size={15} />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-[0.8rem] font-bold text-[var(--tx)] leading-tight">{title}</span>
+                    <span className="block text-[0.7rem] text-[var(--tx-3)] leading-tight mt-0.5">{sub}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            {/* Signature line */}
+            <div className="reveal in d5 mt-10 flex items-center gap-3">
+              <span className="font-mono text-lg font-bold text-[var(--ac)] leading-none"
+                    aria-hidden="true">PP</span>
+              <span className="w-px h-7 bg-[var(--border-2)]" aria-hidden="true" />
+              <p className="text-[0.72rem] text-[var(--tx-3)] leading-snug max-w-[15rem]">
+                Building digital experiences<br className="hidden sm:block" /> that make a difference.
               </p>
             </div>
-            <Field label="Date issued" className="order-2 md:order-3 text-right">{ISSUED}</Field>
           </div>
 
-          {/* Identity block */}
-          <div className="cells grid-cols-[minmax(0,108px)_1fr] sm:grid-cols-[minmax(0,180px)_1fr] lg:grid-cols-[240px_1fr]">
-            <div className="row-span-2 sm:row-span-3 p-3 sm:p-4 flex flex-col">
-              <span className="field-label mb-2">Photo</span>
-              <div className="id-photo">
-                <img src="/images/prince-hero.jpg" alt="Portrait of Prince Christian Parnada"
-                     width="1448" height="1086" fetchPriority="high"
-                     className="w-full aspect-[7/9] object-cover object-[50%_35%]" />
-              </div>
+          {/* Right column — portrait */}
+          <div className="order-1 lg:order-2 relative flex justify-center lg:justify-end">
+            {/* Gold arc */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                 aria-hidden="true">
+              <div className="hero-arc" />
             </div>
 
-            <div className="field relative overflow-hidden min-h-[7.5rem] sm:min-h-[10rem] [container-type:inline-size]">
-              <Rosette className="absolute -right-24 -top-28 w-[26rem] max-w-none opacity-90 pointer-events-none hidden sm:block" />
-              <span className="field-label relative">Surname</span>
-              <h1 className="relative mt-2 sm:mt-3">
-                <span className="display block text-[min(6rem,14.5cqi)]">Parnada</span>
-                <span className="sr-only">, Prince Christian, full-stack web developer</span>
-              </h1>
-            </div>
-
-            <div className="cells !border-0 grid-cols-1 sm:grid-cols-[1.1fr_1fr]">
-              <Field label="Given name">
-                <span className="text-[1.15rem] sm:text-[1.35rem] font-bold" style={{ fontFamily: 'Archivo', fontVariationSettings: "'wdth' 112" }}>PRINCE CHRISTIAN</span>
-              </Field>
-              <Field label="Discipline" className="hidden sm:block">Full-stack web developer</Field>
-            </div>
-
-            <div className="col-span-2 sm:col-span-1 cells !border-0 grid-cols-1 sm:grid-cols-3">
-              <Field label="Discipline" className="sm:hidden">Full-stack web developer</Field>
-              <Field label="Program">BS Information Technology, 3rd year</Field>
-              <Field label="School">University of Cebu – Banilad</Field>
-              <Field label="Based in">Cebu, Philippines</Field>
+            <div className="relative w-[min(78vw,26rem)] lg:w-full lg:max-w-[27rem] aspect-[4/5]">
+              <img
+                src="/images/prince-hero.jpg"
+                alt="Prince Christian Parnada"
+                fetchPriority="high"
+                className="hero-portrait w-full h-full object-cover object-center"
+              />
             </div>
           </div>
 
-          {/* Remarks + actions */}
-          <div className="cells grid-cols-1 lg:grid-cols-[1fr_340px]">
-            <div className="field relative">
-              <span className="field-label">Remarks</span>
-              <p className="mt-3 max-w-[30ch] text-[clamp(1.45rem,3.1vw,2.35rem)] font-semibold leading-[1.12] tracking-[-0.015em]"
-                 style={{ fontVariationSettings: "'wdth' 96" }}>
-                Builds web apps that real businesses run on. Entry No.&nbsp;001 keeps the stock of a motor parts shop in Cebu.
-              </p>
-
-              <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2">
-                <a href={MOTOTRACK.live} target="_blank" rel="noopener noreferrer" className="act">
-                  Open MotoTrack <ArrowUpRight size={16} strokeWidth={2.4} />
-                </a>
-                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="act-line">
-                  <FileText size={15} /> Request a copy (résumé)
-                </a>
-                <a href="#projects" className="act-line"
-                   onClick={e => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }) }}>
-                  All entries <ArrowDown size={15} />
-                </a>
-              </div>
-            </div>
-
-            <div className="cells !border-0 grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 lg:grid-rows-[auto_1fr]">
-              <div className="field">
-                <span className="field-label">Seeking</span>
-                <div className="mt-2 flex flex-col gap-1.5">
-                  <Tick>Internship, 2026</Tick>
-                  <Tick>Entry-level role</Tick>
-                  <Tick>Freelance work</Tick>
-                </div>
-              </div>
-              <div className="field">
-                <span className="field-label">Verification</span>
-                <p className="typed">{LIVE_COUNT} of {projects.length} entries deployed and live</p>
-                <div className="mt-4 mb-1 flex justify-end pr-1">
-                  <Stamp sub="1 real client · Cebu" tilt={-8} size="clamp(1.1rem,2.2vw,1.45rem)" delay={350}>
-                    Live in production
-                  </Stamp>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>

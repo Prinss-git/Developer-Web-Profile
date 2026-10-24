@@ -1,34 +1,40 @@
+import { useState } from 'react'
 import { useTheme } from './hooks/useTheme'
 import { useLenis } from './hooks/useLenis'
-import { useStrike } from './hooks/useStrike'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import ScrollProgress from './components/ScrollProgress'
+import LoadingScreen from './components/LoadingScreen'
 import KeyboardNav from './components/KeyboardNav'
-import { InkFilter } from './components/Record'
+import Marquee from './components/Marquee'
 import Hero from './sections/Hero'
-import Projects from './sections/Projects'
 import About from './sections/About'
+import Projects from './sections/Projects'
 import ExperienceSkills from './sections/ExperienceSkills'
-import Contact from './sections/Contact'
+import CTABanner from './components/CTABanner'
 
 export default function App() {
   const { theme, toggle } = useTheme()
+  const [ready, setReady] = useState(false)
   useLenis()
-  useStrike()
 
   return (
     <>
-      <InkFilter />
+      <LoadingScreen onDone={() => setReady(true)} />
+      <ScrollProgress />
       <KeyboardNav />
-      <Navbar theme={theme} toggleTheme={toggle} />
-      <main id="main-content" tabIndex="-1" className="outline-none">
-        <Hero />
-        <Projects />
-        <About />
-        <ExperienceSkills />
-        <Contact />
-      </main>
-      <Footer />
+      <div style={{ opacity: ready ? 1 : 0, transition: 'opacity 0.4s ease' }}>
+        <Navbar theme={theme} toggleTheme={toggle} />
+        <main id="main-content" tabIndex="-1">
+          <Hero />
+          <Marquee />
+          <About />
+          <Projects />
+          <ExperienceSkills />
+          <CTABanner />
+        </main>
+        <Footer />
+      </div>
     </>
   )
 }
