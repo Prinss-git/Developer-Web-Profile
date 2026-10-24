@@ -21,7 +21,8 @@ function useReveal(ref) {
 export default function Projects() {
   const ref = useRef(null)
   useReveal(ref)
-  const [featured, ...rest] = projects
+  const featured = projects.filter(p => p.featured)
+  const rest = projects.filter(p => !p.featured)
 
   return (
     <section id="projects" className="py-16 lg:py-28 bg-[var(--bg)]" ref={ref} aria-label="Projects">
@@ -32,11 +33,11 @@ export default function Projects() {
         </div>
 
         {/* Featured */}
-        {featured && (
-          <div data-r className="reveal-scale mb-5">
-            <FeaturedProjectCard project={featured} />
+        {featured.map(p => (
+          <div data-r key={p.id} className="reveal-scale mb-5">
+            <FeaturedProjectCard project={p} />
           </div>
-        )}
+        ))}
 
         {/* Rest */}
         {rest.length > 0 && (

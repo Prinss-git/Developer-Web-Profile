@@ -82,7 +82,7 @@ export default function About() {
               <div className="pl-4 py-2 border-l-2" style={{ borderColor: 'var(--ac)' }}>
                 <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[var(--ac)]">Currently</span>
                 <p className="mt-1 text-sm text-[var(--tx-2)]">
-                  4th year BSIT at UC Banilad · five-time Dean's Lister · open to internships and entry-level roles.
+                  4th year BSIT at UC Banilad · five-time Dean's Lister · leading our RescueEye capstone · open to internships and entry-level roles.
                 </p>
               </div>
             </div>

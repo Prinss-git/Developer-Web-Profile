@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { ExternalLink, Lock } from 'lucide-react'
+import { ExternalLink, Lock, ScanEye } from 'lucide-react'
 import { GithubIcon } from './SocialIcons'
 
 export default function FeaturedProjectCard({ project }) {
-  const { title, description, stack, github, live, image, demo, stats } = project
+  const { title, label, description, stack, github, live, image, demo, stats } = project
   const [imgLoaded, setImgLoaded] = useState(false)
 
   return (
@@ -18,12 +18,9 @@ export default function FeaturedProjectCard({ project }) {
                  className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105
                              ${imgLoaded ? 'blur-0 scale-100' : 'blur-sm scale-105'}`} />
           ) : (
-            <div className="absolute inset-0 flex items-center justify-center" aria-hidden="true">
-              <div className="space-y-3 opacity-[0.08]">
-                {[100, 70, 85, 55, 75].map((w, i) => (
-                  <div key={i} className="h-2 rounded-full bg-[var(--tx)]" style={{ width: w }} />
-                ))}
-              </div>
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-[var(--tx-3)]" aria-hidden="true">
+              <ScanEye size={44} strokeWidth={1.4} className="text-[var(--ac)]" />
+              <span className="text-xs font-medium uppercase tracking-[0.15em]">Screenshot coming soon</span>
             </div>
           )}
           <div className="absolute inset-x-0 bottom-0 md:inset-y-0 md:inset-x-auto md:right-0 md:w-1 h-1 md:h-auto"
@@ -33,7 +30,7 @@ export default function FeaturedProjectCard({ project }) {
         {/* Content */}
         <div className="p-7 flex flex-col gap-4">
           <div>
-            <span className="eyebrow text-[10px] mb-3 block">Featured Project</span>
+            <span className="eyebrow text-[10px] mb-3 block">{label || 'Featured Project'}</span>
             <h3 className="font-extrabold text-[var(--tx)] text-2xl mb-2">{title}</h3>
             {stats && (
               <div className="flex flex-wrap gap-2 mb-3">
@@ -71,7 +68,13 @@ export default function FeaturedProjectCard({ project }) {
                 Live Demo <ExternalLink size={13} />
               </a>
             )}
-            {github && (
+            {github && !live && (
+              <a href={github} target="_blank" rel="noopener noreferrer"
+                 className="btn btn-primary text-sm">
+                <GithubIcon size={14} /> View on GitHub
+              </a>
+            )}
+            {github && live && (
               <a href={github} target="_blank" rel="noopener noreferrer"
                  aria-label={`${title} source code`}
                  className="w-9 h-9 rounded-lg flex items-center justify-center border border-[var(--border)]
