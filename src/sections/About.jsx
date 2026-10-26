@@ -71,7 +71,7 @@ export default function About() {
 
             <div className="space-y-4 text-[var(--tx-2)] leading-loose text-[0.95rem]">
               <WordReveal baseDelay={100}>
-                I'm Prince Christian, 20, studying BSIT at the University of Cebu – Banilad. I build full-stack web apps — the kind that actually get used by real people, not just demoed in class.
+                I'm Prince Christian, 21, studying BSIT at the University of Cebu – Banilad. I build full-stack web apps — the kind that actually get used by real people, not just demoed in class.
               </WordReveal>
               <WordReveal baseDelay={200}>
                 My main stack is React on the frontend and Node.js + MySQL on the backend. I've also worked with PHP, Firebase, and plain CSS when the project calls for it. MotoTrack — an inventory and sales system for a real motor parts shop here in Cebu — is probably my most complete project so far.
