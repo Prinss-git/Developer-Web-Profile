@@ -27,14 +27,23 @@ export default function Hero() {
     return () => { window.removeEventListener('scroll', fn); cancelAnimationFrame(raf) }
   }, [])
 
+  // Spotlight follows the cursor across the hero.
+  const onPointerMove = e => {
+    const r = e.currentTarget.getBoundingClientRect()
+    e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`)
+    e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`)
+  }
+
   return (
     <section id="hero"
       className="relative min-h-screen flex items-center pt-24 pb-16 lg:pt-20 lg:pb-0 overflow-hidden"
+      onPointerMove={onPointerMove}
       aria-label="Hero">
 
       {/* ── Background ───────────────────────────── */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div ref={gridRef} className="hero-dot-grid opacity-40" />
+        <div className="hero-spotlight" />
         {/* Gold bloom behind the portrait */}
         <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4
                         w-[850px] h-[850px] max-w-[110vw] rounded-full"

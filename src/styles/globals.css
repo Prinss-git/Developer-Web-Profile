@@ -199,6 +199,62 @@ body { overflow-x: hidden;
           mask-image: radial-gradient(ellipse 78% 92% at 50% 38%, #000 56%, transparent 100%);
 }
 
+/* Spotlight: a tighter dot grid that lights up around the cursor. */
+.hero-spotlight {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--ac) 1.1px, transparent 1.6px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(circle 220px at var(--mx, -999px) var(--my, -999px), #000 0%, transparent 100%);
+          mask-image: radial-gradient(circle 220px at var(--mx, -999px) var(--my, -999px), #000 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+#hero:hover .hero-spotlight { opacity: 0.5; }
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .hero-spotlight { display: none; }
+}
+
+/* ── Page background system ──────────────────── */
+/* Faint patches of the hero dot artwork, reused down the page. */
+.bg-dots {
+  position: absolute;
+  pointer-events: none;
+  background-color: var(--ac);
+  -webkit-mask: url('/images/hero-dots.png') no-repeat center / contain;
+          mask: url('/images/hero-dots.png') no-repeat center / contain;
+  opacity: 0.16;
+}
+[data-theme="light"] .bg-dots { opacity: 0.22; }
+
+/* Soft gold light behind key content. */
+.bg-glow {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--ac-glow) 0%, transparent 65%);
+  filter: blur(40px);
+}
+
+/* Gold hairline between sections, fading out at both ends. */
+.divider-top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(1120px, 92%);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, var(--ac) 50%, transparent);
+  opacity: 0.35;
+}
+
+/* Closing banner: gold-tinted so the page ends on the call to action. */
+.cta-band {
+  background:
+    linear-gradient(120deg, color-mix(in srgb, var(--ac) 16%, var(--bg-3)) 0%, var(--bg-3) 55%, var(--bg-3) 100%);
+}
+
 /* ── Marquee ─────────────────────────────────── */
 @keyframes marquee {
   from { transform: translateX(0); }

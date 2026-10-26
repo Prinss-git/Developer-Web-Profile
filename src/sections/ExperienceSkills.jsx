@@ -24,8 +24,10 @@ export default function ExperienceSkills() {
   useReveal(ref)
 
   return (
-    <section id="experience" className="py-16 lg:py-28 bg-[var(--bg-2)]" ref={ref} aria-label="Experience and Skills">
-      <div className="wrap">
+    <section id="experience" className="relative divider-top py-16 lg:py-28 bg-[var(--bg-alt)] overflow-hidden" ref={ref} aria-label="Experience and Skills">
+      <div className="bg-dots -right-20 top-1/3 w-[560px] h-[560px]" aria-hidden="true" />
+      <div className="bg-glow -left-40 -top-20 w-[520px] h-[520px] opacity-70" aria-hidden="true" />
+      <div className="wrap relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
 
           {/* Experience */}

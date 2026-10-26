@@ -23,8 +23,10 @@ export default function About() {
   useReveal(ref)
 
   return (
-    <section id="about" className="py-16 lg:py-28 bg-[var(--bg-2)] overflow-x-hidden" ref={ref} aria-label="About me">
-      <div className="wrap">
+    <section id="about" className="relative py-16 lg:py-28 bg-[var(--bg-alt)] overflow-hidden" ref={ref} aria-label="About me">
+      <div className="bg-glow -left-40 top-1/4 w-[560px] h-[560px] opacity-80" aria-hidden="true" />
+      <div className="bg-dots -right-24 -bottom-24 w-[520px] h-[520px] opacity-[0.12]" aria-hidden="true" />
+      <div className="wrap relative">
         <div className="grid lg:grid-cols-[300px_1fr] gap-16 items-start">
 
           {/* Photo + socials */}

@@ -26,6 +26,8 @@
   --shadow:    0 1px 3px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.45);
   --shadow-lg: 0 8px 32px rgba(0,0,0,0.65);
   --vignette:  rgba(10,10,10,0.9);
+  /* Alternating section tone, a visible step up from --bg */
+  --bg-alt:    #121214;
 }
 
 [data-theme="light"] {
@@ -57,4 +59,5 @@
   --shadow:    0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.09);
   --shadow-lg: 0 8px 32px rgba(0,0,0,0.14);
   --vignette:  rgba(247,246,243,0.9);
+  --bg-alt:    #eeede7;
 }

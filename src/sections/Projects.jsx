@@ -25,8 +25,11 @@ export default function Projects() {
   const rest = projects.filter(p => !p.featured)
 
   return (
-    <section id="projects" className="py-16 lg:py-28 bg-[var(--bg)]" ref={ref} aria-label="Projects">
-      <div className="wrap">
+    <section id="projects" className="relative divider-top py-16 lg:py-28 bg-[var(--bg)] overflow-hidden" ref={ref} aria-label="Projects">
+      <div className="bg-dots -right-16 -top-10 w-[520px] h-[520px]" aria-hidden="true" />
+      <div className="bg-glow left-1/2 top-[18%] -translate-x-1/2 w-[900px] h-[700px] max-w-[120vw]" aria-hidden="true" />
+      <div className="bg-glow -left-48 bottom-0 w-[520px] h-[520px] opacity-70" aria-hidden="true" />
+      <div className="wrap relative">
         <div data-r className="reveal mb-12">
           <div className="eyebrow">02 — Projects</div>
           <h2 className="section-title mt-3">Things I've built.</h2>
