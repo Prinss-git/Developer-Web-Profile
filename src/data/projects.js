@@ -46,7 +46,6 @@ export const projects = [
     image: '/images/dynamo.jpg',
     demo: null,
     stats: ['QR check-in', 'Automatic waitlisting', '.NET 9 · SQL Server', 'CI/CD with GitHub Actions'],
-    partner: { image: '/images/uc-alliance.png', alt: 'A project for the UC × Alliance Software Program: University of Cebu and Alliance Software', width: 543, height: 127 },
     featured: true,
   },
   {

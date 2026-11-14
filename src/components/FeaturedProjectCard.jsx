@@ -3,7 +3,7 @@ import { ExternalLink, Lock, ScanEye } from 'lucide-react'
 import { GithubIcon } from './SocialIcons'
 
 export default function FeaturedProjectCard({ project }) {
-  const { title, label, description, stack, github, live, image, demo, stats, partner } = project
+  const { title, label, description, stack, github, live, image, demo, stats } = project
   const [imgLoaded, setImgLoaded] = useState(false)
 
   return (
@@ -50,11 +50,6 @@ export default function FeaturedProjectCard({ project }) {
               <span key={tech} className="tech-tag">{tech}</span>
             ))}
           </div>
-
-          {partner && (
-            <img src={partner.image} alt={partner.alt} width={partner.width} height={partner.height}
-                 loading="lazy" className="w-full max-w-[300px] h-auto rounded-lg border border-[var(--border)]" />
-          )}
 
           {demo && (
             <div className="flex items-start gap-2 text-[11px] font-mono p-3 rounded-lg bg-[var(--bg-3)] border border-[var(--border)]">
