@@ -44,7 +44,7 @@ export default function Projects() {
 
         {/* Rest */}
         {rest.length > 0 && (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className={`grid sm:grid-cols-2 gap-5 ${rest.length >= 3 ? 'lg:grid-cols-3' : ''}`}>
             {rest.map((p, i) => (
               <div data-r key={p.id} className={`reveal d${Math.min(i + 1, 6)}`}>
                 <ProjectCard project={p} />

@@ -38,12 +38,16 @@ export const projects = [
   {
     id: 6,
     title: 'Dynamo',
+    label: 'Featured Project · UC × Alliance Software Program',
     description: 'Event registration and attendance system for student organizations at the University of Cebu – Banilad. Organizations publish events, students register (with automatic waitlisting) and get a QR ticket, and officers record attendance by scanning it. Events move from Draft to Open, Closed and Completed; no-shows are marked Absent and late check-ins Late. Admins approve accounts in bulk and manage organizations, members and roles. Secured with salted PBKDF2 password hashing and login lockout, and deployed through GitHub Actions CI/CD.',
     stack: ['ASP.NET Core MVC', 'C#', '.NET 9', 'EF Core', 'SQL Server', 'GitHub Actions'],
     github: null,
     live: 'https://dynamo.runasp.net/',
     image: '/images/dynamo.jpg',
     demo: null,
+    stats: ['QR check-in', 'Automatic waitlisting', '.NET 9 · SQL Server', 'CI/CD with GitHub Actions'],
+    partner: { image: '/images/uc-alliance.png', alt: 'A project for the UC × Alliance Software Program: University of Cebu and Alliance Software', width: 543, height: 127 },
+    featured: true,
   },
   {
     id: 3,
