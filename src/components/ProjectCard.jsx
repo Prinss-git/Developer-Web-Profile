@@ -1,32 +1,26 @@
-import { useState } from 'react'
 import { ExternalLink, Lock } from 'lucide-react'
 import { GithubIcon } from './SocialIcons'
+import ScreenFrame from './ScreenFrame'
 
 export default function ProjectCard({ project }) {
   const { title, description, stack, github, privateRepo, live, image, demo } = project
-  const [imgLoaded, setImgLoaded] = useState(false)
 
   return (
     <article className="card group flex flex-col h-full overflow-hidden"
              aria-label={`Project: ${title}`}>
 
-      {/* Image */}
-      <div className="relative h-44 bg-[var(--bg-3)] overflow-hidden shrink-0">
-        {image ? (
-          <img src={image} alt={title} loading="lazy"
-               onLoad={() => setImgLoaded(true)}
-               className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105
-                           ${imgLoaded ? 'blur-0 scale-100' : 'blur-sm scale-105'}`} />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center" aria-hidden="true">
-            <div className="space-y-2.5 opacity-[0.08]">
-              {[80, 55, 70, 40, 62].map((w, i) => (
-                <div key={i} className="h-1.5 rounded-full bg-[var(--tx)]" style={{ width: w }} />
-              ))}
+      {/* Full screenshot */}
+      <div className="p-3 sm:p-4 pb-0 sm:pb-0 shrink-0">
+        <ScreenFrame image={image} title={title} live={live}
+          placeholder={
+            <div className="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+              <div className="space-y-2.5 opacity-[0.08]">
+                {[80, 55, 70, 40, 62].map((w, i) => (
+                  <div key={i} className="h-1.5 rounded-full bg-[var(--tx)]" style={{ width: w }} />
+                ))}
+              </div>
             </div>
-          </div>
-        )}
-        <div className="absolute inset-x-0 bottom-0 h-1" style={{ background: 'var(--ac)' }} />
+          } />
       </div>
 
       <div className="flex flex-col flex-1 p-6 gap-4">

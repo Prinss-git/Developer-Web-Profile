@@ -1,49 +1,43 @@
-import { useState } from 'react'
 import { ExternalLink, Lock, ScanEye } from 'lucide-react'
 import { GithubIcon } from './SocialIcons'
+import ScreenFrame from './ScreenFrame'
 
 export default function FeaturedProjectCard({ project }) {
   const { title, label, description, stack, github, live, image, demo, stats } = project
-  const [imgLoaded, setImgLoaded] = useState(false)
 
   return (
     <article className="card overflow-hidden" aria-label={`Featured project: ${title}`}>
-      <div className="grid md:grid-cols-2">
 
-        {/* Image */}
-        <div className="relative h-64 sm:h-72 md:h-auto bg-[var(--bg-3)] overflow-hidden group">
-          {image ? (
-            <img src={image} alt={title} loading="lazy"
-                 onLoad={() => setImgLoaded(true)}
-                 className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105
-                             ${imgLoaded ? 'blur-0 scale-100' : 'blur-sm scale-105'}`} />
-          ) : (
+      {/* Full screenshot */}
+      <div className="p-3 sm:p-5 pb-0 sm:pb-0">
+        <ScreenFrame image={image} title={title} live={live}
+          placeholder={
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-[var(--tx-3)]" aria-hidden="true">
               <ScanEye size={44} strokeWidth={1.4} className="text-[var(--ac)]" />
               <span className="text-xs font-medium uppercase tracking-[0.15em]">Screenshot coming soon</span>
             </div>
-          )}
-          <div className="absolute inset-x-0 bottom-0 md:inset-y-0 md:inset-x-auto md:right-0 md:w-1 h-1 md:h-auto"
-               style={{ background: 'var(--ac)' }} />
+          } />
+      </div>
+
+      {/* Details */}
+      <div className="grid lg:grid-cols-[1.45fr_1fr] gap-x-10 gap-y-5 p-6 sm:p-7">
+        <div>
+          <span className="eyebrow text-[10px] mb-3 block">{label || 'Featured Project'}</span>
+          <h3 className="font-extrabold text-[var(--tx)] text-2xl mb-3">{title}</h3>
+          <p className="text-sm text-[var(--tx-2)] leading-relaxed">{description}</p>
         </div>
 
-        {/* Content */}
-        <div className="p-7 flex flex-col gap-4">
-          <div>
-            <span className="eyebrow text-[10px] mb-3 block">{label || 'Featured Project'}</span>
-            <h3 className="font-extrabold text-[var(--tx)] text-2xl mb-2">{title}</h3>
-            {stats && (
-              <div className="flex flex-wrap gap-2 mb-3">
-                {stats.map(s => (
-                  <span key={s} className="text-[11px] font-bold px-2.5 py-1 rounded-md"
-                        style={{ background: 'var(--ac-dim)', color: 'var(--ac)' }}>
-                    {s}
-                  </span>
-                ))}
-              </div>
-            )}
-            <p className="text-sm text-[var(--tx-2)] leading-relaxed">{description}</p>
-          </div>
+        <div className="flex flex-col gap-4 lg:pt-1">
+          {stats && (
+            <div className="flex flex-wrap gap-2">
+              {stats.map(s => (
+                <span key={s} className="text-[11px] font-bold px-2.5 py-1 rounded-md"
+                      style={{ background: 'var(--ac-dim)', color: 'var(--ac)' }}>
+                  {s}
+                </span>
+              ))}
+            </div>
+          )}
 
           <div className="flex flex-wrap gap-1.5">
             {stack.map(tech => (
