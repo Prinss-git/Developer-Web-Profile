@@ -4,19 +4,22 @@ import { GithubIcon } from './SocialIcons'
 
 const AUTOPLAY_MS = 3200
 
+const SIDE_SCALE = 0.86
+const GAP = 28 // px between the front card and a side card when there's room
+
 // Where a card sits relative to the front card: -1 left, 0 front, 1 right.
-// Anything further away waits hidden behind the deck.
-function placement(offset) {
-  if (offset === 0)  return { x: '0%',    scale: 1,    opacity: 1,    z: 30, blur: 0 }
-  if (offset === -1) return { x: '-58%',  scale: 0.86, opacity: 0.45, z: 20, blur: 1 }
-  if (offset === 1)  return { x: '58%',   scale: 0.86, opacity: 0.45, z: 20, blur: 1 }
-  return { x: offset < 0 ? '-95%' : '95%', scale: 0.74, opacity: 0, z: 10, blur: 2 }
+// `spread` is how far (px) a side card's centre sits from the front card's.
+// Anything further away waits hidden just beyond the side cards.
+function placement(offset, spread) {
+  if (offset === 0) return { x: 0, scale: 1, opacity: 1, z: 30, blur: 0 }
+  if (Math.abs(offset) === 1) return { x: offset * spread, scale: SIDE_SCALE, opacity: 0.6, z: 20, blur: 0 }
+  return { x: Math.sign(offset) * spread * 1.35, scale: 0.74, opacity: 0, z: 10, blur: 2 }
 }
 
-function ProjectCard({ project, offset, onSelect }) {
+function ProjectCard({ project, offset, spread, onSelect }) {
   const { title, tag, summary, stack, live, github, image, demo } = project
   const front = offset === 0
-  const p = placement(offset)
+  const p = placement(offset, spread)
 
   return (
     <article
@@ -28,7 +31,7 @@ function ProjectCard({ project, offset, onSelect }) {
                   ${front ? 'shadow-[0_30px_70px_-25px_rgba(0,0,0,0.6)]' : 'cursor-pointer'}
                   ${Math.abs(offset) > 1 ? 'pointer-events-none' : ''}`}
       style={{
-        transform: `translateX(${p.x}) scale(${p.scale})`,
+        transform: `translateX(${p.x}px) scale(${p.scale})`,
         opacity: p.opacity,
         zIndex: p.z,
         filter: p.blur ? `blur(${p.blur}px) saturate(0.8)` : 'none',
@@ -74,7 +77,28 @@ export default function ProjectCarousel({ projects }) {
   const n = projects.length
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
+  const [spread, setSpread] = useState(240)
   const touchX = useRef(null)
+  const deckRef = useRef(null)
+
+  // Push side cards out until they clear the front card, but never past the
+  // edge of the deck. Wide screens show all three cards in full.
+  useEffect(() => {
+    const deck = deckRef.current
+    if (!deck) return
+    const measure = () => {
+      const card = deck.querySelector('article')
+      if (!card) return
+      const w = card.offsetWidth
+      const clear = w / 2 + (w * SIDE_SCALE) / 2 + GAP
+      const fit = deck.clientWidth / 2 - (w * SIDE_SCALE) / 2 - 12
+      setSpread(Math.max(w * 0.45, Math.min(clear, fit)))
+    }
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(deck)
+    return () => ro.disconnect()
+  }, [])
 
   const go = useCallback(step => setActive(a => (a + step + n) % n), [n])
 
@@ -106,7 +130,7 @@ export default function ProjectCarousel({ projects }) {
          onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}
          onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}>
 
-      <div tabIndex={0} onKeyDown={onKeyDown}
+      <div ref={deckRef} tabIndex={0} onKeyDown={onKeyDown}
            onTouchStart={e => { touchX.current = e.touches[0].clientX }}
            onTouchEnd={e => {
              if (touchX.current == null) return
@@ -117,7 +141,7 @@ export default function ProjectCarousel({ projects }) {
            aria-label="Use the left and right arrow keys to browse projects"
            className="grid place-items-center py-6 focus-visible:outline-none">
         {projects.map((p, i) => (
-          <ProjectCard key={p.id} project={p} offset={offsetOf(i)} onSelect={() => setActive(i)} />
+          <ProjectCard key={p.id} project={p} offset={offsetOf(i)} spread={spread} onSelect={() => setActive(i)} />
         ))}
       </div>
 

@@ -33,7 +33,8 @@ export default function Projects() {
         </div>
       </div>
 
-      <div data-r className="reveal wrap relative">
+      {/* Wider than the text column so the side cards have room to show in full */}
+      <div data-r className="reveal relative mx-auto max-w-[1440px] px-4">
         <ProjectCarousel projects={projects} />
       </div>
     </section>
